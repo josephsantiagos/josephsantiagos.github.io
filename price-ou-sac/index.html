@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Price ou SAC: qual é melhor? Compare as parcelas</title>
+<meta name="description" content="Compare Price e SAC lado a lado: primeira e última parcela, total pago e juros. Veja qual sistema de amortização faz mais sentido para você.">
+<link rel="canonical" href="https://josephsantiagos.github.io/price-ou-sac/">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#0A5F5B">
+<meta name="format-detection" content="telephone=no">
+<link rel="icon" href="/assets/logo.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="Calculadora Empréstimo e Juros">
+<meta property="og:title" content="Price ou SAC: qual é melhor? Compare as parcelas">
+<meta property="og:description" content="Compare Price e SAC lado a lado: primeira e última parcela, total pago e juros. Veja qual sistema de amortização faz mais sentido para você.">
+<meta property="og:url" content="https://josephsantiagos.github.io/price-ou-sac/">
+<meta property="og:image" content="https://josephsantiagos.github.io/assets/og-calculadora.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Calculadora Empréstimo e Juros: simule parcelas e juros">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="/assets/site.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","@id":"https://josephsantiagos.github.io/price-ou-sac/#calculadora","name":"Comparador Price ou SAC","url":"https://josephsantiagos.github.io/price-ou-sac/","description":"Compare Price e SAC lado a lado: primeira e última parcela, total pago e juros. Veja qual sistema de amortização faz mais sentido para você.","applicationCategory":"FinanceApplication","operatingSystem":"Qualquer sistema com navegador","browserRequirements":"Requer JavaScript","inLanguage":"pt-BR","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"BRL"},"author":{"@type":"Person","name":"Joseph Santiago"}},{"@type":"FAQPage","@id":"https://josephsantiagos.github.io/price-ou-sac/#faq","mainEntity":[{"@type":"Question","name":"Qual é melhor: Price ou SAC?","acceptedAnswer":{"@type":"Answer","text":"Depende do orçamento. O SAC paga menos juros no total, mas começa com parcelas maiores. A Price tem parcela fixa e menor no início, com mais juros no total. Se a primeira parcela do SAC cabe com folga, ele costuma sair mais barato."}},{"@type":"Question","name":"Por que o SAC paga menos juros?","acceptedAnswer":{"@type":"Answer","text":"Porque a dívida é amortizada mais rápido no começo. Com saldo devedor menor, os juros de cada mês também são menores, mesmo com a mesma taxa."}},{"@type":"Question","name":"Em que mês a parcela do SAC fica menor que a da Price?","acceptedAnswer":{"@type":"Answer","text":"Depende da taxa e do prazo. No exemplo de R$ 20.000 a 1,8% ao mês em 36 meses, isso acontece a partir do 17º mês. A comparação mês a mês da calculadora mostra o ponto exato para os seus valores."}},{"@type":"Question","name":"Posso escolher entre Price e SAC?","acceptedAnswer":{"@type":"Answer","text":"Em algumas modalidades, como o financiamento imobiliário, é comum poder escolher. Em empréstimo pessoal, consignado e financiamento de veículos, a Price costuma ser o padrão. Pergunte antes de contratar."}},{"@type":"Question","name":"Antecipar parcelas na Price deixa o custo igual ao do SAC?","acceptedAnswer":{"@type":"Answer","text":"Pode chegar perto. Ao amortizar antes, você reduz o saldo devedor e os juros futuros, que é exatamente o que o SAC faz de forma automática."}},{"@type":"Question","name":"O IOF muda entre Price e SAC?","acceptedAnswer":{"@type":"Answer","text":"Pode mudar um pouco, porque parte do IOF depende do tempo em que o dinheiro fica emprestado e, no SAC, a dívida cai mais rápido. Confira o CET de cada opção na proposta."}}]},{"@type":"BreadcrumbList","@id":"https://josephsantiagos.github.io/price-ou-sac/#trilha","itemListElement":[{"@type":"ListItem","position":1,"name":"Início","item":"https://josephsantiagos.github.io/"},{"@type":"ListItem","position":2,"name":"Price ou SAC","item":"https://josephsantiagos.github.io/price-ou-sac/"}]}]}</script>
+</head>
+<body>
+<a class="pular" href="#conteudo">Pular para o conteúdo</a>
+<header class="topo"><div class="topo-in"><a class="marca" href="/"><img src="/assets/logo.svg" alt="" width="32" height="32">Calculadora Empréstimo e Juros</a></div></header>
+<main id="conteudo">
+<nav class="trilha" aria-label="Você está em"><ol><li><a href="/">Início</a></li><li aria-current="page">Price ou SAC</li></ol></nav>
+<h1>Price ou SAC: comparação lado a lado</h1>
+<p class="lead">Informe valor, taxa e prazo e veja, lado a lado, quanto você paga em cada sistema de amortização.</p>
+<section class="calc" id="calculadora" aria-labelledby="titulo-calc">
+<h2 id="titulo-calc" style="margin-top:0">Compare Price e SAC</h2>
+<form data-calc="pricesac" data-saida="resultado-pricesac" data-anuncio="anuncio-pricesac" novalidate>
+<div class="campos">
+<div class="campo"><label for="pricesac-valor">Valor financiado</label><div class="entrada"><span class="un" aria-hidden="true">R$</span><input id="pricesac-valor" name="valor" type="text" inputmode="decimal" autocomplete="off" value="20.000"></div></div>
+<div class="campo"><label for="pricesac-taxa">Taxa de juros</label><div class="dupla"><div class="entrada"><input id="pricesac-taxa" name="taxa" type="text" inputmode="decimal" autocomplete="off" value="1,8"><span class="un" aria-hidden="true">%</span></div><select name="tipo" aria-label="Período da taxa"><option value="mes" selected>ao mês</option><option value="ano">ao ano</option></select></div></div>
+<div class="campo"><label for="pricesac-prazo">Prazo</label><div class="entrada"><input id="pricesac-prazo" name="prazo" type="text" inputmode="numeric" pattern="[0-9]*" autocomplete="off" value="36"><span class="un" aria-hidden="true">meses</span></div></div>
+</div>
+<button class="botao" type="submit">Comparar</button>
+</form>
+<p class="sr" id="anuncio-pricesac" aria-live="polite"></p>
+<div class="resultado" id="resultado-pricesac"><div class="rolagem"><table class="comparativo"><caption>Comparação para R$ 20.000,00 em 36 parcelas a 1,80% ao mês = 23,87% ao ano</caption><thead><tr><th scope="col"></th><th scope="col">Price</th><th scope="col">SAC</th></tr></thead><tbody><tr><th scope="row">1ª parcela</th><td>R$ 759,68</td><td>R$ 915,56</td></tr><tr><th scope="row">Última parcela</th><td>R$ 759,68</td><td>R$ 565,40</td></tr><tr><th scope="row">Total pago</th><td>R$ 27.348,48</td><td>R$ 26.660,00</td></tr><tr><th scope="row">Juros totais</th><td>R$ 7.348,48</td><td>R$ 6.660,00</td></tr></tbody></table></div><p class="res-frase">No SAC você paga <strong>R$ 688,48 a menos de juros</strong>, mas a 1ª parcela é R$ 155,88 maior que a da Price.</p><details class="tabela"><summary>Ver parcelas mês a mês (36 parcelas)</summary><div class="rolagem" tabindex="0" role="region" aria-label="Parcelas Price e SAC"><table><caption>Valores em R$</caption><thead><tr><th scope="col">Mês</th><th scope="col">Price</th><th scope="col">SAC</th><th scope="col">Diferença</th></tr></thead><tbody><tr><td>1</td><td>759,68</td><td>915,56</td><td>155,88</td></tr><tr><td>2</td><td>759,68</td><td>905,56</td><td>145,88</td></tr><tr><td>3</td><td>759,68</td><td>895,56</td><td>135,88</td></tr><tr><td>4</td><td>759,68</td><td>885,56</td><td>125,88</td></tr><tr><td>5</td><td>759,68</td><td>875,56</td><td>115,88</td></tr><tr><td>6</td><td>759,68</td><td>865,56</td><td>105,88</td></tr><tr><td>7</td><td>759,68</td><td>855,56</td><td>95,88</td></tr><tr><td>8</td><td>759,68</td><td>845,56</td><td>85,88</td></tr><tr><td>9</td><td>759,68</td><td>835,56</td><td>75,88</td></tr><tr><td>10</td><td>759,68</td><td>825,56</td><td>65,88</td></tr><tr><td>11</td><td>759,68</td><td>815,56</td><td>55,88</td></tr><tr><td>12</td><td>759,68</td><td>805,56</td><td>45,88</td></tr><tr><td>13</td><td>759,68</td><td>795,56</td><td>35,88</td></tr><tr><td>14</td><td>759,68</td><td>785,56</td><td>25,88</td></tr><tr><td>15</td><td>759,68</td><td>775,56</td><td>15,88</td></tr><tr><td>16</td><td>759,68</td><td>765,56</td><td>5,88</td></tr><tr><td>17</td><td>759,68</td><td>755,56</td><td>-4,12</td></tr><tr><td>18</td><td>759,68</td><td>745,56</td><td>-14,12</td></tr><tr><td>19</td><td>759,68</td><td>735,56</td><td>-24,12</td></tr><tr><td>20</td><td>759,68</td><td>725,56</td><td>-34,12</td></tr><tr><td>21</td><td>759,68</td><td>715,56</td><td>-44,12</td></tr><tr><td>22</td><td>759,68</td><td>705,56</td><td>-54,12</td></tr><tr><td>23</td><td>759,68</td><td>695,56</td><td>-64,12</td></tr><tr><td>24</td><td>759,68</td><td>685,56</td><td>-74,12</td></tr><tr><td>25</td><td>759,68</td><td>675,56</td><td>-84,12</td></tr><tr><td>26</td><td>759,68</td><td>665,56</td><td>-94,12</td></tr><tr><td>27</td><td>759,68</td><td>655,56</td><td>-104,12</td></tr><tr><td>28</td><td>759,68</td><td>645,56</td><td>-114,12</td></tr><tr><td>29</td><td>759,68</td><td>635,56</td><td>-124,12</td></tr><tr><td>30</td><td>759,68</td><td>625,56</td><td>-134,12</td></tr><tr><td>31</td><td>759,68</td><td>615,56</td><td>-144,12</td></tr><tr><td>32</td><td>759,68</td><td>605,56</td><td>-154,12</td></tr><tr><td>33</td><td>759,68</td><td>595,56</td><td>-164,12</td></tr><tr><td>34</td><td>759,68</td><td>585,56</td><td>-174,12</td></tr><tr><td>35</td><td>759,68</td><td>575,56</td><td>-184,12</td></tr><tr><td>36</td><td>759,68</td><td>565,40</td><td>-194,28</td></tr></tbody><tfoot><tr><th scope="row">Total</th><td>27.348,48</td><td>26.660,00</td><td>-688,48</td></tr></tfoot></table></div></details><p class="aviso">Simulação ilustrativa. Não oferecemos nem intermediamos crédito e não temos vínculo com bancos, financeiras ou órgãos públicos. Antes de contratar, confira o Custo Efetivo Total (CET) informado pela instituição.</p></div>
+</section>
+<aside class="cta-app" aria-label="App para Android">
+<p class="cta-titulo">Leve a calculadora no celular — grátis, sem cadastro</p>
+<p class="cta-texto">Com o app Calculadora Empréstimo e Juros você simula parcelas e juros direto no seu Android.</p>
+<a class="botao-play" href="https://play.google.com/store/apps/details?id=com.josephsantiago.calculadoraemprestimos&amp;referrer=utm_source%3Dsite%26utm_medium%3Dprice-ou-sac%26utm_campaign%3Dorganico" rel="noopener"><svg width="26" height="28" viewBox="0 0 26 28" aria-hidden="true" focusable="false"><path d="M3 2.6v22.8a1.6 1.6 0 0 0 2.4 1.4l18.6-11.4a1.6 1.6 0 0 0 0-2.8L5.4 1.2A1.6 1.6 0 0 0 3 2.6z" fill="#FFD166"/><path d="M8 9.5v9l7.4-4.5z" fill="#111"/></svg><span><small>Disponível no</small><b>Google Play</b></span></a>
+</aside>
+<article class="texto">
+
+<h2>A diferença em uma frase</h2>
+<p>Na <strong>Price</strong> a parcela é fixa e a dívida cai devagar no começo; no <strong>SAC</strong> (Sistema de Amortização Constante) a dívida cai sempre o mesmo valor por mês, e a parcela começa mais alta e vai diminuindo. Com a mesma taxa e o mesmo prazo, o SAC paga menos juros no total.</p>
+
+<h2>Como cada sistema calcula</h2>
+<h3>Price</h3>
+<p>A parcela é calculada pela fórmula PMT = PV × i ÷ [1 − (1 + i)<sup>−n</sup>] e fica igual até o fim. Em cada mês, os juros são o saldo devedor vezes a taxa; o que sobra da parcela amortiza a dívida. Veja os detalhes na <a href="/tabela-price/">Tabela Price</a>.</p>
+<h3>SAC</h3>
+<p>A amortização é o valor financiado dividido pelo número de parcelas, sempre igual. Os juros também são o saldo vezes a taxa, e a parcela é a soma dos dois. Como o saldo cai em ritmo constante, os juros caem todo mês e a parcela também.</p>
+
+<h2>Exemplo: R$ 20.000 a 1,8% ao mês em 36 meses</h2>
+<div class="rolagem"><table class="comparativo"><caption>Mesmo valor, taxa e prazo</caption>
+<thead><tr><th scope="col"></th><th scope="col">Price</th><th scope="col">SAC</th></tr></thead>
+<tbody>
+<tr><th scope="row">1ª parcela</th><td>R$ 759,68</td><td>R$ 915,56</td></tr>
+<tr><th scope="row">Última parcela</th><td>R$ 759,68</td><td>R$ 565,40</td></tr>
+<tr><th scope="row">Total pago</th><td>R$ 27.348,48</td><td>R$ 26.660,00</td></tr>
+<tr><th scope="row">Juros totais</th><td>R$ 7.348,48</td><td>R$ 6.660,00</td></tr>
+</tbody></table></div>
+<p>No SAC, a amortização mensal é 20.000 ÷ 36 = R$ 555,56. Somada aos juros do primeiro mês (20.000 × 1,8% = R$ 360,00), dá a primeira parcela de R$ 915,56, que é R$ 155,88 maior que a da Price. A parcela do SAC fica menor que a da Price a partir do 17º mês. No total, o SAC economiza R$ 688,48 de juros.</p>
+
+<h2>Quando a Price faz mais sentido</h2>
+<ul>
+<li>Quando o orçamento está apertado e a primeira parcela do SAC não cabe.</li>
+<li>Quando você quer previsibilidade: a mesma parcela do início ao fim.</li>
+<li>Quando pretende antecipar parcelas com dinheiro extra. Amortizar por conta própria também reduz os juros.</li>
+</ul>
+
+<h2>Quando o SAC faz mais sentido</h2>
+<ul>
+<li>Quando a primeira parcela cabe com folga e você quer pagar menos juros no total.</li>
+<li>Em prazos longos, como no financiamento imobiliário, em que a economia de juros fica grande.</li>
+<li>Quando você prefere que o peso das parcelas diminua com o tempo, por exemplo se espera uma queda de renda no futuro.</li>
+</ul>
+
+<h2>Por que o SAC paga menos juros?</h2>
+<p>Não é uma taxa diferente: no SAC você devolve o dinheiro mais rápido no começo. Com o saldo devedor menor, os juros de cada mês são menores. Na Price, nos primeiros meses a maior parte da parcela vai para juros e o saldo demora a cair. Se na Price você fizer amortizações extras, chega a um custo parecido.</p>
+
+<h2>CET e IOF valem para os dois</h2>
+<p>O sistema de amortização muda só a forma de devolver o dinheiro. O <strong>Custo Efetivo Total (CET)</strong>, que soma juros, IOF, tarifas e seguros, deve ser informado em qualquer um deles. O <strong>IOF</strong> é cobrado sobre operações de crédito, com uma parte fixa e outra proporcional ao tempo em que o dinheiro fica emprestado; como no SAC a dívida cai mais rápido, o imposto pode ficar um pouco diferente da Price na mesma proposta. Compare propostas sempre com o mesmo sistema, valor e prazo.</p>
+
+<h2>Dicas</h2>
+<ul>
+<li>Pergunte à instituição se ela oferece os dois sistemas; nem toda modalidade oferece.</li>
+<li>No SAC, garanta que a primeira parcela, a maior de todas, cabe no orçamento.</li>
+<li>Na Price, use sobras de dinheiro para amortizar e reduzir os juros.</li>
+<li>Veja a tabela completa de cada sistema no <a href="/simulador-emprestimo/">simulador de empréstimo</a>.</li>
+</ul>
+</article>
+<section class="faq" aria-labelledby="titulo-faq"><h2 id="titulo-faq">Perguntas frequentes</h2>
+<details><summary>Qual é melhor: Price ou SAC?</summary><p>Depende do orçamento. O SAC paga menos juros no total, mas começa com parcelas maiores. A Price tem parcela fixa e menor no início, com mais juros no total. Se a primeira parcela do SAC cabe com folga, ele costuma sair mais barato.</p></details>
+<details><summary>Por que o SAC paga menos juros?</summary><p>Porque a dívida é amortizada mais rápido no começo. Com saldo devedor menor, os juros de cada mês também são menores, mesmo com a mesma taxa.</p></details>
+<details><summary>Em que mês a parcela do SAC fica menor que a da Price?</summary><p>Depende da taxa e do prazo. No exemplo de R$ 20.000 a 1,8% ao mês em 36 meses, isso acontece a partir do 17º mês. A comparação mês a mês da calculadora mostra o ponto exato para os seus valores.</p></details>
+<details><summary>Posso escolher entre Price e SAC?</summary><p>Em algumas modalidades, como o financiamento imobiliário, é comum poder escolher. Em empréstimo pessoal, consignado e financiamento de veículos, a Price costuma ser o padrão. Pergunte antes de contratar.</p></details>
+<details><summary>Antecipar parcelas na Price deixa o custo igual ao do SAC?</summary><p>Pode chegar perto. Ao amortizar antes, você reduz o saldo devedor e os juros futuros, que é exatamente o que o SAC faz de forma automática.</p></details>
+<details><summary>O IOF muda entre Price e SAC?</summary><p>Pode mudar um pouco, porque parte do IOF depende do tempo em que o dinheiro fica emprestado e, no SAC, a dívida cai mais rápido. Confira o CET de cada opção na proposta.</p></details>
+</section>
+<nav class="outras" aria-labelledby="titulo-outras"><h2 id="titulo-outras">Outras calculadoras</h2><ul class="links">
+<li><a href="/simulador-emprestimo/"><strong>Simulador de empréstimo</strong><span>Parcela, juros e tabela mês a mês (Price ou SAC).</span></a></li>
+<li><a href="/quanto-fica-emprestimo/"><strong>Quanto fica um empréstimo</strong><span>Tabelas prontas de parcelas de R$ 1 mil a R$ 50 mil.</span></a></li>
+<li><a href="/simulador-financiamento-carro/"><strong>Financiamento de carro</strong><span>Entrada, parcela e custo total do carro.</span></a></li>
+<li><a href="/simulador-financiamento-moto/"><strong>Financiamento de moto</strong><span>Quanto fica a parcela da moto e o custo final.</span></a></li>
+<li><a href="/emprestimo-consignado/"><strong>Empréstimo consignado</strong><span>Parcela, margem consignável e juros.</span></a></li>
+<li><a href="/juros-parcelamento/"><strong>Juros no parcelamento</strong><span>Descubra o juro escondido no “sem juros”.</span></a></li>
+<li><a href="/descobrir-taxa-de-juros/"><strong>Descobrir a taxa de juros</strong><span>A taxa real a partir do valor da parcela.</span></a></li>
+<li><a href="/juros-cartao-de-credito/"><strong>Juros do cartão de crédito</strong><span>Rotativo ou parcelamento da fatura: quanto custa.</span></a></li>
+<li><a href="/tabela-price/"><strong>Tabela Price</strong><span>Tabela de amortização completa, mês a mês.</span></a></li>
+<li><a href="/juros-compostos/"><strong>Juros compostos</strong><span>Quanto o dinheiro cresce com aportes mensais.</span></a></li>
+</ul></nav>
+</main>
+<footer class="rodape"><div class="rodape-in">
+<aside class="cta-app" aria-label="App para Android">
+<p class="cta-titulo">Leve a calculadora no celular — grátis, sem cadastro</p>
+<p class="cta-texto">Com o app Calculadora Empréstimo e Juros você simula parcelas e juros direto no seu Android.</p>
+<a class="botao-play" href="https://play.google.com/store/apps/details?id=com.josephsantiago.calculadoraemprestimos&amp;referrer=utm_source%3Dsite%26utm_medium%3Dprice-ou-sac%26utm_campaign%3Dorganico" rel="noopener"><svg width="26" height="28" viewBox="0 0 26 28" aria-hidden="true" focusable="false"><path d="M3 2.6v22.8a1.6 1.6 0 0 0 2.4 1.4l18.6-11.4a1.6 1.6 0 0 0 0-2.8L5.4 1.2A1.6 1.6 0 0 0 3 2.6z" fill="#FFD166"/><path d="M8 9.5v9l7.4-4.5z" fill="#111"/></svg><span><small>Disponível no</small><b>Google Play</b></span></a>
+</aside>
+<p class="aviso">Simulação ilustrativa. Não oferecemos nem intermediamos crédito e não temos vínculo com bancos, financeiras ou órgãos públicos. Antes de contratar, confira o Custo Efetivo Total (CET) informado pela instituição.</p>
+<nav aria-label="Todas as calculadoras"><ul class="rodape-links"><li><a href="/">Início</a></li><li><a href="/simulador-emprestimo/">Simulador de empréstimo</a></li><li><a href="/quanto-fica-emprestimo/">Quanto fica um empréstimo</a></li><li><a href="/simulador-financiamento-carro/">Financiamento de carro</a></li><li><a href="/simulador-financiamento-moto/">Financiamento de moto</a></li><li><a href="/emprestimo-consignado/">Empréstimo consignado</a></li><li><a href="/juros-parcelamento/">Juros no parcelamento</a></li><li><a href="/descobrir-taxa-de-juros/">Descobrir a taxa de juros</a></li><li><a href="/juros-cartao-de-credito/">Juros do cartão de crédito</a></li><li><a href="/tabela-price/">Tabela Price</a></li><li><a href="/price-ou-sac/">Price ou SAC</a></li><li><a href="/juros-compostos/">Juros compostos</a></li></ul></nav>
+<p>Feito por Joseph Santiago, desenvolvedor de apps Android. <a href="https://play.google.com/store/apps/details?id=com.josephsantiago.calculadoraemprestimos">Calculadora Empréstimo e Juros na Google Play</a> · <a href="https://josephsantiagos.github.io/pilitica-de-privacidade-play-sotre-/">Política de privacidade</a> · Contato: <a href="mailto:josephsantiago250@gmail.com">josephsantiago250@gmail.com</a></p>
+<p>Este site não exibe anúncios e não coleta os valores digitados: as contas são feitas no seu próprio aparelho.</p>
+</div></footer>
+<script src="/assets/calc.js" defer></script>
+</body>
+</html>

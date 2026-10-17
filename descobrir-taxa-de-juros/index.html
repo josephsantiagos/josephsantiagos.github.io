@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Descobrir Taxa de Juros pela Parcela | Calculadora</title>
+<meta name="description" content="Descubra a taxa de juros real de um empréstimo ou compra a partir do valor recebido, da parcela e do número de parcelas. Taxa mensal e anual.">
+<link rel="canonical" href="https://josephsantiagos.github.io/descobrir-taxa-de-juros/">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#0A5F5B">
+<meta name="format-detection" content="telephone=no">
+<link rel="icon" href="/assets/logo.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="Calculadora Empréstimo e Juros">
+<meta property="og:title" content="Descobrir Taxa de Juros pela Parcela | Calculadora">
+<meta property="og:description" content="Descubra a taxa de juros real de um empréstimo ou compra a partir do valor recebido, da parcela e do número de parcelas. Taxa mensal e anual.">
+<meta property="og:url" content="https://josephsantiagos.github.io/descobrir-taxa-de-juros/">
+<meta property="og:image" content="https://josephsantiagos.github.io/assets/og-calculadora.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Calculadora Empréstimo e Juros: simule parcelas e juros">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="/assets/site.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","@id":"https://josephsantiagos.github.io/descobrir-taxa-de-juros/#calculadora","name":"Calculadora para descobrir taxa de juros","url":"https://josephsantiagos.github.io/descobrir-taxa-de-juros/","description":"Descubra a taxa de juros real de um empréstimo ou compra a partir do valor recebido, da parcela e do número de parcelas. Taxa mensal e anual.","applicationCategory":"FinanceApplication","operatingSystem":"Qualquer sistema com navegador","browserRequirements":"Requer JavaScript","inLanguage":"pt-BR","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"BRL"},"author":{"@type":"Person","name":"Joseph Santiago"}},{"@type":"FAQPage","@id":"https://josephsantiagos.github.io/descobrir-taxa-de-juros/#faq","mainEntity":[{"@type":"Question","name":"Como descobrir a taxa de juros de um empréstimo?","acceptedAnswer":{"@type":"Answer","text":"Informe o valor recebido, a parcela e o número de parcelas. A calculadora encontra a taxa que iguala o valor presente das parcelas ao valor recebido. Exemplo: R$ 3.000 em 12 parcelas de R$ 329,00 dá 4,50% ao mês."}},{"@type":"Question","name":"Por que dividir os juros pelo número de parcelas dá errado?","acceptedAnswer":{"@type":"Answer","text":"Porque o saldo devedor cai a cada parcela. Os juros são cobrados sobre um saldo cada vez menor, então a taxa real é maior que a divisão simples. No exemplo de R$ 3.000 em 12x de R$ 329,00, a conta simples dá 2,63% e a taxa real é 4,50% ao mês."}},{"@type":"Question","name":"A taxa encontrada é o CET?","acceptedAnswer":{"@type":"Answer","text":"Se você usar o valor que realmente recebeu e a parcela que realmente paga, o resultado fica muito próximo do custo efetivo mensal, que é a base do CET. Com o valor bruto do contrato, o resultado se aproxima da taxa de juros nominal."}},{"@type":"Question","name":"Como transformar taxa mensal em anual?","acceptedAnswer":{"@type":"Answer","text":"Calcule (1 + taxa mensal)^12 − 1. Por exemplo, 4,5% ao mês equivalem a 69,59% ao ano, e não a 54%."}},{"@type":"Question","name":"E se as parcelas somarem menos que o valor recebido?","acceptedAnswer":{"@type":"Answer","text":"Então não há juros: seria um desconto. Confira se digitou corretamente a parcela e o número de parcelas."}},{"@type":"Question","name":"Serve para compras parceladas?","acceptedAnswer":{"@type":"Answer","text":"Sim. Use o preço à vista no lugar do valor recebido. Se a primeira parcela for paga no ato da compra, marque essa opção para a taxa sair correta."}}]},{"@type":"BreadcrumbList","@id":"https://josephsantiagos.github.io/descobrir-taxa-de-juros/#trilha","itemListElement":[{"@type":"ListItem","position":1,"name":"Início","item":"https://josephsantiagos.github.io/"},{"@type":"ListItem","position":2,"name":"Descobrir taxa de juros","item":"https://josephsantiagos.github.io/descobrir-taxa-de-juros/"}]}]}</script>
+</head>
+<body>
+<a class="pular" href="#conteudo">Pular para o conteúdo</a>
+<header class="topo"><div class="topo-in"><a class="marca" href="/"><img src="/assets/logo.svg" alt="" width="32" height="32">Calculadora Empréstimo e Juros</a></div></header>
+<main id="conteudo">
+<nav class="trilha" aria-label="Você está em"><ol><li><a href="/">Início</a></li><li aria-current="page">Descobrir taxa de juros</li></ol></nav>
+<h1>Descobrir taxa de juros pela parcela</h1>
+<p class="lead">Você sabe quanto recebeu e quanto vai pagar por mês, mas não sabe a taxa? Informe os valores e veja a taxa mensal e anual.</p>
+<section class="calc" id="calculadora" aria-labelledby="titulo-calc">
+<h2 id="titulo-calc" style="margin-top:0">Qual é a taxa?</h2>
+<form data-calc="taxa" data-saida="resultado-taxa" data-anuncio="anuncio-taxa" novalidate>
+<div class="campos">
+<div class="campo"><label for="taxa-valor">Valor recebido ou preço à vista</label><div class="entrada"><span class="un" aria-hidden="true">R$</span><input id="taxa-valor" name="valor" type="text" inputmode="decimal" autocomplete="off" value="3.000"></div></div>
+<div class="campo"><label for="taxa-parcela">Valor da parcela</label><div class="entrada"><span class="un" aria-hidden="true">R$</span><input id="taxa-parcela" name="parcela" type="text" inputmode="decimal" autocomplete="off" value="329,00"></div></div>
+<div class="campo"><label for="taxa-n">Número de parcelas</label><div class="entrada"><input id="taxa-n" name="n" type="text" inputmode="numeric" pattern="[0-9]*" autocomplete="off" value="12"><span class="un" aria-hidden="true">parcelas</span></div></div>
+<div class="campo"><label for="taxa-ato">Primeira parcela</label><select id="taxa-ato" name="ato"><option value="nao" selected>Daqui a 30 dias</option><option value="sim">No ato da compra (entrada)</option></select></div>
+</div>
+<button class="botao" type="submit">Calcular</button>
+</form>
+<p class="sr" id="anuncio-taxa" aria-live="polite"></p>
+<div class="resultado" id="resultado-taxa"><div class="res-destaque"><span class="res-rotulo">Taxa de juros mensal</span><strong class="res-valor">4,50%</strong><span class="res-sub">equivale a 69,59% ao ano</span></div><dl class="res-grade"><div><dt>Total pago</dt><dd>12 × R$ 329,00 = R$ 3.948,00</dd></div><div><dt>Juros totais</dt><dd>R$ 948,00</dd></div><div><dt>Juros sobre o valor</dt><dd>31,6%</dd></div><div><dt>Taxa com mais casas</dt><dd>4,5001% ao mês</dd></div></dl><p class="res-frase">Conferindo: R$ 3.000,00 a 4,50% ao mês em 12 parcelas resultam em parcelas de R$ 329,00.</p><p class="aviso">Simulação ilustrativa. Não oferecemos nem intermediamos crédito e não temos vínculo com bancos, financeiras ou órgãos públicos. Antes de contratar, confira o Custo Efetivo Total (CET) informado pela instituição.</p></div>
+</section>
+<aside class="cta-app" aria-label="App para Android">
+<p class="cta-titulo">Leve a calculadora no celular — grátis, sem cadastro</p>
+<p class="cta-texto">Com o app Calculadora Empréstimo e Juros você simula parcelas e juros direto no seu Android.</p>
+<a class="botao-play" href="https://play.google.com/store/apps/details?id=com.josephsantiago.calculadoraemprestimos&amp;referrer=utm_source%3Dsite%26utm_medium%3Ddescobrir-taxa-de-juros%26utm_campaign%3Dorganico" rel="noopener"><svg width="26" height="28" viewBox="0 0 26 28" aria-hidden="true" focusable="false"><path d="M3 2.6v22.8a1.6 1.6 0 0 0 2.4 1.4l18.6-11.4a1.6 1.6 0 0 0 0-2.8L5.4 1.2A1.6 1.6 0 0 0 3 2.6z" fill="#FFD166"/><path d="M8 9.5v9l7.4-4.5z" fill="#111"/></svg><span><small>Disponível no</small><b>Google Play</b></span></a>
+</aside>
+<article class="texto">
+
+<h2>Para que serve</h2>
+<p>Propostas de crédito costumam destacar a parcela e deixar a taxa em letras miúdas. Com esta calculadora você faz o caminho inverso: informa quanto recebeu (ou o preço à vista de uma compra), o valor da parcela e quantas parcelas são, e descobre a taxa de juros mensal e anual embutida. Ela funciona para empréstimo pessoal, consignado, financiamento, crediário e qualquer compra parcelada com parcelas iguais.</p>
+
+<h2>Exemplo resolvido: R$ 3.000 pagos em 12 parcelas de R$ 329,00</h2>
+<ul>
+<li>Total pago: 12 × R$ 329,00 = R$ 3.948,00</li>
+<li>Juros: R$ 948,00 (31,6% do valor recebido)</li>
+<li>Taxa encontrada: <strong>4,50% ao mês</strong> = 69,59% ao ano</li>
+</ul>
+<p>Conferindo pela fórmula da Tabela Price: 3.000 × 0,045 ÷ [1 − (1,045)<sup>−12</sup>] ≈ R$ 329,00. A conta fecha.</p>
+
+<h2>Por que dividir os juros pelo prazo dá errado</h2>
+<p>Uma conta comum é pegar os juros (R$ 948), dividir pelo valor (31,6%) e depois pelo número de meses: 31,6% ÷ 12 = 2,63% ao mês. Parece razoável, mas fica bem abaixo da taxa real de 4,50%. O motivo: você não fica devendo os R$ 3.000 o tempo todo. A cada parcela, parte da dívida é paga, e os juros incidem sobre um saldo cada vez menor. Para gerar R$ 948 de juros sobre um saldo que diminui, a taxa precisa ser bem mais alta.</p>
+<p>Outro exemplo: R$ 10.000 em 24 parcelas de R$ 500. Os juros somam R$ 2.000 e a conta simples daria 0,83% ao mês; a taxa real é 1,51% ao mês (19,75% ao ano).</p>
+
+<h2>Como a calculadora encontra a taxa</h2>
+<p>Não existe fórmula fechada para isolar a taxa na equação da Price. A calculadora usa o método de Newton-Raphson: parte de uma estimativa e corrige o valor a cada passo. Se um passo sair do intervalo seguro, ela usa bisseção, que é mais lenta mas nunca falha. O cálculo termina quando a diferença entre duas tentativas fica menor que 0,0000000001. Casos especiais também são tratados: se as parcelas somam exatamente o valor recebido, a taxa é 0%; se somam menos, não há juros a calcular.</p>
+<p>Você pode indicar se a primeira parcela vence em 30 dias, o normal em empréstimos, ou se é paga no ato, comum no comércio. Pagar a primeira na hora aumenta a taxa efetiva.</p>
+
+<h2>A taxa encontrada é o CET?</h2>
+<p>Depende do que você digitar. O <strong>Custo Efetivo Total (CET)</strong> junta juros, IOF, tarifas e seguros. Se você informar o valor que realmente caiu na sua conta e a parcela que realmente vai pagar, a taxa encontrada mostra o custo efetivo mensal da operação, bem próximo do CET. Se informar o valor bruto do contrato, antes dos descontos, o resultado fica mais perto da taxa de juros nominal. A diferença entre as duas mostra quanto pesam o <strong>IOF</strong>, imposto sobre operações de crédito com uma parte fixa e outra que cresce com o prazo, e as tarifas.</p>
+
+<h2>Como converter taxa mensal em anual</h2>
+<p>Use (1 + taxa mensal)<sup>12</sup> − 1. Com 4,5% ao mês: 1,045<sup>12</sup> − 1 = 69,59% ao ano, bem mais que 4,5 × 12 = 54%. É por isso que taxas mensais que parecem pequenas viram números grandes no ano.</p>
+
+<h2>Dicas</h2>
+<ul>
+<li>Antes de assinar, peça o CET por escrito e compare com a taxa que você calculou aqui.</li>
+<li>Use a taxa, e não a parcela, para comparar propostas com valores e prazos diferentes.</li>
+<li>Se a taxa encontrada for muito maior que a informada pelo vendedor, pergunte o que está incluído: seguro, tarifa, garantia estendida.</li>
+<li>Depois de descobrir a taxa, teste prazos menores no <a href="/simulador-emprestimo/">simulador de empréstimo</a>.</li>
+</ul>
+</article>
+<section class="faq" aria-labelledby="titulo-faq"><h2 id="titulo-faq">Perguntas frequentes</h2>
+<details><summary>Como descobrir a taxa de juros de um empréstimo?</summary><p>Informe o valor recebido, a parcela e o número de parcelas. A calculadora encontra a taxa que iguala o valor presente das parcelas ao valor recebido. Exemplo: R$ 3.000 em 12 parcelas de R$ 329,00 dá 4,50% ao mês.</p></details>
+<details><summary>Por que dividir os juros pelo número de parcelas dá errado?</summary><p>Porque o saldo devedor cai a cada parcela. Os juros são cobrados sobre um saldo cada vez menor, então a taxa real é maior que a divisão simples. No exemplo de R$ 3.000 em 12x de R$ 329,00, a conta simples dá 2,63% e a taxa real é 4,50% ao mês.</p></details>
+<details><summary>A taxa encontrada é o CET?</summary><p>Se você usar o valor que realmente recebeu e a parcela que realmente paga, o resultado fica muito próximo do custo efetivo mensal, que é a base do CET. Com o valor bruto do contrato, o resultado se aproxima da taxa de juros nominal.</p></details>
+<details><summary>Como transformar taxa mensal em anual?</summary><p>Calcule (1 + taxa mensal)^12 − 1. Por exemplo, 4,5% ao mês equivalem a 69,59% ao ano, e não a 54%.</p></details>
+<details><summary>E se as parcelas somarem menos que o valor recebido?</summary><p>Então não há juros: seria um desconto. Confira se digitou corretamente a parcela e o número de parcelas.</p></details>
+<details><summary>Serve para compras parceladas?</summary><p>Sim. Use o preço à vista no lugar do valor recebido. Se a primeira parcela for paga no ato da compra, marque essa opção para a taxa sair correta.</p></details>
+</section>
+<nav class="outras" aria-labelledby="titulo-outras"><h2 id="titulo-outras">Outras calculadoras</h2><ul class="links">
+<li><a href="/simulador-emprestimo/"><strong>Simulador de empréstimo</strong><span>Parcela, juros e tabela mês a mês (Price ou SAC).</span></a></li>
+<li><a href="/quanto-fica-emprestimo/"><strong>Quanto fica um empréstimo</strong><span>Tabelas prontas de parcelas de R$ 1 mil a R$ 50 mil.</span></a></li>
+<li><a href="/simulador-financiamento-carro/"><strong>Financiamento de carro</strong><span>Entrada, parcela e custo total do carro.</span></a></li>
+<li><a href="/simulador-financiamento-moto/"><strong>Financiamento de moto</strong><span>Quanto fica a parcela da moto e o custo final.</span></a></li>
+<li><a href="/emprestimo-consignado/"><strong>Empréstimo consignado</strong><span>Parcela, margem consignável e juros.</span></a></li>
+<li><a href="/juros-parcelamento/"><strong>Juros no parcelamento</strong><span>Descubra o juro escondido no “sem juros”.</span></a></li>
+<li><a href="/juros-cartao-de-credito/"><strong>Juros do cartão de crédito</strong><span>Rotativo ou parcelamento da fatura: quanto custa.</span></a></li>
+<li><a href="/tabela-price/"><strong>Tabela Price</strong><span>Tabela de amortização completa, mês a mês.</span></a></li>
+<li><a href="/price-ou-sac/"><strong>Price ou SAC</strong><span>Compare os dois sistemas lado a lado.</span></a></li>
+<li><a href="/juros-compostos/"><strong>Juros compostos</strong><span>Quanto o dinheiro cresce com aportes mensais.</span></a></li>
+</ul></nav>
+</main>
+<footer class="rodape"><div class="rodape-in">
+<aside class="cta-app" aria-label="App para Android">
+<p class="cta-titulo">Leve a calculadora no celular — grátis, sem cadastro</p>
+<p class="cta-texto">Com o app Calculadora Empréstimo e Juros você simula parcelas e juros direto no seu Android.</p>
+<a class="botao-play" href="https://play.google.com/store/apps/details?id=com.josephsantiago.calculadoraemprestimos&amp;referrer=utm_source%3Dsite%26utm_medium%3Ddescobrir-taxa-de-juros%26utm_campaign%3Dorganico" rel="noopener"><svg width="26" height="28" viewBox="0 0 26 28" aria-hidden="true" focusable="false"><path d="M3 2.6v22.8a1.6 1.6 0 0 0 2.4 1.4l18.6-11.4a1.6 1.6 0 0 0 0-2.8L5.4 1.2A1.6 1.6 0 0 0 3 2.6z" fill="#FFD166"/><path d="M8 9.5v9l7.4-4.5z" fill="#111"/></svg><span><small>Disponível no</small><b>Google Play</b></span></a>
+</aside>
+<p class="aviso">Simulação ilustrativa. Não oferecemos nem intermediamos crédito e não temos vínculo com bancos, financeiras ou órgãos públicos. Antes de contratar, confira o Custo Efetivo Total (CET) informado pela instituição.</p>
+<nav aria-label="Todas as calculadoras"><ul class="rodape-links"><li><a href="/">Início</a></li><li><a href="/simulador-emprestimo/">Simulador de empréstimo</a></li><li><a href="/quanto-fica-emprestimo/">Quanto fica um empréstimo</a></li><li><a href="/simulador-financiamento-carro/">Financiamento de carro</a></li><li><a href="/simulador-financiamento-moto/">Financiamento de moto</a></li><li><a href="/emprestimo-consignado/">Empréstimo consignado</a></li><li><a href="/juros-parcelamento/">Juros no parcelamento</a></li><li><a href="/descobrir-taxa-de-juros/">Descobrir a taxa de juros</a></li><li><a href="/juros-cartao-de-credito/">Juros do cartão de crédito</a></li><li><a href="/tabela-price/">Tabela Price</a></li><li><a href="/price-ou-sac/">Price ou SAC</a></li><li><a href="/juros-compostos/">Juros compostos</a></li></ul></nav>
+<p>Feito por Joseph Santiago, desenvolvedor de apps Android. <a href="https://play.google.com/store/apps/details?id=com.josephsantiago.calculadoraemprestimos">Calculadora Empréstimo e Juros na Google Play</a> · <a href="https://josephsantiagos.github.io/pilitica-de-privacidade-play-sotre-/">Política de privacidade</a> · Contato: <a href="mailto:josephsantiago250@gmail.com">josephsantiago250@gmail.com</a></p>
+<p>Este site não exibe anúncios e não coleta os valores digitados: as contas são feitas no seu próprio aparelho.</p>
+</div></footer>
+<script src="/assets/calc.js" defer></script>
+</body>
+</html>

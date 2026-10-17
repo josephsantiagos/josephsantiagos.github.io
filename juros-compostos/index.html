@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Calculadora de Juros Compostos com aporte mensal</title>
+<meta name="description" content="Calcule juros compostos com valor inicial, aporte mensal, taxa ao mês ou ao ano e prazo. Veja o valor final, os juros e a evolução ano a ano.">
+<link rel="canonical" href="https://josephsantiagos.github.io/juros-compostos/">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#0A5F5B">
+<meta name="format-detection" content="telephone=no">
+<link rel="icon" href="/assets/logo.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="Calculadora Empréstimo e Juros">
+<meta property="og:title" content="Calculadora de Juros Compostos com aporte mensal">
+<meta property="og:description" content="Calcule juros compostos com valor inicial, aporte mensal, taxa ao mês ou ao ano e prazo. Veja o valor final, os juros e a evolução ano a ano.">
+<meta property="og:url" content="https://josephsantiagos.github.io/juros-compostos/">
+<meta property="og:image" content="https://josephsantiagos.github.io/assets/og-calculadora.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Calculadora Empréstimo e Juros: simule parcelas e juros">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="/assets/site.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","@id":"https://josephsantiagos.github.io/juros-compostos/#calculadora","name":"Calculadora de juros compostos","url":"https://josephsantiagos.github.io/juros-compostos/","description":"Calcule juros compostos com valor inicial, aporte mensal, taxa ao mês ou ao ano e prazo. Veja o valor final, os juros e a evolução ano a ano.","applicationCategory":"FinanceApplication","operatingSystem":"Qualquer sistema com navegador","browserRequirements":"Requer JavaScript","inLanguage":"pt-BR","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"BRL"},"author":{"@type":"Person","name":"Joseph Santiago"}},{"@type":"FAQPage","@id":"https://josephsantiagos.github.io/juros-compostos/#faq","mainEntity":[{"@type":"Question","name":"Como calcular juros compostos?","acceptedAnswer":{"@type":"Answer","text":"Use valor final = C × (1 + i)^n, em que C é o valor inicial, i a taxa por período e n o número de períodos. Com aportes mensais, some A × [(1 + i)^n − 1] ÷ i. A calculadora faz as duas contas juntas."}},{"@type":"Question","name":"Qual a diferença entre juros simples e compostos?","acceptedAnswer":{"@type":"Answer","text":"Nos juros simples, os juros são sempre calculados sobre o valor inicial. Nos compostos, os juros de cada período entram no saldo e também rendem. R$ 10.000 a 1% ao mês por 12 meses viram R$ 11.200,00 nos simples e R$ 11.268,25 nos compostos."}},{"@type":"Question","name":"Como converter taxa anual em mensal?","acceptedAnswer":{"@type":"Answer","text":"Calcule (1 + taxa anual)^(1/12) − 1. Por exemplo, 12% ao ano equivalem a 0,95% ao mês, e não a 1%."}},{"@type":"Question","name":"A calculadora desconta impostos?","acceptedAnswer":{"@type":"Answer","text":"Não. O resultado é bruto, sem Imposto de Renda, IOF, taxas ou inflação. Use-o como referência e confira as regras de cada investimento."}},{"@type":"Question","name":"Em quanto tempo meu dinheiro dobra?","acceptedAnswer":{"@type":"Answer","text":"Pela regra dos 72, divida 72 pela taxa anual em %. A 8% ao ano, o dinheiro dobra em cerca de 9 anos; a 12% ao ano, em cerca de 6 anos."}},{"@type":"Question","name":"Por que os juros compostos pesam tanto nas dívidas?","acceptedAnswer":{"@type":"Answer","text":"Porque os juros não pagos entram no saldo e passam a gerar juros também. Em taxas altas, como as do rotativo do cartão, a dívida cresce muito rápido."}}]},{"@type":"BreadcrumbList","@id":"https://josephsantiagos.github.io/juros-compostos/#trilha","itemListElement":[{"@type":"ListItem","position":1,"name":"Início","item":"https://josephsantiagos.github.io/"},{"@type":"ListItem","position":2,"name":"Juros compostos","item":"https://josephsantiagos.github.io/juros-compostos/"}]}]}</script>
+</head>
+<body>
+<a class="pular" href="#conteudo">Pular para o conteúdo</a>
+<header class="topo"><div class="topo-in"><a class="marca" href="/"><img src="/assets/logo.svg" alt="" width="32" height="32">Calculadora Empréstimo e Juros</a></div></header>
+<main id="conteudo">
+<nav class="trilha" aria-label="Você está em"><ol><li><a href="/">Início</a></li><li aria-current="page">Juros compostos</li></ol></nav>
+<h1>Calculadora de juros compostos</h1>
+<p class="lead">Veja quanto um valor inicial e aportes mensais acumulam com juros sobre juros, e entenda por que o mesmo efeito pesa tanto nas dívidas.</p>
+<section class="calc" id="calculadora" aria-labelledby="titulo-calc">
+<h2 id="titulo-calc" style="margin-top:0">Simule os juros compostos</h2>
+<form data-calc="compostos" data-saida="resultado-compostos" data-anuncio="anuncio-compostos" novalidate>
+<div class="campos">
+<div class="campo"><label for="compostos-inicial">Valor inicial</label><div class="entrada"><span class="un" aria-hidden="true">R$</span><input id="compostos-inicial" name="inicial" type="text" inputmode="decimal" autocomplete="off" value="1.000"></div></div>
+<div class="campo"><label for="compostos-aporte">Aporte mensal</label><div class="entrada"><span class="un" aria-hidden="true">R$</span><input id="compostos-aporte" name="aporte" type="text" inputmode="decimal" autocomplete="off" value="300"></div></div>
+<div class="campo"><label for="compostos-taxa">Taxa de juros</label><div class="dupla"><div class="entrada"><input id="compostos-taxa" name="taxa" type="text" inputmode="decimal" autocomplete="off" value="0,8"><span class="un" aria-hidden="true">%</span></div><select name="tipo" aria-label="Período da taxa"><option value="mes" selected>ao mês</option><option value="ano">ao ano</option></select></div></div>
+<div class="campo"><label for="compostos-prazo">Prazo</label><div class="dupla"><div class="entrada"><input id="compostos-prazo" name="prazo" type="text" inputmode="numeric" pattern="[0-9]*" autocomplete="off" value="10"></div><select name="unidade" aria-label="Unidade do prazo"><option value="anos" selected>anos</option><option value="meses">meses</option></select></div></div>
+</div>
+<button class="botao" type="submit">Calcular</button>
+</form>
+<p class="sr" id="anuncio-compostos" aria-live="polite"></p>
+<div class="resultado" id="resultado-compostos"><div class="res-destaque"><span class="res-rotulo">Valor acumulado</span><strong class="res-valor">R$ 62.666,98</strong><span class="res-sub">depois de 10 anos</span></div><dl class="res-grade"><div><dt>Total investido</dt><dd>R$ 37.000,00</dd></div><div><dt>Juros ganhos</dt><dd>R$ 25.666,98</dd></div><div><dt>Parte que veio dos juros</dt><dd>41,0%</dd></div><div><dt>Taxa</dt><dd>0,80% ao mês = 10,03% ao ano</dd></div></dl><p class="res-frase">Sem descontar impostos, taxas e inflação. A rentabilidade real varia conforme o investimento.</p><details class="tabela"><summary>Ver evolução ano a ano</summary><div class="rolagem" tabindex="0" role="region" aria-label="Evolução do saldo"><table><caption>Valores em R$</caption><thead><tr><th scope="col">Ano</th><th scope="col">Investido</th><th scope="col">Juros</th><th scope="col">Saldo</th></tr></thead><tbody><tr><td>1</td><td>4.600,00</td><td>263,04</td><td>4.863,04</td></tr><tr><td>2</td><td>8.200,00</td><td>913,69</td><td>9.113,69</td></tr><tr><td>3</td><td>11.800,00</td><td>1.990,85</td><td>13.790,85</td></tr><tr><td>4</td><td>15.400,00</td><td>3.537,31</td><td>18.937,31</td></tr><tr><td>5</td><td>19.000,00</td><td>5.600,15</td><td>24.600,15</td></tr><tr><td>6</td><td>22.600,00</td><td>8.231,20</td><td>30.831,20</td></tr><tr><td>7</td><td>26.200,00</td><td>11.487,46</td><td>37.687,46</td></tr><tr><td>8</td><td>29.800,00</td><td>15.431,67</td><td>45.231,67</td></tr><tr><td>9</td><td>33.400,00</td><td>20.132,86</td><td>53.532,86</td></tr><tr><td>10</td><td>37.000,00</td><td>25.666,98</td><td>62.666,98</td></tr></tbody></table></div></details><p class="aviso">Simulação ilustrativa. Não oferecemos nem intermediamos crédito e não temos vínculo com bancos, financeiras ou órgãos públicos. Antes de contratar, confira o Custo Efetivo Total (CET) informado pela instituição.</p></div>
+</section>
+<aside class="cta-app" aria-label="App para Android">
+<p class="cta-titulo">Leve a calculadora no celular — grátis, sem cadastro</p>
+<p class="cta-texto">Com o app Calculadora Empréstimo e Juros você simula parcelas e juros direto no seu Android.</p>
+<a class="botao-play" href="https://play.google.com/store/apps/details?id=com.josephsantiago.calculadoraemprestimos&amp;referrer=utm_source%3Dsite%26utm_medium%3Djuros-compostos%26utm_campaign%3Dorganico" rel="noopener"><svg width="26" height="28" viewBox="0 0 26 28" aria-hidden="true" focusable="false"><path d="M3 2.6v22.8a1.6 1.6 0 0 0 2.4 1.4l18.6-11.4a1.6 1.6 0 0 0 0-2.8L5.4 1.2A1.6 1.6 0 0 0 3 2.6z" fill="#FFD166"/><path d="M8 9.5v9l7.4-4.5z" fill="#111"/></svg><span><small>Disponível no</small><b>Google Play</b></span></a>
+</aside>
+<article class="texto">
+
+<h2>O que são juros compostos</h2>
+<p>Juros compostos são “juros sobre juros”: os juros de cada mês são somados ao saldo e passam a render também. No começo a diferença para os juros simples é pequena, mas ela cresce com o tempo, porque a base de cálculo aumenta todo mês.</p>
+<p>Um exemplo curto: R$ 10.000 a 1% ao mês por 12 meses. Com juros simples, você teria R$ 11.200,00. Com juros compostos, R$ 11.268,25. Em prazos longos essa diferença fica enorme, a seu favor quando você investe e contra você quando deve.</p>
+
+<h2>A fórmula</h2>
+<p class="formula"><strong>Valor final = C × (1 + i)<sup>n</sup> + A × [(1 + i)<sup>n</sup> − 1] ÷ i</strong></p>
+<p>C é o valor inicial, A é o aporte mensal (considerado no fim de cada mês), i é a taxa mensal em decimal e n é o número de meses. Se a taxa estiver ao ano, converta: taxa mensal = (1 + taxa anual)<sup>1/12</sup> − 1. A calculadora faz isso sozinha quando você escolhe “ao ano”.</p>
+
+<h2>Exemplo resolvido</h2>
+<p>R$ 1.000 iniciais mais R$ 300 por mês, a 0,8% ao mês (10,03% ao ano), durante 10 anos (120 meses):</p>
+<ul>
+<li>Total investido: R$ 1.000 + 120 × R$ 300 = R$ 37.000,00</li>
+<li>Valor final: <strong>R$ 62.666,98</strong></li>
+<li>Juros ganhos: R$ 25.666,98; 41,0% do valor final veio dos juros.</li>
+</ul>
+<p>Se o prazo dobrar para 20 anos, com tudo igual, o valor final vai para R$ 223.108,42, dos quais R$ 150.108,42 são juros. O investido só dobrou, mas os juros se multiplicaram por 5,8: é o tempo trabalhando.</p>
+<p>A taxa usada é só ilustrativa. Rendimentos reais variam conforme o investimento e o momento, e não são garantidos.</p>
+
+<h2>Regra dos 72: em quanto tempo o dinheiro dobra</h2>
+<p>Uma aproximação útil: divida 72 pela taxa anual em %. A 10% ao ano, o dinheiro dobra em cerca de 7,2 anos (a conta exata dá 7,3 anos). A regra também vale para dívidas: uma dívida a 72% ao ano dobra em cerca de um ano se nada for pago.</p>
+
+<h2>Juros compostos nas dívidas</h2>
+<p>O mesmo mecanismo que faz um investimento crescer faz uma dívida disparar. Linhas caras, como o rotativo do cartão, podem ter taxas acima de 10% ao mês; 14% ao mês, por exemplo, equivalem a 382% ao ano. Veja a simulação na calculadora de <a href="/juros-cartao-de-credito/">juros do cartão de crédito</a>.</p>
+<p>No crédito, além dos juros, o custo completo aparece no <strong>Custo Efetivo Total (CET)</strong>, que inclui o <strong>IOF</strong> (imposto sobre operações de crédito), tarifas e seguros. Antes de contratar, compare sempre o CET.</p>
+
+<h2>Impostos, IOF e inflação nos investimentos</h2>
+<p>A calculadora mostra o valor bruto. Na prática, muitos investimentos de renda fixa pagam Imposto de Renda sobre o rendimento, com alíquota que diminui com o tempo, e têm IOF sobre resgates feitos nos primeiros 30 dias. Alguns produtos são isentos para pessoa física. Também vale descontar a inflação: se o dinheiro rende 10% ao ano e os preços sobem 5%, o ganho real é de cerca de 4,8%, pela conta (1,10 ÷ 1,05) − 1.</p>
+
+<h2>Dicas</h2>
+<ul>
+<li>Comece cedo: o tempo pesa mais do que o tamanho dos aportes.</li>
+<li>Mantenha aportes regulares, mesmo que pequenos.</li>
+<li>Antes de investir, quite dívidas caras: nenhum investimento comum rende o que o rotativo cobra.</li>
+<li>Compare taxas sempre no mesmo período: mês com mês, ano com ano.</li>
+</ul>
+</article>
+<section class="faq" aria-labelledby="titulo-faq"><h2 id="titulo-faq">Perguntas frequentes</h2>
+<details><summary>Como calcular juros compostos?</summary><p>Use valor final = C × (1 + i)^n, em que C é o valor inicial, i a taxa por período e n o número de períodos. Com aportes mensais, some A × [(1 + i)^n − 1] ÷ i. A calculadora faz as duas contas juntas.</p></details>
+<details><summary>Qual a diferença entre juros simples e compostos?</summary><p>Nos juros simples, os juros são sempre calculados sobre o valor inicial. Nos compostos, os juros de cada período entram no saldo e também rendem. R$ 10.000 a 1% ao mês por 12 meses viram R$ 11.200,00 nos simples e R$ 11.268,25 nos compostos.</p></details>
+<details><summary>Como converter taxa anual em mensal?</summary><p>Calcule (1 + taxa anual)^(1/12) − 1. Por exemplo, 12% ao ano equivalem a 0,95% ao mês, e não a 1%.</p></details>
+<details><summary>A calculadora desconta impostos?</summary><p>Não. O resultado é bruto, sem Imposto de Renda, IOF, taxas ou inflação. Use-o como referência e confira as regras de cada investimento.</p></details>
+<details><summary>Em quanto tempo meu dinheiro dobra?</summary><p>Pela regra dos 72, divida 72 pela taxa anual em %. A 8% ao ano, o dinheiro dobra em cerca de 9 anos; a 12% ao ano, em cerca de 6 anos.</p></details>
+<details><summary>Por que os juros compostos pesam tanto nas dívidas?</summary><p>Porque os juros não pagos entram no saldo e passam a gerar juros também. Em taxas altas, como as do rotativo do cartão, a dívida cresce muito rápido.</p></details>
+</section>
+<nav class="outras" aria-labelledby="titulo-outras"><h2 id="titulo-outras">Outras calculadoras</h2><ul class="links">
+<li><a href="/simulador-emprestimo/"><strong>Simulador de empréstimo</strong><span>Parcela, juros e tabela mês a mês (Price ou SAC).</span></a></li>
+<li><a href="/quanto-fica-emprestimo/"><strong>Quanto fica um empréstimo</strong><span>Tabelas prontas de parcelas de R$ 1 mil a R$ 50 mil.</span></a></li>
+<li><a href="/simulador-financiamento-carro/"><strong>Financiamento de carro</strong><span>Entrada, parcela e custo total do carro.</span></a></li>
+<li><a href="/simulador-financiamento-moto/"><strong>Financiamento de moto</strong><span>Quanto fica a parcela da moto e o custo final.</span></a></li>
+<li><a href="/emprestimo-consignado/"><strong>Empréstimo consignado</strong><span>Parcela, margem consignável e juros.</span></a></li>
+<li><a href="/juros-parcelamento/"><strong>Juros no parcelamento</strong><span>Descubra o juro escondido no “sem juros”.</span></a></li>
+<li><a href="/descobrir-taxa-de-juros/"><strong>Descobrir a taxa de juros</strong><span>A taxa real a partir do valor da parcela.</span></a></li>
+<li><a href="/juros-cartao-de-credito/"><strong>Juros do cartão de crédito</strong><span>Rotativo ou parcelamento da fatura: quanto custa.</span></a></li>
+<li><a href="/tabela-price/"><strong>Tabela Price</strong><span>Tabela de amortização completa, mês a mês.</span></a></li>
+<li><a href="/price-ou-sac/"><strong>Price ou SAC</strong><span>Compare os dois sistemas lado a lado.</span></a></li>
+</ul></nav>
+</main>
+<footer class="rodape"><div class="rodape-in">
+<aside class="cta-app" aria-label="App para Android">
+<p class="cta-titulo">Leve a calculadora no celular — grátis, sem cadastro</p>
+<p class="cta-texto">Com o app Calculadora Empréstimo e Juros você simula parcelas e juros direto no seu Android.</p>
+<a class="botao-play" href="https://play.google.com/store/apps/details?id=com.josephsantiago.calculadoraemprestimos&amp;referrer=utm_source%3Dsite%26utm_medium%3Djuros-compostos%26utm_campaign%3Dorganico" rel="noopener"><svg width="26" height="28" viewBox="0 0 26 28" aria-hidden="true" focusable="false"><path d="M3 2.6v22.8a1.6 1.6 0 0 0 2.4 1.4l18.6-11.4a1.6 1.6 0 0 0 0-2.8L5.4 1.2A1.6 1.6 0 0 0 3 2.6z" fill="#FFD166"/><path d="M8 9.5v9l7.4-4.5z" fill="#111"/></svg><span><small>Disponível no</small><b>Google Play</b></span></a>
+</aside>
+<p class="aviso">Simulação ilustrativa. Não oferecemos nem intermediamos crédito e não temos vínculo com bancos, financeiras ou órgãos públicos. Antes de contratar, confira o Custo Efetivo Total (CET) informado pela instituição.</p>
+<nav aria-label="Todas as calculadoras"><ul class="rodape-links"><li><a href="/">Início</a></li><li><a href="/simulador-emprestimo/">Simulador de empréstimo</a></li><li><a href="/quanto-fica-emprestimo/">Quanto fica um empréstimo</a></li><li><a href="/simulador-financiamento-carro/">Financiamento de carro</a></li><li><a href="/simulador-financiamento-moto/">Financiamento de moto</a></li><li><a href="/emprestimo-consignado/">Empréstimo consignado</a></li><li><a href="/juros-parcelamento/">Juros no parcelamento</a></li><li><a href="/descobrir-taxa-de-juros/">Descobrir a taxa de juros</a></li><li><a href="/juros-cartao-de-credito/">Juros do cartão de crédito</a></li><li><a href="/tabela-price/">Tabela Price</a></li><li><a href="/price-ou-sac/">Price ou SAC</a></li><li><a href="/juros-compostos/">Juros compostos</a></li></ul></nav>
+<p>Feito por Joseph Santiago, desenvolvedor de apps Android. <a href="https://play.google.com/store/apps/details?id=com.josephsantiago.calculadoraemprestimos">Calculadora Empréstimo e Juros na Google Play</a> · <a href="https://josephsantiagos.github.io/pilitica-de-privacidade-play-sotre-/">Política de privacidade</a> · Contato: <a href="mailto:josephsantiago250@gmail.com">josephsantiago250@gmail.com</a></p>
+<p>Este site não exibe anúncios e não coleta os valores digitados: as contas são feitas no seu próprio aparelho.</p>
+</div></footer>
+<script src="/assets/calc.js" defer></script>
+</body>
+</html>

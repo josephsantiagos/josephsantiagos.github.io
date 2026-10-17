@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Simulador de Financiamento de Carro: parcela e juros</title>
+<meta name="description" content="Calcule a parcela do financiamento de carro com entrada, taxa e prazo. Veja os juros, o custo final do carro e a tabela mês a mês. Grátis.">
+<link rel="canonical" href="https://josephsantiagos.github.io/simulador-financiamento-carro/">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#0A5F5B">
+<meta name="format-detection" content="telephone=no">
+<link rel="icon" href="/assets/logo.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="Calculadora Empréstimo e Juros">
+<meta property="og:title" content="Simulador de Financiamento de Carro: parcela e juros">
+<meta property="og:description" content="Calcule a parcela do financiamento de carro com entrada, taxa e prazo. Veja os juros, o custo final do carro e a tabela mês a mês. Grátis.">
+<meta property="og:url" content="https://josephsantiagos.github.io/simulador-financiamento-carro/">
+<meta property="og:image" content="https://josephsantiagos.github.io/assets/og-calculadora.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Calculadora Empréstimo e Juros: simule parcelas e juros">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="/assets/site.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","@id":"https://josephsantiagos.github.io/simulador-financiamento-carro/#calculadora","name":"Simulador de financiamento de carro","url":"https://josephsantiagos.github.io/simulador-financiamento-carro/","description":"Calcule a parcela do financiamento de carro com entrada, taxa e prazo. Veja os juros, o custo final do carro e a tabela mês a mês. Grátis.","applicationCategory":"FinanceApplication","operatingSystem":"Qualquer sistema com navegador","browserRequirements":"Requer JavaScript","inLanguage":"pt-BR","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"BRL"},"author":{"@type":"Person","name":"Joseph Santiago"}},{"@type":"FAQPage","@id":"https://josephsantiagos.github.io/simulador-financiamento-carro/#faq","mainEntity":[{"@type":"Question","name":"Como calcular a parcela do financiamento de carro?","acceptedAnswer":{"@type":"Answer","text":"Desconte a entrada do preço do carro e aplique a fórmula da Tabela Price sobre o valor financiado. Exemplo: carro de R$ 60.000 com R$ 20.000 de entrada, taxa de 1,49% ao mês e 48 meses dá parcela de R$ 1.172,49."}},{"@type":"Question","name":"Quanto de entrada é preciso dar?","acceptedAnswer":{"@type":"Answer","text":"Depende da instituição, do veículo e do seu perfil. Quanto maior a entrada, menor o valor financiado e menos juros você paga ao longo do contrato."}},{"@type":"Question","name":"Financiamento com taxa zero existe?","acceptedAnswer":{"@type":"Answer","text":"Existem campanhas com essa condição, mas normalmente exigem entrada alta e prazo curto. Compare o preço à vista com o total pago e confira o CET para saber se há custo embutido."}},{"@type":"Question","name":"O que é CET no financiamento de veículo?","acceptedAnswer":{"@type":"Answer","text":"É o Custo Efetivo Total: a taxa que junta juros, IOF, tarifas e seguros do contrato. É o número certo para comparar propostas diferentes."}},{"@type":"Question","name":"Posso quitar o financiamento antes do prazo?","acceptedAnswer":{"@type":"Answer","text":"Sim. Ao adiantar parcelas ou quitar o contrato, você tem direito ao abatimento proporcional dos juros. Depois da quitação, a alienação do veículo deve ser baixada."}},{"@type":"Question","name":"O simulador serve para carro usado?","acceptedAnswer":{"@type":"Answer","text":"Sim. A conta é a mesma para carro novo ou usado; o que costuma mudar é a taxa oferecida e a entrada mínima exigida."}}]},{"@type":"BreadcrumbList","@id":"https://josephsantiagos.github.io/simulador-financiamento-carro/#trilha","itemListElement":[{"@type":"ListItem","position":1,"name":"Início","item":"https://josephsantiagos.github.io/"},{"@type":"ListItem","position":2,"name":"Financiamento de carro","item":"https://josephsantiagos.github.io/simulador-financiamento-carro/"}]}]}</script>
+</head>
+<body>
+<a class="pular" href="#conteudo">Pular para o conteúdo</a>
+<header class="topo"><div class="topo-in"><a class="marca" href="/"><img src="/assets/logo.svg" alt="" width="32" height="32">Calculadora Empréstimo e Juros</a></div></header>
+<main id="conteudo">
+<nav class="trilha" aria-label="Você está em"><ol><li><a href="/">Início</a></li><li aria-current="page">Financiamento de carro</li></ol></nav>
+<h1>Simulador de financiamento de carro</h1>
+<p class="lead">Informe o preço do carro, a entrada, a taxa de juros e o prazo. O simulador mostra a parcela, os juros e quanto o carro vai custar no total.</p>
+<section class="calc" id="calculadora" aria-labelledby="titulo-calc">
+<h2 id="titulo-calc" style="margin-top:0">Simule o financiamento do carro</h2>
+<form data-calc="financiamento" data-saida="resultado-financiamento" data-anuncio="anuncio-financiamento" novalidate>
+<div class="campos">
+<div class="campo"><label for="financiamento-valor">Preço do carro</label><div class="entrada"><span class="un" aria-hidden="true">R$</span><input id="financiamento-valor" name="valor" type="text" inputmode="decimal" autocomplete="off" value="60.000"></div></div>
+<div class="campo"><label for="financiamento-entrada">Entrada</label><div class="entrada"><span class="un" aria-hidden="true">R$</span><input id="financiamento-entrada" name="entrada" type="text" inputmode="decimal" autocomplete="off" value="20.000"></div></div>
+<div class="campo"><label for="financiamento-taxa">Taxa de juros</label><div class="dupla"><div class="entrada"><input id="financiamento-taxa" name="taxa" type="text" inputmode="decimal" autocomplete="off" value="1,49"><span class="un" aria-hidden="true">%</span></div><select name="tipo" aria-label="Período da taxa"><option value="mes" selected>ao mês</option><option value="ano">ao ano</option></select></div></div>
+<div class="campo"><label for="financiamento-prazo">Prazo</label><div class="entrada"><input id="financiamento-prazo" name="prazo" type="text" inputmode="numeric" pattern="[0-9]*" autocomplete="off" value="48"><span class="un" aria-hidden="true">meses</span></div></div>
+</div>
+<button class="botao" type="submit">Calcular</button>
+</form>
+<p class="sr" id="anuncio-financiamento" aria-live="polite"></p>
+<div class="resultado" id="resultado-financiamento"><div class="res-destaque"><span class="res-rotulo">Parcela mensal</span><strong class="res-valor">R$ 1.172,49</strong><span class="res-sub">48 parcelas fixas sobre R$ 40.000,00 financiados</span></div><dl class="res-grade"><div><dt>Entrada</dt><dd>R$ 20.000,00 (33,3%)</dd></div><div><dt>Valor financiado</dt><dd>R$ 40.000,00</dd></div><div><dt>Total das parcelas</dt><dd>R$ 56.279,52</dd></div><div><dt>Juros totais</dt><dd>R$ 16.279,52</dd></div><div><dt>Custo total (entrada + parcelas)</dt><dd>R$ 76.279,52</dd></div><div><dt>Taxa</dt><dd>1,49% ao mês = 19,42% ao ano</dd></div></dl><p class="res-frase">No fim, o veículo sai <strong>27,1% mais caro</strong> do que o preço à vista de R$ 60.000,00.</p><details class="tabela"><summary>Ver tabela mês a mês (48 parcelas)</summary><div class="rolagem" tabindex="0" role="region" aria-label="Tabela de amortização"><table><caption>Valores em R$ — sistema Price</caption><thead><tr><th scope="col">Mês</th><th scope="col">Parcela</th><th scope="col">Juros</th><th scope="col">Amortização</th><th scope="col">Saldo</th></tr></thead><tbody><tr><td>1</td><td>1.172,49</td><td>596,00</td><td>576,49</td><td>39.423,51</td></tr><tr><td>2</td><td>1.172,49</td><td>587,41</td><td>585,08</td><td>38.838,43</td></tr><tr><td>3</td><td>1.172,49</td><td>578,69</td><td>593,80</td><td>38.244,63</td></tr><tr><td>4</td><td>1.172,49</td><td>569,84</td><td>602,65</td><td>37.641,98</td></tr><tr><td>5</td><td>1.172,49</td><td>560,87</td><td>611,62</td><td>37.030,36</td></tr><tr><td>6</td><td>1.172,49</td><td>551,75</td><td>620,74</td><td>36.409,62</td></tr><tr><td>7</td><td>1.172,49</td><td>542,50</td><td>629,99</td><td>35.779,63</td></tr><tr><td>8</td><td>1.172,49</td><td>533,12</td><td>639,37</td><td>35.140,26</td></tr><tr><td>9</td><td>1.172,49</td><td>523,59</td><td>648,90</td><td>34.491,36</td></tr><tr><td>10</td><td>1.172,49</td><td>513,92</td><td>658,57</td><td>33.832,79</td></tr><tr><td>11</td><td>1.172,49</td><td>504,11</td><td>668,38</td><td>33.164,41</td></tr><tr><td>12</td><td>1.172,49</td><td>494,15</td><td>678,34</td><td>32.486,07</td></tr><tr><td>13</td><td>1.172,49</td><td>484,04</td><td>688,45</td><td>31.797,62</td></tr><tr><td>14</td><td>1.172,49</td><td>473,78</td><td>698,71</td><td>31.098,91</td></tr><tr><td>15</td><td>1.172,49</td><td>463,37</td><td>709,12</td><td>30.389,79</td></tr><tr><td>16</td><td>1.172,49</td><td>452,81</td><td>719,68</td><td>29.670,11</td></tr><tr><td>17</td><td>1.172,49</td><td>442,08</td><td>730,41</td><td>28.939,70</td></tr><tr><td>18</td><td>1.172,49</td><td>431,20</td><td>741,29</td><td>28.198,41</td></tr><tr><td>19</td><td>1.172,49</td><td>420,16</td><td>752,33</td><td>27.446,08</td></tr><tr><td>20</td><td>1.172,49</td><td>408,95</td><td>763,54</td><td>26.682,54</td></tr><tr><td>21</td><td>1.172,49</td><td>397,57</td><td>774,92</td><td>25.907,62</td></tr><tr><td>22</td><td>1.172,49</td><td>386,02</td><td>786,47</td><td>25.121,15</td></tr><tr><td>23</td><td>1.172,49</td><td>374,31</td><td>798,18</td><td>24.322,97</td></tr><tr><td>24</td><td>1.172,49</td><td>362,41</td><td>810,08</td><td>23.512,89</td></tr><tr><td>25</td><td>1.172,49</td><td>350,34</td><td>822,15</td><td>22.690,74</td></tr><tr><td>26</td><td>1.172,49</td><td>338,09</td><td>834,40</td><td>21.856,34</td></tr><tr><td>27</td><td>1.172,49</td><td>325,66</td><td>846,83</td><td>21.009,51</td></tr><tr><td>28</td><td>1.172,49</td><td>313,04</td><td>859,45</td><td>20.150,06</td></tr><tr><td>29</td><td>1.172,49</td><td>300,24</td><td>872,25</td><td>19.277,81</td></tr><tr><td>30</td><td>1.172,49</td><td>287,24</td><td>885,25</td><td>18.392,56</td></tr><tr><td>31</td><td>1.172,49</td><td>274,05</td><td>898,44</td><td>17.494,12</td></tr><tr><td>32</td><td>1.172,49</td><td>260,66</td><td>911,83</td><td>16.582,29</td></tr><tr><td>33</td><td>1.172,49</td><td>247,08</td><td>925,41</td><td>15.656,88</td></tr><tr><td>34</td><td>1.172,49</td><td>233,29</td><td>939,20</td><td>14.717,68</td></tr><tr><td>35</td><td>1.172,49</td><td>219,29</td><td>953,20</td><td>13.764,48</td></tr><tr><td>36</td><td>1.172,49</td><td>205,09</td><td>967,40</td><td>12.797,08</td></tr><tr><td>37</td><td>1.172,49</td><td>190,68</td><td>981,81</td><td>11.815,27</td></tr><tr><td>38</td><td>1.172,49</td><td>176,05</td><td>996,44</td><td>10.818,83</td></tr><tr><td>39</td><td>1.172,49</td><td>161,20</td><td>1.011,29</td><td>9.807,54</td></tr><tr><td>40</td><td>1.172,49</td><td>146,13</td><td>1.026,36</td><td>8.781,18</td></tr><tr><td>41</td><td>1.172,49</td><td>130,84</td><td>1.041,65</td><td>7.739,53</td></tr><tr><td>42</td><td>1.172,49</td><td>115,32</td><td>1.057,17</td><td>6.682,36</td></tr><tr><td>43</td><td>1.172,49</td><td>99,57</td><td>1.072,92</td><td>5.609,44</td></tr><tr><td>44</td><td>1.172,49</td><td>83,58</td><td>1.088,91</td><td>4.520,53</td></tr><tr><td>45</td><td>1.172,49</td><td>67,36</td><td>1.105,13</td><td>3.415,40</td></tr><tr><td>46</td><td>1.172,49</td><td>50,89</td><td>1.121,60</td><td>2.293,80</td></tr><tr><td>47</td><td>1.172,49</td><td>34,18</td><td>1.138,31</td><td>1.155,49</td></tr><tr><td>48</td><td>1.172,49</td><td>17,00</td><td>1.155,49</td><td>0,00</td></tr></tbody><tfoot><tr><th scope="row">Total</th><td>56.279,52</td><td>16.279,52</td><td>40.000,00</td><td></td></tr></tfoot></table></div></details><p class="aviso">Simulação ilustrativa. Não oferecemos nem intermediamos crédito e não temos vínculo com bancos, financeiras ou órgãos públicos. Antes de contratar, confira o Custo Efetivo Total (CET) informado pela instituição.</p></div>
+</section>
+<aside class="cta-app" aria-label="App para Android">
+<p class="cta-titulo">Leve a calculadora no celular — grátis, sem cadastro</p>
+<p class="cta-texto">Com o app Calculadora Empréstimo e Juros você simula parcelas e juros direto no seu Android.</p>
+<a class="botao-play" href="https://play.google.com/store/apps/details?id=com.josephsantiago.calculadoraemprestimos&amp;referrer=utm_source%3Dsite%26utm_medium%3Dsimulador-financiamento-carro%26utm_campaign%3Dorganico" rel="noopener"><svg width="26" height="28" viewBox="0 0 26 28" aria-hidden="true" focusable="false"><path d="M3 2.6v22.8a1.6 1.6 0 0 0 2.4 1.4l18.6-11.4a1.6 1.6 0 0 0 0-2.8L5.4 1.2A1.6 1.6 0 0 0 3 2.6z" fill="#FFD166"/><path d="M8 9.5v9l7.4-4.5z" fill="#111"/></svg><span><small>Disponível no</small><b>Google Play</b></span></a>
+</aside>
+<article class="texto">
+
+<h2>Como funciona o financiamento de carro</h2>
+<p>No financiamento de veículo, a instituição paga o carro ao vendedor e você devolve o dinheiro em parcelas mensais com juros. Na maioria dos contratos as parcelas são fixas, calculadas pela <a href="/tabela-price/">Tabela Price</a>. Até a última parcela o carro fica alienado à instituição: ele é a garantia da dívida e só fica livre no documento depois da quitação.</p>
+<p>Por ter o veículo como garantia, essa modalidade costuma custar menos que um empréstimo pessoal sem garantia. Mesmo assim, em prazos longos os juros pesam bastante, e é isso que o simulador ajuda a enxergar antes de você assinar.</p>
+
+<h2>Exemplo resolvido: carro de R$ 60.000 com R$ 20.000 de entrada</h2>
+<p>Com R$ 20.000 de entrada (33,3% do preço), sobram R$ 40.000 para financiar. Com taxa de 1,49% ao mês (19,42% ao ano) em 48 meses:</p>
+<ul>
+<li>Parcela: <strong>R$ 1.172,49</strong></li>
+<li>Total das parcelas: 48 × R$ 1.172,49 = R$ 56.279,52</li>
+<li>Juros: R$ 16.279,52</li>
+<li>Custo total do carro: R$ 20.000 + R$ 56.279,52 = <strong>R$ 76.279,52</strong>, ou 27,1% acima do preço à vista.</li>
+</ul>
+<p>Veja como o prazo mexe na conta, mantendo a mesma taxa e os mesmos R$ 40.000 financiados:</p>
+<div class="rolagem"><table><caption>R$ 40.000 a 1,49% ao mês</caption>
+<thead><tr><th scope="col">Prazo</th><th scope="col">Parcela</th><th scope="col">Juros totais</th></tr></thead>
+<tbody>
+<tr><td>36 meses</td><td>R$ 1.443,69</td><td>R$ 11.972,84</td></tr>
+<tr><td>48 meses</td><td>R$ 1.172,49</td><td>R$ 16.279,52</td></tr>
+<tr><td>60 meses</td><td>R$ 1.013,13</td><td>R$ 20.787,80</td></tr>
+</tbody></table></div>
+<p>Se a entrada subir para R$ 30.000, o valor financiado cai para R$ 30.000 e a parcela em 48 meses vai para R$ 879,37, com R$ 12.209,76 de juros: R$ 4.069,76 a menos do que com R$ 20.000 de entrada.</p>
+
+<h2>Quanto dar de entrada?</h2>
+<p>Quanto maior a entrada, menor o valor financiado e menos juros você paga. Muitas instituições pedem uma entrada mínima, que varia conforme o carro, o ano do modelo e o seu perfil. Teste no simulador entradas diferentes e veja quanto cada R$ 1.000 a mais economiza. Lembre também que ter um carro tem outros custos mensais, como seguro, combustível, manutenção, IPVA e licenciamento, que precisam caber no orçamento junto com a parcela.</p>
+
+<h2>CET, IOF e tarifas do financiamento</h2>
+<p>A taxa de juros anunciada não mostra o custo completo. O contrato deve informar o <strong>Custo Efetivo Total (CET)</strong>, que soma juros, <strong>IOF</strong>, tarifas e seguros. No financiamento de veículos é comum aparecerem tarifa de cadastro, registro do contrato e, às vezes, avaliação do bem. O IOF é um imposto sobre operações de crédito, com uma parte fixa e outra proporcional ao prazo, e normalmente é incluído no valor financiado. Compare propostas sempre pelo CET, para o mesmo valor e prazo.</p>
+<p>Leia com atenção ofertas de “taxa zero”: em geral exigem entrada alta e prazo curto, e às vezes o preço do carro é maior do que o pago à vista. Para achar o juro embutido, use a calculadora para <a href="/descobrir-taxa-de-juros/">descobrir a taxa de juros</a> com o preço à vista, a parcela e o número de parcelas.</p>
+
+<h2>Dicas para pagar menos juros no financiamento</h2>
+<ul>
+<li>Peça simulações em mais de uma instituição e compare o CET, não só a parcela.</li>
+<li>Aumente a entrada sempre que possível, nem que seja adiando a compra por alguns meses.</li>
+<li>Escolha o menor prazo com parcela confortável. Uma regra prática comum é não comprometer mais de 30% da renda com todas as dívidas somadas.</li>
+<li>Antecipe parcelas quando sobrar dinheiro, de preferência as últimas: você paga o valor delas descontado dos juros. Logo depois de assinar, a 48ª parcela do exemplo sairia por cerca de R$ 576,49, em vez de R$ 1.172,49.</li>
+<li>Leia o contrato antes de assinar e recuse itens que você não pediu, como seguros ou serviços extras.</li>
+</ul>
+</article>
+<section class="faq" aria-labelledby="titulo-faq"><h2 id="titulo-faq">Perguntas frequentes</h2>
+<details><summary>Como calcular a parcela do financiamento de carro?</summary><p>Desconte a entrada do preço do carro e aplique a fórmula da Tabela Price sobre o valor financiado. Exemplo: carro de R$ 60.000 com R$ 20.000 de entrada, taxa de 1,49% ao mês e 48 meses dá parcela de R$ 1.172,49.</p></details>
+<details><summary>Quanto de entrada é preciso dar?</summary><p>Depende da instituição, do veículo e do seu perfil. Quanto maior a entrada, menor o valor financiado e menos juros você paga ao longo do contrato.</p></details>
+<details><summary>Financiamento com taxa zero existe?</summary><p>Existem campanhas com essa condição, mas normalmente exigem entrada alta e prazo curto. Compare o preço à vista com o total pago e confira o CET para saber se há custo embutido.</p></details>
+<details><summary>O que é CET no financiamento de veículo?</summary><p>É o Custo Efetivo Total: a taxa que junta juros, IOF, tarifas e seguros do contrato. É o número certo para comparar propostas diferentes.</p></details>
+<details><summary>Posso quitar o financiamento antes do prazo?</summary><p>Sim. Ao adiantar parcelas ou quitar o contrato, você tem direito ao abatimento proporcional dos juros. Depois da quitação, a alienação do veículo deve ser baixada.</p></details>
+<details><summary>O simulador serve para carro usado?</summary><p>Sim. A conta é a mesma para carro novo ou usado; o que costuma mudar é a taxa oferecida e a entrada mínima exigida.</p></details>
+</section>
+<nav class="outras" aria-labelledby="titulo-outras"><h2 id="titulo-outras">Outras calculadoras</h2><ul class="links">
+<li><a href="/simulador-emprestimo/"><strong>Simulador de empréstimo</strong><span>Parcela, juros e tabela mês a mês (Price ou SAC).</span></a></li>
+<li><a href="/quanto-fica-emprestimo/"><strong>Quanto fica um empréstimo</strong><span>Tabelas prontas de parcelas de R$ 1 mil a R$ 50 mil.</span></a></li>
+<li><a href="/simulador-financiamento-moto/"><strong>Financiamento de moto</strong><span>Quanto fica a parcela da moto e o custo final.</span></a></li>
+<li><a href="/emprestimo-consignado/"><strong>Empréstimo consignado</strong><span>Parcela, margem consignável e juros.</span></a></li>
+<li><a href="/juros-parcelamento/"><strong>Juros no parcelamento</strong><span>Descubra o juro escondido no “sem juros”.</span></a></li>
+<li><a href="/descobrir-taxa-de-juros/"><strong>Descobrir a taxa de juros</strong><span>A taxa real a partir do valor da parcela.</span></a></li>
+<li><a href="/juros-cartao-de-credito/"><strong>Juros do cartão de crédito</strong><span>Rotativo ou parcelamento da fatura: quanto custa.</span></a></li>
+<li><a href="/tabela-price/"><strong>Tabela Price</strong><span>Tabela de amortização completa, mês a mês.</span></a></li>
+<li><a href="/price-ou-sac/"><strong>Price ou SAC</strong><span>Compare os dois sistemas lado a lado.</span></a></li>
+<li><a href="/juros-compostos/"><strong>Juros compostos</strong><span>Quanto o dinheiro cresce com aportes mensais.</span></a></li>
+</ul></nav>
+</main>
+<footer class="rodape"><div class="rodape-in">
+<aside class="cta-app" aria-label="App para Android">
+<p class="cta-titulo">Leve a calculadora no celular — grátis, sem cadastro</p>
+<p class="cta-texto">Com o app Calculadora Empréstimo e Juros você simula parcelas e juros direto no seu Android.</p>
+<a class="botao-play" href="https://play.google.com/store/apps/details?id=com.josephsantiago.calculadoraemprestimos&amp;referrer=utm_source%3Dsite%26utm_medium%3Dsimulador-financiamento-carro%26utm_campaign%3Dorganico" rel="noopener"><svg width="26" height="28" viewBox="0 0 26 28" aria-hidden="true" focusable="false"><path d="M3 2.6v22.8a1.6 1.6 0 0 0 2.4 1.4l18.6-11.4a1.6 1.6 0 0 0 0-2.8L5.4 1.2A1.6 1.6 0 0 0 3 2.6z" fill="#FFD166"/><path d="M8 9.5v9l7.4-4.5z" fill="#111"/></svg><span><small>Disponível no</small><b>Google Play</b></span></a>
+</aside>
+<p class="aviso">Simulação ilustrativa. Não oferecemos nem intermediamos crédito e não temos vínculo com bancos, financeiras ou órgãos públicos. Antes de contratar, confira o Custo Efetivo Total (CET) informado pela instituição.</p>
+<nav aria-label="Todas as calculadoras"><ul class="rodape-links"><li><a href="/">Início</a></li><li><a href="/simulador-emprestimo/">Simulador de empréstimo</a></li><li><a href="/quanto-fica-emprestimo/">Quanto fica um empréstimo</a></li><li><a href="/simulador-financiamento-carro/">Financiamento de carro</a></li><li><a href="/simulador-financiamento-moto/">Financiamento de moto</a></li><li><a href="/emprestimo-consignado/">Empréstimo consignado</a></li><li><a href="/juros-parcelamento/">Juros no parcelamento</a></li><li><a href="/descobrir-taxa-de-juros/">Descobrir a taxa de juros</a></li><li><a href="/juros-cartao-de-credito/">Juros do cartão de crédito</a></li><li><a href="/tabela-price/">Tabela Price</a></li><li><a href="/price-ou-sac/">Price ou SAC</a></li><li><a href="/juros-compostos/">Juros compostos</a></li></ul></nav>
+<p>Feito por Joseph Santiago, desenvolvedor de apps Android. <a href="https://play.google.com/store/apps/details?id=com.josephsantiago.calculadoraemprestimos">Calculadora Empréstimo e Juros na Google Play</a> · <a href="https://josephsantiagos.github.io/pilitica-de-privacidade-play-sotre-/">Política de privacidade</a> · Contato: <a href="mailto:josephsantiago250@gmail.com">josephsantiago250@gmail.com</a></p>
+<p>Este site não exibe anúncios e não coleta os valores digitados: as contas são feitas no seu próprio aparelho.</p>
+</div></footer>
+<script src="/assets/calc.js" defer></script>
+</body>
+</html>

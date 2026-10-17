@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tabela Price: calculadora e tabela de amortização</title>
+<meta name="description" content="Entenda a Tabela Price e monte a sua: parcela fixa, juros, amortização e saldo devedor de cada mês. Fórmula, exemplo resolvido e tabela completa.">
+<link rel="canonical" href="https://josephsantiagos.github.io/tabela-price/">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#0A5F5B">
+<meta name="format-detection" content="telephone=no">
+<link rel="icon" href="/assets/logo.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="Calculadora Empréstimo e Juros">
+<meta property="og:title" content="Tabela Price: calculadora e tabela de amortização">
+<meta property="og:description" content="Entenda a Tabela Price e monte a sua: parcela fixa, juros, amortização e saldo devedor de cada mês. Fórmula, exemplo resolvido e tabela completa.">
+<meta property="og:url" content="https://josephsantiagos.github.io/tabela-price/">
+<meta property="og:image" content="https://josephsantiagos.github.io/assets/og-calculadora.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Calculadora Empréstimo e Juros: simule parcelas e juros">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="/assets/site.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","@id":"https://josephsantiagos.github.io/tabela-price/#calculadora","name":"Calculadora da Tabela Price","url":"https://josephsantiagos.github.io/tabela-price/","description":"Entenda a Tabela Price e monte a sua: parcela fixa, juros, amortização e saldo devedor de cada mês. Fórmula, exemplo resolvido e tabela completa.","applicationCategory":"FinanceApplication","operatingSystem":"Qualquer sistema com navegador","browserRequirements":"Requer JavaScript","inLanguage":"pt-BR","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"BRL"},"author":{"@type":"Person","name":"Joseph Santiago"}},{"@type":"FAQPage","@id":"https://josephsantiagos.github.io/tabela-price/#faq","mainEntity":[{"@type":"Question","name":"O que é a Tabela Price?","acceptedAnswer":{"@type":"Answer","text":"É um sistema de amortização com parcelas iguais. Em cada parcela, os juros são calculados sobre o saldo devedor e o restante abate a dívida. Com o tempo, os juros diminuem e a amortização aumenta."}},{"@type":"Question","name":"Qual é a fórmula da Tabela Price?","acceptedAnswer":{"@type":"Answer","text":"PMT = PV × i ÷ [1 − (1 + i)^−n], em que PV é o valor financiado, i é a taxa mensal em decimal e n o número de parcelas. Exemplo: R$ 5.000 a 3% ao mês em 12 meses dá parcela de R$ 502,31."}},{"@type":"Question","name":"Por que os juros diminuem se a parcela é sempre igual?","acceptedAnswer":{"@type":"Answer","text":"Porque os juros de cada mês são calculados sobre o saldo devedor, que cai a cada parcela paga. Como a parcela é fixa, a parte que vai para amortização cresce na mesma medida em que os juros diminuem."}},{"@type":"Question","name":"Onde a Tabela Price é usada?","acceptedAnswer":{"@type":"Answer","text":"Em empréstimo pessoal, consignado, financiamento de veículos, crediário e parcelamento de fatura, entre outros. No financiamento imobiliário também é comum o SAC."}},{"@type":"Question","name":"Adiantar parcelas na Price reduz os juros?","acceptedAnswer":{"@type":"Answer","text":"Sim. Ao antecipar, você paga o valor presente das parcelas, sem os juros dos meses que faltam. Antecipar as últimas parcelas dá o maior desconto."}},{"@type":"Question","name":"A tabela inclui IOF e tarifas?","acceptedAnswer":{"@type":"Answer","text":"Não. A calculadora mostra juros e amortização. IOF, tarifas e seguros entram no Custo Efetivo Total (CET), que a instituição deve informar."}}]},{"@type":"BreadcrumbList","@id":"https://josephsantiagos.github.io/tabela-price/#trilha","itemListElement":[{"@type":"ListItem","position":1,"name":"Início","item":"https://josephsantiagos.github.io/"},{"@type":"ListItem","position":2,"name":"Tabela Price","item":"https://josephsantiagos.github.io/tabela-price/"}]}]}</script>
+</head>
+<body>
+<a class="pular" href="#conteudo">Pular para o conteúdo</a>
+<header class="topo"><div class="topo-in"><a class="marca" href="/"><img src="/assets/logo.svg" alt="" width="32" height="32">Calculadora Empréstimo e Juros</a></div></header>
+<main id="conteudo">
+<nav class="trilha" aria-label="Você está em"><ol><li><a href="/">Início</a></li><li aria-current="page">Tabela Price</li></ol></nav>
+<h1>Tabela Price: calculadora e tabela completa</h1>
+<p class="lead">Informe valor, taxa e prazo para montar a tabela de amortização completa, com juros, amortização e saldo devedor de cada mês.</p>
+<section class="calc" id="calculadora" aria-labelledby="titulo-calc">
+<h2 id="titulo-calc" style="margin-top:0">Monte a sua Tabela Price</h2>
+<form data-calc="price" data-saida="resultado-price" data-anuncio="anuncio-price" novalidate>
+<div class="campos">
+<div class="campo"><label for="price-valor">Valor financiado</label><div class="entrada"><span class="un" aria-hidden="true">R$</span><input id="price-valor" name="valor" type="text" inputmode="decimal" autocomplete="off" value="5.000"></div></div>
+<div class="campo"><label for="price-taxa">Taxa de juros</label><div class="dupla"><div class="entrada"><input id="price-taxa" name="taxa" type="text" inputmode="decimal" autocomplete="off" value="3"><span class="un" aria-hidden="true">%</span></div><select name="tipo" aria-label="Período da taxa"><option value="mes" selected>ao mês</option><option value="ano">ao ano</option></select></div></div>
+<div class="campo"><label for="price-prazo">Prazo</label><div class="entrada"><input id="price-prazo" name="prazo" type="text" inputmode="numeric" pattern="[0-9]*" autocomplete="off" value="12"><span class="un" aria-hidden="true">meses</span></div></div>
+</div>
+<button class="botao" type="submit">Gerar tabela</button>
+</form>
+<p class="sr" id="anuncio-price" aria-live="polite"></p>
+<div class="resultado" id="resultado-price"><div class="res-destaque"><span class="res-rotulo">Parcela mensal (Price)</span><strong class="res-valor">R$ 502,31</strong><span class="res-sub">12 parcelas fixas</span></div><dl class="res-grade"><div><dt>Total pago</dt><dd>R$ 6.027,72</dd></div><div><dt>Juros totais</dt><dd>R$ 1.027,72</dd></div><div><dt>Juros sobre o valor emprestado</dt><dd>20,55%</dd></div><div><dt>Taxa</dt><dd>3,00% ao mês = 42,58% ao ano</dd></div></dl><p class="res-frase">De cada R$ 100 que você paga, <strong>R$ 17,05</strong> são juros.</p><details class="tabela" open><summary>Tabela mês a mês (12 parcelas)</summary><div class="rolagem" tabindex="0" role="region" aria-label="Tabela de amortização"><table><caption>Valores em R$ — sistema Price</caption><thead><tr><th scope="col">Mês</th><th scope="col">Parcela</th><th scope="col">Juros</th><th scope="col">Amortização</th><th scope="col">Saldo</th></tr></thead><tbody><tr><td>1</td><td>502,31</td><td>150,00</td><td>352,31</td><td>4.647,69</td></tr><tr><td>2</td><td>502,31</td><td>139,43</td><td>362,88</td><td>4.284,81</td></tr><tr><td>3</td><td>502,31</td><td>128,54</td><td>373,77</td><td>3.911,04</td></tr><tr><td>4</td><td>502,31</td><td>117,33</td><td>384,98</td><td>3.526,06</td></tr><tr><td>5</td><td>502,31</td><td>105,78</td><td>396,53</td><td>3.129,53</td></tr><tr><td>6</td><td>502,31</td><td>93,89</td><td>408,42</td><td>2.721,11</td></tr><tr><td>7</td><td>502,31</td><td>81,63</td><td>420,68</td><td>2.300,43</td></tr><tr><td>8</td><td>502,31</td><td>69,01</td><td>433,30</td><td>1.867,13</td></tr><tr><td>9</td><td>502,31</td><td>56,01</td><td>446,30</td><td>1.420,83</td></tr><tr><td>10</td><td>502,31</td><td>42,62</td><td>459,69</td><td>961,14</td></tr><tr><td>11</td><td>502,31</td><td>28,83</td><td>473,48</td><td>487,66</td></tr><tr><td>12</td><td>502,31</td><td>14,65</td><td>487,66</td><td>0,00</td></tr></tbody><tfoot><tr><th scope="row">Total</th><td>6.027,72</td><td>1.027,72</td><td>5.000,00</td><td></td></tr></tfoot></table></div></details><p class="aviso">Simulação ilustrativa. Não oferecemos nem intermediamos crédito e não temos vínculo com bancos, financeiras ou órgãos públicos. Antes de contratar, confira o Custo Efetivo Total (CET) informado pela instituição.</p></div>
+</section>
+<aside class="cta-app" aria-label="App para Android">
+<p class="cta-titulo">Leve a calculadora no celular — grátis, sem cadastro</p>
+<p class="cta-texto">Com o app Calculadora Empréstimo e Juros você simula parcelas e juros direto no seu Android.</p>
+<a class="botao-play" href="https://play.google.com/store/apps/details?id=com.josephsantiago.calculadoraemprestimos&amp;referrer=utm_source%3Dsite%26utm_medium%3Dtabela-price%26utm_campaign%3Dorganico" rel="noopener"><svg width="26" height="28" viewBox="0 0 26 28" aria-hidden="true" focusable="false"><path d="M3 2.6v22.8a1.6 1.6 0 0 0 2.4 1.4l18.6-11.4a1.6 1.6 0 0 0 0-2.8L5.4 1.2A1.6 1.6 0 0 0 3 2.6z" fill="#FFD166"/><path d="M8 9.5v9l7.4-4.5z" fill="#111"/></svg><span><small>Disponível no</small><b>Google Play</b></span></a>
+</aside>
+<article class="texto">
+
+<h2>O que é a Tabela Price</h2>
+<p>A Tabela Price, também chamada de sistema francês de amortização, é o jeito mais comum de calcular parcelas no Brasil. Empréstimo pessoal, consignado, financiamento de veículos e crediário costumam usá-la. A característica principal é a parcela fixa: do primeiro ao último mês você paga o mesmo valor.</p>
+<p>O que muda é a composição da parcela. No começo, a maior parte dela é juros; com o tempo, os juros diminuem e a amortização, a parte que abate a dívida, aumenta. Isso acontece porque os juros de cada mês são calculados sobre o saldo devedor, que vai caindo.</p>
+
+<h2>A fórmula</h2>
+<p class="formula"><strong>PMT = PV × i ÷ [1 − (1 + i)<sup>−n</sup>]</strong></p>
+<p>PMT é a parcela, PV é o valor financiado, i é a taxa mensal em decimal e n é o número de meses. Depois de achar a parcela, cada linha da tabela é montada assim:</p>
+<ol>
+<li><strong>Juros do mês</strong> = saldo devedor anterior × i</li>
+<li><strong>Amortização</strong> = parcela − juros do mês</li>
+<li><strong>Novo saldo</strong> = saldo anterior − amortização</li>
+</ol>
+<p>Se a taxa estiver ao ano, converta antes para a taxa mensal equivalente: (1 + taxa anual)<sup>1/12</sup> − 1. A calculadora faz isso quando você escolhe “ao ano”.</p>
+
+<h2>Exemplo resolvido: R$ 5.000 a 3% ao mês em 12 meses</h2>
+<p>Parcela: 5.000 × 0,03 ÷ [1 − (1,03)<sup>−12</sup>] = <strong>R$ 502,31</strong>.</p>
+<ul>
+<li>Mês 1: juros = 5.000 × 3% = R$ 150,00; amortização = R$ 502,31 − R$ 150,00 = R$ 352,31; saldo = R$ 4.647,69.</li>
+<li>Mês 2: juros = 4.647,69 × 3% = R$ 139,43; amortização = R$ 362,88; saldo = R$ 4.284,81.</li>
+<li>Mês 12: juros = R$ 14,65; amortização = R$ 487,66; saldo zerado.</li>
+</ul>
+<p>No total, você paga R$ 6.027,72, dos quais R$ 1.027,72 são juros. A tabela completa está logo acima, na calculadora; altere os campos para montar a tabela do seu contrato.</p>
+<p>Um detalhe: como a parcela é arredondada em centavos, a última linha pode ter alguns centavos de diferença nos juros para zerar o saldo exatamente. Contratos reais fazem o mesmo ajuste.</p>
+
+<h2>Vantagens e desvantagens</h2>
+<p><strong>Vantagens:</strong> parcela fixa, fácil de planejar, e primeira parcela menor do que no SAC. <strong>Desvantagens:</strong> a dívida cai devagar no início e o total de juros é maior do que no SAC com a mesma taxa e prazo. Para ver a diferença em reais, use a comparação <a href="/price-ou-sac/">Price ou SAC</a>.</p>
+
+<h2>Antecipar parcelas na Tabela Price</h2>
+<p>Ao antecipar parcelas, você paga o valor presente delas, ou seja, sem os juros dos meses que faltam. Antecipar as últimas parcelas dá o maior desconto, porque elas carregam mais meses de juros. No exemplo, logo depois de assinar o contrato, quitar a 12ª parcela custaria cerca de R$ 352,31, e não R$ 502,31. O consumidor tem direito a esse abatimento proporcional dos juros ao quitar ou adiantar parcelas.</p>
+
+<h2>CET e IOF na Tabela Price</h2>
+<p>A tabela mostra só juros e amortização. No contrato, o custo final inclui o <strong>IOF</strong>, imposto sobre operações de crédito com uma parte fixa e outra proporcional ao prazo, além de eventuais tarifas e seguros. Tudo isso forma o <strong>Custo Efetivo Total (CET)</strong>, que deve ser informado antes da assinatura. Quando o IOF e as tarifas são financiados, eles são somados ao valor financiado e a tabela é montada sobre o total, o que aumenta a parcela.</p>
+
+<h2>Dicas</h2>
+<ul>
+<li>Compare propostas pelo CET e pelo total pago, não só pela parcela.</li>
+<li>Prazo menor significa menos meses de juros sobre o saldo.</li>
+<li>Peça a tabela de amortização do seu contrato e confira com esta calculadora.</li>
+<li>Se a proposta não mostrar a taxa, use a calculadora para <a href="/descobrir-taxa-de-juros/">descobrir a taxa de juros</a> pela parcela.</li>
+</ul>
+</article>
+<section class="faq" aria-labelledby="titulo-faq"><h2 id="titulo-faq">Perguntas frequentes</h2>
+<details><summary>O que é a Tabela Price?</summary><p>É um sistema de amortização com parcelas iguais. Em cada parcela, os juros são calculados sobre o saldo devedor e o restante abate a dívida. Com o tempo, os juros diminuem e a amortização aumenta.</p></details>
+<details><summary>Qual é a fórmula da Tabela Price?</summary><p>PMT = PV × i ÷ [1 − (1 + i)^−n], em que PV é o valor financiado, i é a taxa mensal em decimal e n o número de parcelas. Exemplo: R$ 5.000 a 3% ao mês em 12 meses dá parcela de R$ 502,31.</p></details>
+<details><summary>Por que os juros diminuem se a parcela é sempre igual?</summary><p>Porque os juros de cada mês são calculados sobre o saldo devedor, que cai a cada parcela paga. Como a parcela é fixa, a parte que vai para amortização cresce na mesma medida em que os juros diminuem.</p></details>
+<details><summary>Onde a Tabela Price é usada?</summary><p>Em empréstimo pessoal, consignado, financiamento de veículos, crediário e parcelamento de fatura, entre outros. No financiamento imobiliário também é comum o SAC.</p></details>
+<details><summary>Adiantar parcelas na Price reduz os juros?</summary><p>Sim. Ao antecipar, você paga o valor presente das parcelas, sem os juros dos meses que faltam. Antecipar as últimas parcelas dá o maior desconto.</p></details>
+<details><summary>A tabela inclui IOF e tarifas?</summary><p>Não. A calculadora mostra juros e amortização. IOF, tarifas e seguros entram no Custo Efetivo Total (CET), que a instituição deve informar.</p></details>
+</section>
+<nav class="outras" aria-labelledby="titulo-outras"><h2 id="titulo-outras">Outras calculadoras</h2><ul class="links">
+<li><a href="/simulador-emprestimo/"><strong>Simulador de empréstimo</strong><span>Parcela, juros e tabela mês a mês (Price ou SAC).</span></a></li>
+<li><a href="/quanto-fica-emprestimo/"><strong>Quanto fica um empréstimo</strong><span>Tabelas prontas de parcelas de R$ 1 mil a R$ 50 mil.</span></a></li>
+<li><a href="/simulador-financiamento-carro/"><strong>Financiamento de carro</strong><span>Entrada, parcela e custo total do carro.</span></a></li>
+<li><a href="/simulador-financiamento-moto/"><strong>Financiamento de moto</strong><span>Quanto fica a parcela da moto e o custo final.</span></a></li>
+<li><a href="/emprestimo-consignado/"><strong>Empréstimo consignado</strong><span>Parcela, margem consignável e juros.</span></a></li>
+<li><a href="/juros-parcelamento/"><strong>Juros no parcelamento</strong><span>Descubra o juro escondido no “sem juros”.</span></a></li>
+<li><a href="/descobrir-taxa-de-juros/"><strong>Descobrir a taxa de juros</strong><span>A taxa real a partir do valor da parcela.</span></a></li>
+<li><a href="/juros-cartao-de-credito/"><strong>Juros do cartão de crédito</strong><span>Rotativo ou parcelamento da fatura: quanto custa.</span></a></li>
+<li><a href="/price-ou-sac/"><strong>Price ou SAC</strong><span>Compare os dois sistemas lado a lado.</span></a></li>
+<li><a href="/juros-compostos/"><strong>Juros compostos</strong><span>Quanto o dinheiro cresce com aportes mensais.</span></a></li>
+</ul></nav>
+</main>
+<footer class="rodape"><div class="rodape-in">
+<aside class="cta-app" aria-label="App para Android">
+<p class="cta-titulo">Leve a calculadora no celular — grátis, sem cadastro</p>
+<p class="cta-texto">Com o app Calculadora Empréstimo e Juros você simula parcelas e juros direto no seu Android.</p>
+<a class="botao-play" href="https://play.google.com/store/apps/details?id=com.josephsantiago.calculadoraemprestimos&amp;referrer=utm_source%3Dsite%26utm_medium%3Dtabela-price%26utm_campaign%3Dorganico" rel="noopener"><svg width="26" height="28" viewBox="0 0 26 28" aria-hidden="true" focusable="false"><path d="M3 2.6v22.8a1.6 1.6 0 0 0 2.4 1.4l18.6-11.4a1.6 1.6 0 0 0 0-2.8L5.4 1.2A1.6 1.6 0 0 0 3 2.6z" fill="#FFD166"/><path d="M8 9.5v9l7.4-4.5z" fill="#111"/></svg><span><small>Disponível no</small><b>Google Play</b></span></a>
+</aside>
+<p class="aviso">Simulação ilustrativa. Não oferecemos nem intermediamos crédito e não temos vínculo com bancos, financeiras ou órgãos públicos. Antes de contratar, confira o Custo Efetivo Total (CET) informado pela instituição.</p>
+<nav aria-label="Todas as calculadoras"><ul class="rodape-links"><li><a href="/">Início</a></li><li><a href="/simulador-emprestimo/">Simulador de empréstimo</a></li><li><a href="/quanto-fica-emprestimo/">Quanto fica um empréstimo</a></li><li><a href="/simulador-financiamento-carro/">Financiamento de carro</a></li><li><a href="/simulador-financiamento-moto/">Financiamento de moto</a></li><li><a href="/emprestimo-consignado/">Empréstimo consignado</a></li><li><a href="/juros-parcelamento/">Juros no parcelamento</a></li><li><a href="/descobrir-taxa-de-juros/">Descobrir a taxa de juros</a></li><li><a href="/juros-cartao-de-credito/">Juros do cartão de crédito</a></li><li><a href="/tabela-price/">Tabela Price</a></li><li><a href="/price-ou-sac/">Price ou SAC</a></li><li><a href="/juros-compostos/">Juros compostos</a></li></ul></nav>
+<p>Feito por Joseph Santiago, desenvolvedor de apps Android. <a href="https://play.google.com/store/apps/details?id=com.josephsantiago.calculadoraemprestimos">Calculadora Empréstimo e Juros na Google Play</a> · <a href="https://josephsantiagos.github.io/pilitica-de-privacidade-play-sotre-/">Política de privacidade</a> · Contato: <a href="mailto:josephsantiago250@gmail.com">josephsantiago250@gmail.com</a></p>
+<p>Este site não exibe anúncios e não coleta os valores digitados: as contas são feitas no seu próprio aparelho.</p>
+</div></footer>
+<script src="/assets/calc.js" defer></script>
+</body>
+</html>

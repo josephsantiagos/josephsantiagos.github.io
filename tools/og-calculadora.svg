@@ -1,0 +1,41 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0A5F5B"/>
+      <stop offset="100%" stop-color="#0E8A84"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FFD166"/>
+      <stop offset="100%" stop-color="#F4A261"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="1110" cy="70" r="210" fill="#FFFFFF" opacity="0.06"/>
+  <circle cx="80" cy="600" r="240" fill="#FFD166" opacity="0.10"/>
+
+  <!-- ícone -->
+  <g transform="translate(90 155) scale(0.62)">
+    <rect width="512" height="512" rx="112" fill="#084744"/>
+    <rect x="92" y="106" width="328" height="300" rx="36" fill="#F4F7F6"/>
+    <rect x="120" y="140" width="272" height="42" rx="14" fill="#D6E5E3"/>
+    <rect x="130" y="206" width="70" height="70" rx="18" fill="#E8EFEE"/>
+    <rect x="221" y="206" width="70" height="70" rx="18" fill="#E8EFEE"/>
+    <rect x="312" y="206" width="70" height="70" rx="18" fill="#E8EFEE"/>
+    <rect x="130" y="295" width="70" height="70" rx="18" fill="#E8EFEE"/>
+    <rect x="221" y="295" width="161" height="70" rx="18" fill="url(#accent)"/>
+    <rect x="150" y="223" width="30" height="36" rx="6" fill="#0A5F5B"/>
+    <rect x="241" y="222" width="30" height="37" rx="6" fill="#2A9D8F"/>
+    <rect x="332" y="214" width="30" height="45" rx="6" fill="#457B9D"/>
+    <path d="M110 401 C175 350, 336 350, 401 401" fill="none" stroke="#D9ECEA" stroke-width="20" stroke-linecap="round"/>
+    <circle cx="256" cy="401" r="14" fill="#0A5F5B"/>
+  </g>
+
+  <g font-family="-apple-system, 'Helvetica Neue', 'Segoe UI', Roboto, Arial, sans-serif" fill="#FFFFFF">
+    <text x="470" y="215" font-size="66" font-weight="800">Calculadora</text>
+    <text x="470" y="292" font-size="66" font-weight="800">Empréstimo e Juros</text>
+    <text x="470" y="362" font-size="32" fill="#DDEFEC">Parcela, juros, Tabela Price e SAC,</text>
+    <text x="470" y="404" font-size="32" fill="#DDEFEC">taxa real do parcelado e cartão.</text>
+    <rect x="470" y="446" width="440" height="66" rx="33" fill="#FFD166"/>
+    <text x="690" y="490" font-size="28" font-weight="700" fill="#084744" text-anchor="middle">Grátis e sem cadastro</text>
+  </g>
+</svg>

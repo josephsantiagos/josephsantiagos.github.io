@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Simulador de Financiamento de Moto: parcela e juros</title>
+<meta name="description" content="Simule o financiamento de moto: preço, entrada, taxa e prazo. Veja a parcela, os juros e o custo total da moto, com tabela mês a mês. Grátis.">
+<link rel="canonical" href="https://josephsantiagos.github.io/simulador-financiamento-moto/">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#0A5F5B">
+<meta name="format-detection" content="telephone=no">
+<link rel="icon" href="/assets/logo.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="Calculadora Empréstimo e Juros">
+<meta property="og:title" content="Simulador de Financiamento de Moto: parcela e juros">
+<meta property="og:description" content="Simule o financiamento de moto: preço, entrada, taxa e prazo. Veja a parcela, os juros e o custo total da moto, com tabela mês a mês. Grátis.">
+<meta property="og:url" content="https://josephsantiagos.github.io/simulador-financiamento-moto/">
+<meta property="og:image" content="https://josephsantiagos.github.io/assets/og-calculadora.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Calculadora Empréstimo e Juros: simule parcelas e juros">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="/assets/site.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","@id":"https://josephsantiagos.github.io/simulador-financiamento-moto/#calculadora","name":"Simulador de financiamento de moto","url":"https://josephsantiagos.github.io/simulador-financiamento-moto/","description":"Simule o financiamento de moto: preço, entrada, taxa e prazo. Veja a parcela, os juros e o custo total da moto, com tabela mês a mês. Grátis.","applicationCategory":"FinanceApplication","operatingSystem":"Qualquer sistema com navegador","browserRequirements":"Requer JavaScript","inLanguage":"pt-BR","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"BRL"},"author":{"@type":"Person","name":"Joseph Santiago"}},{"@type":"FAQPage","@id":"https://josephsantiagos.github.io/simulador-financiamento-moto/#faq","mainEntity":[{"@type":"Question","name":"Como calcular a parcela da moto?","acceptedAnswer":{"@type":"Answer","text":"Desconte a entrada do preço da moto e aplique a fórmula da Tabela Price sobre o restante. Exemplo: moto de R$ 15.000 com R$ 3.000 de entrada, a 1,99% ao mês em 36 meses, dá parcela de R$ 470,04."}},{"@type":"Question","name":"Dá para financiar moto sem entrada?","acceptedAnswer":{"@type":"Answer","text":"Algumas instituições aceitam financiar o valor total, dependendo do perfil e da moto. Sem entrada, o valor financiado e os juros totais ficam maiores. Simule com e sem entrada para comparar."}},{"@type":"Question","name":"Vale mais a pena financiar ou fazer consórcio?","acceptedAnswer":{"@type":"Answer","text":"O consórcio não tem juros, mas tem taxa de administração e não tem data certa para a moto chegar. O financiamento entrega a moto na hora, com juros. A escolha depende da urgência e do orçamento."}},{"@type":"Question","name":"Qual é o prazo do financiamento de moto?","acceptedAnswer":{"@type":"Answer","text":"Varia conforme a instituição e a moto; prazos entre 12 e 48 meses são comuns. Quanto maior o prazo, menor a parcela e maior o total de juros."}},{"@type":"Question","name":"O que é o CET?","acceptedAnswer":{"@type":"Answer","text":"É o Custo Efetivo Total: a taxa que inclui juros, IOF, tarifas e seguros. É o melhor número para comparar propostas de financiamento."}},{"@type":"Question","name":"O resultado é igual ao da loja?","acceptedAnswer":{"@type":"Answer","text":"Pode haver diferenças, porque a proposta real inclui IOF, tarifas e às vezes seguros. Use o simulador como referência e confira o CET informado na proposta."}}]},{"@type":"BreadcrumbList","@id":"https://josephsantiagos.github.io/simulador-financiamento-moto/#trilha","itemListElement":[{"@type":"ListItem","position":1,"name":"Início","item":"https://josephsantiagos.github.io/"},{"@type":"ListItem","position":2,"name":"Financiamento de moto","item":"https://josephsantiagos.github.io/simulador-financiamento-moto/"}]}]}</script>
+</head>
+<body>
+<a class="pular" href="#conteudo">Pular para o conteúdo</a>
+<header class="topo"><div class="topo-in"><a class="marca" href="/"><img src="/assets/logo.svg" alt="" width="32" height="32">Calculadora Empréstimo e Juros</a></div></header>
+<main id="conteudo">
+<nav class="trilha" aria-label="Você está em"><ol><li><a href="/">Início</a></li><li aria-current="page">Financiamento de moto</li></ol></nav>
+<h1>Simulador de financiamento de moto</h1>
+<p class="lead">Descubra quanto fica a parcela da moto antes de ir à loja: informe o preço, a entrada, a taxa de juros e o prazo.</p>
+<section class="calc" id="calculadora" aria-labelledby="titulo-calc">
+<h2 id="titulo-calc" style="margin-top:0">Simule o financiamento da moto</h2>
+<form data-calc="financiamento" data-saida="resultado-financiamento" data-anuncio="anuncio-financiamento" novalidate>
+<div class="campos">
+<div class="campo"><label for="financiamento-valor">Preço da moto</label><div class="entrada"><span class="un" aria-hidden="true">R$</span><input id="financiamento-valor" name="valor" type="text" inputmode="decimal" autocomplete="off" value="15.000"></div></div>
+<div class="campo"><label for="financiamento-entrada">Entrada</label><div class="entrada"><span class="un" aria-hidden="true">R$</span><input id="financiamento-entrada" name="entrada" type="text" inputmode="decimal" autocomplete="off" value="3.000"></div></div>
+<div class="campo"><label for="financiamento-taxa">Taxa de juros</label><div class="dupla"><div class="entrada"><input id="financiamento-taxa" name="taxa" type="text" inputmode="decimal" autocomplete="off" value="1,99"><span class="un" aria-hidden="true">%</span></div><select name="tipo" aria-label="Período da taxa"><option value="mes" selected>ao mês</option><option value="ano">ao ano</option></select></div></div>
+<div class="campo"><label for="financiamento-prazo">Prazo</label><div class="entrada"><input id="financiamento-prazo" name="prazo" type="text" inputmode="numeric" pattern="[0-9]*" autocomplete="off" value="36"><span class="un" aria-hidden="true">meses</span></div></div>
+</div>
+<button class="botao" type="submit">Calcular</button>
+</form>
+<p class="sr" id="anuncio-financiamento" aria-live="polite"></p>
+<div class="resultado" id="resultado-financiamento"><div class="res-destaque"><span class="res-rotulo">Parcela mensal</span><strong class="res-valor">R$ 470,04</strong><span class="res-sub">36 parcelas fixas sobre R$ 12.000,00 financiados</span></div><dl class="res-grade"><div><dt>Entrada</dt><dd>R$ 3.000,00 (20,0%)</dd></div><div><dt>Valor financiado</dt><dd>R$ 12.000,00</dd></div><div><dt>Total das parcelas</dt><dd>R$ 16.921,44</dd></div><div><dt>Juros totais</dt><dd>R$ 4.921,44</dd></div><div><dt>Custo total (entrada + parcelas)</dt><dd>R$ 19.921,44</dd></div><div><dt>Taxa</dt><dd>1,99% ao mês = 26,68% ao ano</dd></div></dl><p class="res-frase">No fim, o veículo sai <strong>32,8% mais caro</strong> do que o preço à vista de R$ 15.000,00.</p><details class="tabela"><summary>Ver tabela mês a mês (36 parcelas)</summary><div class="rolagem" tabindex="0" role="region" aria-label="Tabela de amortização"><table><caption>Valores em R$ — sistema Price</caption><thead><tr><th scope="col">Mês</th><th scope="col">Parcela</th><th scope="col">Juros</th><th scope="col">Amortização</th><th scope="col">Saldo</th></tr></thead><tbody><tr><td>1</td><td>470,04</td><td>238,80</td><td>231,24</td><td>11.768,76</td></tr><tr><td>2</td><td>470,04</td><td>234,20</td><td>235,84</td><td>11.532,92</td></tr><tr><td>3</td><td>470,04</td><td>229,51</td><td>240,53</td><td>11.292,39</td></tr><tr><td>4</td><td>470,04</td><td>224,72</td><td>245,32</td><td>11.047,07</td></tr><tr><td>5</td><td>470,04</td><td>219,84</td><td>250,20</td><td>10.796,87</td></tr><tr><td>6</td><td>470,04</td><td>214,86</td><td>255,18</td><td>10.541,69</td></tr><tr><td>7</td><td>470,04</td><td>209,78</td><td>260,26</td><td>10.281,43</td></tr><tr><td>8</td><td>470,04</td><td>204,60</td><td>265,44</td><td>10.015,99</td></tr><tr><td>9</td><td>470,04</td><td>199,32</td><td>270,72</td><td>9.745,27</td></tr><tr><td>10</td><td>470,04</td><td>193,93</td><td>276,11</td><td>9.469,16</td></tr><tr><td>11</td><td>470,04</td><td>188,44</td><td>281,60</td><td>9.187,56</td></tr><tr><td>12</td><td>470,04</td><td>182,83</td><td>287,21</td><td>8.900,35</td></tr><tr><td>13</td><td>470,04</td><td>177,12</td><td>292,92</td><td>8.607,43</td></tr><tr><td>14</td><td>470,04</td><td>171,29</td><td>298,75</td><td>8.308,68</td></tr><tr><td>15</td><td>470,04</td><td>165,34</td><td>304,70</td><td>8.003,98</td></tr><tr><td>16</td><td>470,04</td><td>159,28</td><td>310,76</td><td>7.693,22</td></tr><tr><td>17</td><td>470,04</td><td>153,10</td><td>316,94</td><td>7.376,28</td></tr><tr><td>18</td><td>470,04</td><td>146,79</td><td>323,25</td><td>7.053,03</td></tr><tr><td>19</td><td>470,04</td><td>140,36</td><td>329,68</td><td>6.723,35</td></tr><tr><td>20</td><td>470,04</td><td>133,79</td><td>336,25</td><td>6.387,10</td></tr><tr><td>21</td><td>470,04</td><td>127,10</td><td>342,94</td><td>6.044,16</td></tr><tr><td>22</td><td>470,04</td><td>120,28</td><td>349,76</td><td>5.694,40</td></tr><tr><td>23</td><td>470,04</td><td>113,32</td><td>356,72</td><td>5.337,68</td></tr><tr><td>24</td><td>470,04</td><td>106,22</td><td>363,82</td><td>4.973,86</td></tr><tr><td>25</td><td>470,04</td><td>98,98</td><td>371,06</td><td>4.602,80</td></tr><tr><td>26</td><td>470,04</td><td>91,60</td><td>378,44</td><td>4.224,36</td></tr><tr><td>27</td><td>470,04</td><td>84,06</td><td>385,98</td><td>3.838,38</td></tr><tr><td>28</td><td>470,04</td><td>76,38</td><td>393,66</td><td>3.444,72</td></tr><tr><td>29</td><td>470,04</td><td>68,55</td><td>401,49</td><td>3.043,23</td></tr><tr><td>30</td><td>470,04</td><td>60,56</td><td>409,48</td><td>2.633,75</td></tr><tr><td>31</td><td>470,04</td><td>52,41</td><td>417,63</td><td>2.216,12</td></tr><tr><td>32</td><td>470,04</td><td>44,10</td><td>425,94</td><td>1.790,18</td></tr><tr><td>33</td><td>470,04</td><td>35,62</td><td>434,42</td><td>1.355,76</td></tr><tr><td>34</td><td>470,04</td><td>26,98</td><td>443,06</td><td>912,70</td></tr><tr><td>35</td><td>470,04</td><td>18,16</td><td>451,88</td><td>460,82</td></tr><tr><td>36</td><td>470,04</td><td>9,22</td><td>460,82</td><td>0,00</td></tr></tbody><tfoot><tr><th scope="row">Total</th><td>16.921,44</td><td>4.921,44</td><td>12.000,00</td><td></td></tr></tfoot></table></div></details><p class="aviso">Simulação ilustrativa. Não oferecemos nem intermediamos crédito e não temos vínculo com bancos, financeiras ou órgãos públicos. Antes de contratar, confira o Custo Efetivo Total (CET) informado pela instituição.</p></div>
+</section>
+<aside class="cta-app" aria-label="App para Android">
+<p class="cta-titulo">Leve a calculadora no celular — grátis, sem cadastro</p>
+<p class="cta-texto">Com o app Calculadora Empréstimo e Juros você simula parcelas e juros direto no seu Android.</p>
+<a class="botao-play" href="https://play.google.com/store/apps/details?id=com.josephsantiago.calculadoraemprestimos&amp;referrer=utm_source%3Dsite%26utm_medium%3Dsimulador-financiamento-moto%26utm_campaign%3Dorganico" rel="noopener"><svg width="26" height="28" viewBox="0 0 26 28" aria-hidden="true" focusable="false"><path d="M3 2.6v22.8a1.6 1.6 0 0 0 2.4 1.4l18.6-11.4a1.6 1.6 0 0 0 0-2.8L5.4 1.2A1.6 1.6 0 0 0 3 2.6z" fill="#FFD166"/><path d="M8 9.5v9l7.4-4.5z" fill="#111"/></svg><span><small>Disponível no</small><b>Google Play</b></span></a>
+</aside>
+<article class="texto">
+
+<h2>Como funciona o financiamento de moto</h2>
+<p>O financiamento de moto segue a mesma lógica do financiamento de carro: você dá uma entrada (ou não, quando a instituição aceita), financia o restante e paga parcelas fixas com juros, calculadas pela <a href="/tabela-price/">Tabela Price</a>. A moto fica alienada à instituição até a quitação, servindo de garantia. Para quem usa a moto para trabalhar, seja em entregas, transporte ou para chegar ao emprego, a parcela vira um custo fixo do mês. Por isso vale simular com calma.</p>
+
+<h2>Exemplo resolvido: moto de R$ 15.000 com R$ 3.000 de entrada</h2>
+<p>Valor financiado: R$ 12.000. Taxa de 1,99% ao mês (26,68% ao ano), em 36 meses:</p>
+<ul>
+<li>Parcela: <strong>R$ 470,04</strong></li>
+<li>Total das parcelas: 36 × R$ 470,04 = R$ 16.921,44</li>
+<li>Juros: R$ 4.921,44</li>
+<li>Custo total da moto (entrada + parcelas): <strong>R$ 19.921,44</strong>, 32,8% acima do preço à vista.</li>
+</ul>
+<div class="rolagem"><table><caption>R$ 12.000 a 1,99% ao mês</caption>
+<thead><tr><th scope="col">Prazo</th><th scope="col">Parcela</th><th scope="col">Juros totais</th></tr></thead>
+<tbody>
+<tr><td>24 meses</td><td>R$ 633,73</td><td>R$ 3.209,52</td></tr>
+<tr><td>36 meses</td><td>R$ 470,04</td><td>R$ 4.921,44</td></tr>
+<tr><td>48 meses</td><td>R$ 390,43</td><td>R$ 6.740,64</td></tr>
+</tbody></table></div>
+<p>Esticar de 24 para 48 meses reduz a parcela em R$ 243,30, mas mais que dobra os juros: de R$ 3.209,52 para R$ 6.740,64.</p>
+
+<h2>Financiar, juntar dinheiro ou consórcio?</h2>
+<p>Se a moto não é urgente, compare com a opção de guardar dinheiro. Guardando os mesmos R$ 470,04 por mês, você juntaria os R$ 12.000 em cerca de 26 meses, sem contar o rendimento, em vez de pagar 36 parcelas.</p>
+<p>O consórcio não cobra juros, mas tem taxa de administração e outros encargos, e a moto só vem quando você é contemplado por sorteio ou lance, sem data certa. Pode servir para quem tem disciplina e não tem pressa. Para quem precisa da moto agora, o financiamento costuma ser o caminho, desde que a parcela caiba no orçamento.</p>
+
+<h2>CET, IOF e outros custos</h2>
+<p>Além dos juros, o financiamento tem <strong>IOF</strong>, imposto cobrado em operações de crédito, com uma parte fixa e outra que cresce com o prazo, e pode ter tarifas de cadastro e de registro do contrato. Tudo isso entra no <strong>Custo Efetivo Total (CET)</strong>, que deve estar na proposta. Compare o CET, não só a taxa ou a parcela. E lembre dos custos de manter a moto: seguro, manutenção, combustível, licenciamento e equipamentos de segurança.</p>
+
+<h2>Dicas para pagar menos juros</h2>
+<ul>
+<li>Dê a maior entrada que conseguir sem zerar a sua reserva para emergências.</li>
+<li>Prefira prazos curtos: no exemplo, 24 meses custam R$ 3.531,12 a menos de juros do que 48.</li>
+<li>Peça propostas em mais de uma instituição e compare o CET.</li>
+<li>Se a loja anuncia “parcelado sem juros”, pergunte o preço à vista. Se ele for menor, há juros embutidos; a calculadora de <a href="/juros-parcelamento/">juros no parcelamento</a> mostra quanto.</li>
+<li>Antecipe parcelas quando puder, de preferência as últimas, que têm o maior desconto de juros.</li>
+</ul>
+</article>
+<section class="faq" aria-labelledby="titulo-faq"><h2 id="titulo-faq">Perguntas frequentes</h2>
+<details><summary>Como calcular a parcela da moto?</summary><p>Desconte a entrada do preço da moto e aplique a fórmula da Tabela Price sobre o restante. Exemplo: moto de R$ 15.000 com R$ 3.000 de entrada, a 1,99% ao mês em 36 meses, dá parcela de R$ 470,04.</p></details>
+<details><summary>Dá para financiar moto sem entrada?</summary><p>Algumas instituições aceitam financiar o valor total, dependendo do perfil e da moto. Sem entrada, o valor financiado e os juros totais ficam maiores. Simule com e sem entrada para comparar.</p></details>
+<details><summary>Vale mais a pena financiar ou fazer consórcio?</summary><p>O consórcio não tem juros, mas tem taxa de administração e não tem data certa para a moto chegar. O financiamento entrega a moto na hora, com juros. A escolha depende da urgência e do orçamento.</p></details>
+<details><summary>Qual é o prazo do financiamento de moto?</summary><p>Varia conforme a instituição e a moto; prazos entre 12 e 48 meses são comuns. Quanto maior o prazo, menor a parcela e maior o total de juros.</p></details>
+<details><summary>O que é o CET?</summary><p>É o Custo Efetivo Total: a taxa que inclui juros, IOF, tarifas e seguros. É o melhor número para comparar propostas de financiamento.</p></details>
+<details><summary>O resultado é igual ao da loja?</summary><p>Pode haver diferenças, porque a proposta real inclui IOF, tarifas e às vezes seguros. Use o simulador como referência e confira o CET informado na proposta.</p></details>
+</section>
+<nav class="outras" aria-labelledby="titulo-outras"><h2 id="titulo-outras">Outras calculadoras</h2><ul class="links">
+<li><a href="/simulador-emprestimo/"><strong>Simulador de empréstimo</strong><span>Parcela, juros e tabela mês a mês (Price ou SAC).</span></a></li>
+<li><a href="/quanto-fica-emprestimo/"><strong>Quanto fica um empréstimo</strong><span>Tabelas prontas de parcelas de R$ 1 mil a R$ 50 mil.</span></a></li>
+<li><a href="/simulador-financiamento-carro/"><strong>Financiamento de carro</strong><span>Entrada, parcela e custo total do carro.</span></a></li>
+<li><a href="/emprestimo-consignado/"><strong>Empréstimo consignado</strong><span>Parcela, margem consignável e juros.</span></a></li>
+<li><a href="/juros-parcelamento/"><strong>Juros no parcelamento</strong><span>Descubra o juro escondido no “sem juros”.</span></a></li>
+<li><a href="/descobrir-taxa-de-juros/"><strong>Descobrir a taxa de juros</strong><span>A taxa real a partir do valor da parcela.</span></a></li>
+<li><a href="/juros-cartao-de-credito/"><strong>Juros do cartão de crédito</strong><span>Rotativo ou parcelamento da fatura: quanto custa.</span></a></li>
+<li><a href="/tabela-price/"><strong>Tabela Price</strong><span>Tabela de amortização completa, mês a mês.</span></a></li>
+<li><a href="/price-ou-sac/"><strong>Price ou SAC</strong><span>Compare os dois sistemas lado a lado.</span></a></li>
+<li><a href="/juros-compostos/"><strong>Juros compostos</strong><span>Quanto o dinheiro cresce com aportes mensais.</span></a></li>
+</ul></nav>
+</main>
+<footer class="rodape"><div class="rodape-in">
+<aside class="cta-app" aria-label="App para Android">
+<p class="cta-titulo">Leve a calculadora no celular — grátis, sem cadastro</p>
+<p class="cta-texto">Com o app Calculadora Empréstimo e Juros você simula parcelas e juros direto no seu Android.</p>
+<a class="botao-play" href="https://play.google.com/store/apps/details?id=com.josephsantiago.calculadoraemprestimos&amp;referrer=utm_source%3Dsite%26utm_medium%3Dsimulador-financiamento-moto%26utm_campaign%3Dorganico" rel="noopener"><svg width="26" height="28" viewBox="0 0 26 28" aria-hidden="true" focusable="false"><path d="M3 2.6v22.8a1.6 1.6 0 0 0 2.4 1.4l18.6-11.4a1.6 1.6 0 0 0 0-2.8L5.4 1.2A1.6 1.6 0 0 0 3 2.6z" fill="#FFD166"/><path d="M8 9.5v9l7.4-4.5z" fill="#111"/></svg><span><small>Disponível no</small><b>Google Play</b></span></a>
+</aside>
+<p class="aviso">Simulação ilustrativa. Não oferecemos nem intermediamos crédito e não temos vínculo com bancos, financeiras ou órgãos públicos. Antes de contratar, confira o Custo Efetivo Total (CET) informado pela instituição.</p>
+<nav aria-label="Todas as calculadoras"><ul class="rodape-links"><li><a href="/">Início</a></li><li><a href="/simulador-emprestimo/">Simulador de empréstimo</a></li><li><a href="/quanto-fica-emprestimo/">Quanto fica um empréstimo</a></li><li><a href="/simulador-financiamento-carro/">Financiamento de carro</a></li><li><a href="/simulador-financiamento-moto/">Financiamento de moto</a></li><li><a href="/emprestimo-consignado/">Empréstimo consignado</a></li><li><a href="/juros-parcelamento/">Juros no parcelamento</a></li><li><a href="/descobrir-taxa-de-juros/">Descobrir a taxa de juros</a></li><li><a href="/juros-cartao-de-credito/">Juros do cartão de crédito</a></li><li><a href="/tabela-price/">Tabela Price</a></li><li><a href="/price-ou-sac/">Price ou SAC</a></li><li><a href="/juros-compostos/">Juros compostos</a></li></ul></nav>
+<p>Feito por Joseph Santiago, desenvolvedor de apps Android. <a href="https://play.google.com/store/apps/details?id=com.josephsantiago.calculadoraemprestimos">Calculadora Empréstimo e Juros na Google Play</a> · <a href="https://josephsantiagos.github.io/pilitica-de-privacidade-play-sotre-/">Política de privacidade</a> · Contato: <a href="mailto:josephsantiago250@gmail.com">josephsantiago250@gmail.com</a></p>
+<p>Este site não exibe anúncios e não coleta os valores digitados: as contas são feitas no seu próprio aparelho.</p>
+</div></footer>
+<script src="/assets/calc.js" defer></script>
+</body>
+</html>

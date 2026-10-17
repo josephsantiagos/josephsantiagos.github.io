@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Simulador de Empréstimo Consignado: parcela e margem</title>
+<meta name="description" content="Simule o consignado para CLT, aposentado ou servidor: veja a parcela, se ela cabe na margem consignável, os juros e o valor máximo.">
+<link rel="canonical" href="https://josephsantiagos.github.io/emprestimo-consignado/">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#0A5F5B">
+<meta name="format-detection" content="telephone=no">
+<link rel="icon" href="/assets/logo.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="Calculadora Empréstimo e Juros">
+<meta property="og:title" content="Simulador de Empréstimo Consignado: parcela e margem">
+<meta property="og:description" content="Simule o consignado para CLT, aposentado ou servidor: veja a parcela, se ela cabe na margem consignável, os juros e o valor máximo.">
+<meta property="og:url" content="https://josephsantiagos.github.io/emprestimo-consignado/">
+<meta property="og:image" content="https://josephsantiagos.github.io/assets/og-calculadora.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Calculadora Empréstimo e Juros: simule parcelas e juros">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="/assets/site.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","@id":"https://josephsantiagos.github.io/emprestimo-consignado/#calculadora","name":"Simulador de empréstimo consignado","url":"https://josephsantiagos.github.io/emprestimo-consignado/","description":"Simule o consignado para CLT, aposentado ou servidor: veja a parcela, se ela cabe na margem consignável, os juros e o valor máximo.","applicationCategory":"FinanceApplication","operatingSystem":"Qualquer sistema com navegador","browserRequirements":"Requer JavaScript","inLanguage":"pt-BR","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"BRL"},"author":{"@type":"Person","name":"Joseph Santiago"}},{"@type":"FAQPage","@id":"https://josephsantiagos.github.io/emprestimo-consignado/#faq","mainEntity":[{"@type":"Question","name":"Como calcular a parcela do consignado?","acceptedAnswer":{"@type":"Answer","text":"Use a fórmula da Tabela Price com o valor, a taxa mensal e o prazo. Exemplo: R$ 10.000 a 1,8% ao mês em 48 meses dá parcela de R$ 312,89. Depois, confira se a parcela cabe na sua margem consignável."}},{"@type":"Question","name":"O que é margem consignável?","acceptedAnswer":{"@type":"Answer","text":"É o percentual máximo da renda líquida que pode ser descontado em folha ou no benefício para pagar parcelas. O limite depende do tipo de vínculo e das regras em vigor; confira o seu no contracheque ou no extrato do benefício."}},{"@type":"Question","name":"Qual é a taxa de juros do consignado?","acceptedAnswer":{"@type":"Answer","text":"Varia conforme a instituição, o tipo de consignado e o prazo. Para aposentados e pensionistas existe um teto definido pelo governo, que muda de tempos em tempos. Use a taxa da sua proposta no simulador e compare sempre o CET."}},{"@type":"Question","name":"Qual é o prazo máximo do consignado?","acceptedAnswer":{"@type":"Answer","text":"Depende do tipo de vínculo e das regras em vigor. Prazos mais longos reduzem a parcela, mas aumentam muito os juros totais."}},{"@type":"Question","name":"Posso quitar o consignado antes do prazo?","acceptedAnswer":{"@type":"Answer","text":"Sim. Na quitação antecipada ou no adiantamento de parcelas, você tem direito ao abatimento proporcional dos juros. Peça o saldo devedor atualizado à instituição."}},{"@type":"Question","name":"Este site faz empréstimo consignado?","acceptedAnswer":{"@type":"Answer","text":"Não. É apenas uma calculadora. Não oferecemos nem intermediamos crédito e não temos vínculo com bancos, financeiras ou órgãos públicos."}}]},{"@type":"BreadcrumbList","@id":"https://josephsantiagos.github.io/emprestimo-consignado/#trilha","itemListElement":[{"@type":"ListItem","position":1,"name":"Início","item":"https://josephsantiagos.github.io/"},{"@type":"ListItem","position":2,"name":"Empréstimo consignado","item":"https://josephsantiagos.github.io/emprestimo-consignado/"}]}]}</script>
+</head>
+<body>
+<a class="pular" href="#conteudo">Pular para o conteúdo</a>
+<header class="topo"><div class="topo-in"><a class="marca" href="/"><img src="/assets/logo.svg" alt="" width="32" height="32">Calculadora Empréstimo e Juros</a></div></header>
+<main id="conteudo">
+<nav class="trilha" aria-label="Você está em"><ol><li><a href="/">Início</a></li><li aria-current="page">Empréstimo consignado</li></ol></nav>
+<h1>Simulador de empréstimo consignado</h1>
+<p class="lead">Para trabalhadores CLT, aposentados, pensionistas e servidores: veja a parcela, se ela cabe na sua margem e quanto vai pagar de juros.</p>
+<section class="calc" id="calculadora" aria-labelledby="titulo-calc">
+<h2 id="titulo-calc" style="margin-top:0">Simule o consignado</h2>
+<form data-calc="consignado" data-saida="resultado-consignado" data-anuncio="anuncio-consignado" novalidate>
+<div class="campos">
+<div class="campo"><label for="consignado-renda">Renda líquida (salário ou benefício)</label><div class="entrada"><span class="un" aria-hidden="true">R$</span><input id="consignado-renda" name="renda" type="text" inputmode="decimal" autocomplete="off" value="3.000"></div></div>
+<div class="campo"><label for="consignado-margem">Margem consignável</label><div class="entrada"><input id="consignado-margem" name="margem" type="text" inputmode="decimal" autocomplete="off" value="35" aria-describedby="consignado-margem-dica"><span class="un" aria-hidden="true">%</span></div><p class="dica" id="consignado-margem-dica">Percentual da renda que pode ser descontado. Confira no contracheque ou no extrato do benefício.</p></div>
+<div class="campo"><label for="consignado-valor">Valor desejado</label><div class="entrada"><span class="un" aria-hidden="true">R$</span><input id="consignado-valor" name="valor" type="text" inputmode="decimal" autocomplete="off" value="10.000"></div></div>
+<div class="campo"><label for="consignado-taxa">Taxa de juros</label><div class="dupla"><div class="entrada"><input id="consignado-taxa" name="taxa" type="text" inputmode="decimal" autocomplete="off" value="1,8"><span class="un" aria-hidden="true">%</span></div><select name="tipo" aria-label="Período da taxa"><option value="mes" selected>ao mês</option><option value="ano">ao ano</option></select></div></div>
+<div class="campo"><label for="consignado-prazo">Prazo</label><div class="entrada"><input id="consignado-prazo" name="prazo" type="text" inputmode="numeric" pattern="[0-9]*" autocomplete="off" value="48"><span class="un" aria-hidden="true">meses</span></div></div>
+</div>
+<button class="botao" type="submit">Calcular</button>
+</form>
+<p class="sr" id="anuncio-consignado" aria-live="polite"></p>
+<div class="resultado" id="resultado-consignado"><div class="res-destaque"><span class="res-rotulo">Parcela do consignado</span><strong class="res-valor">R$ 312,89</strong><span class="res-sub">48 parcelas descontadas em folha ou no benefício</span></div><dl class="res-grade"><div><dt>Margem disponível (35% da renda)</dt><dd>R$ 1.050,00</dd></div><div><dt>Parcela cabe na margem?</dt><dd>Sim — usa 30% da margem</dd></div><div><dt>Parte da renda comprometida</dt><dd>10,4%</dd></div><div><dt>Total pago</dt><dd>R$ 15.018,72</dd></div><div><dt>Juros totais</dt><dd>R$ 5.018,72</dd></div><div><dt>Taxa</dt><dd>1,80% ao mês = 23,87% ao ano</dd></div></dl><p class="res-frase">Com a margem inteira (R$ 1.050,00 por mês), nessa taxa e prazo, o valor máximo seria de cerca de <strong>R$ 33.557,78</strong>.</p><details class="tabela"><summary>Ver tabela mês a mês (48 parcelas)</summary><div class="rolagem" tabindex="0" role="region" aria-label="Tabela de amortização"><table><caption>Valores em R$ — sistema Price</caption><thead><tr><th scope="col">Mês</th><th scope="col">Parcela</th><th scope="col">Juros</th><th scope="col">Amortização</th><th scope="col">Saldo</th></tr></thead><tbody><tr><td>1</td><td>312,89</td><td>180,00</td><td>132,89</td><td>9.867,11</td></tr><tr><td>2</td><td>312,89</td><td>177,61</td><td>135,28</td><td>9.731,83</td></tr><tr><td>3</td><td>312,89</td><td>175,17</td><td>137,72</td><td>9.594,11</td></tr><tr><td>4</td><td>312,89</td><td>172,69</td><td>140,20</td><td>9.453,91</td></tr><tr><td>5</td><td>312,89</td><td>170,17</td><td>142,72</td><td>9.311,19</td></tr><tr><td>6</td><td>312,89</td><td>167,60</td><td>145,29</td><td>9.165,90</td></tr><tr><td>7</td><td>312,89</td><td>164,99</td><td>147,90</td><td>9.018,00</td></tr><tr><td>8</td><td>312,89</td><td>162,32</td><td>150,57</td><td>8.867,43</td></tr><tr><td>9</td><td>312,89</td><td>159,61</td><td>153,28</td><td>8.714,15</td></tr><tr><td>10</td><td>312,89</td><td>156,85</td><td>156,04</td><td>8.558,11</td></tr><tr><td>11</td><td>312,89</td><td>154,05</td><td>158,84</td><td>8.399,27</td></tr><tr><td>12</td><td>312,89</td><td>151,19</td><td>161,70</td><td>8.237,57</td></tr><tr><td>13</td><td>312,89</td><td>148,28</td><td>164,61</td><td>8.072,96</td></tr><tr><td>14</td><td>312,89</td><td>145,31</td><td>167,58</td><td>7.905,38</td></tr><tr><td>15</td><td>312,89</td><td>142,30</td><td>170,59</td><td>7.734,79</td></tr><tr><td>16</td><td>312,89</td><td>139,23</td><td>173,66</td><td>7.561,13</td></tr><tr><td>17</td><td>312,89</td><td>136,10</td><td>176,79</td><td>7.384,34</td></tr><tr><td>18</td><td>312,89</td><td>132,92</td><td>179,97</td><td>7.204,37</td></tr><tr><td>19</td><td>312,89</td><td>129,68</td><td>183,21</td><td>7.021,16</td></tr><tr><td>20</td><td>312,89</td><td>126,38</td><td>186,51</td><td>6.834,65</td></tr><tr><td>21</td><td>312,89</td><td>123,02</td><td>189,87</td><td>6.644,78</td></tr><tr><td>22</td><td>312,89</td><td>119,61</td><td>193,28</td><td>6.451,50</td></tr><tr><td>23</td><td>312,89</td><td>116,13</td><td>196,76</td><td>6.254,74</td></tr><tr><td>24</td><td>312,89</td><td>112,59</td><td>200,30</td><td>6.054,44</td></tr><tr><td>25</td><td>312,89</td><td>108,98</td><td>203,91</td><td>5.850,53</td></tr><tr><td>26</td><td>312,89</td><td>105,31</td><td>207,58</td><td>5.642,95</td></tr><tr><td>27</td><td>312,89</td><td>101,57</td><td>211,32</td><td>5.431,63</td></tr><tr><td>28</td><td>312,89</td><td>97,77</td><td>215,12</td><td>5.216,51</td></tr><tr><td>29</td><td>312,89</td><td>93,90</td><td>218,99</td><td>4.997,52</td></tr><tr><td>30</td><td>312,89</td><td>89,96</td><td>222,93</td><td>4.774,59</td></tr><tr><td>31</td><td>312,89</td><td>85,94</td><td>226,95</td><td>4.547,64</td></tr><tr><td>32</td><td>312,89</td><td>81,86</td><td>231,03</td><td>4.316,61</td></tr><tr><td>33</td><td>312,89</td><td>77,70</td><td>235,19</td><td>4.081,42</td></tr><tr><td>34</td><td>312,89</td><td>73,47</td><td>239,42</td><td>3.842,00</td></tr><tr><td>35</td><td>312,89</td><td>69,16</td><td>243,73</td><td>3.598,27</td></tr><tr><td>36</td><td>312,89</td><td>64,77</td><td>248,12</td><td>3.350,15</td></tr><tr><td>37</td><td>312,89</td><td>60,30</td><td>252,59</td><td>3.097,56</td></tr><tr><td>38</td><td>312,89</td><td>55,76</td><td>257,13</td><td>2.840,43</td></tr><tr><td>39</td><td>312,89</td><td>51,13</td><td>261,76</td><td>2.578,67</td></tr><tr><td>40</td><td>312,89</td><td>46,42</td><td>266,47</td><td>2.312,20</td></tr><tr><td>41</td><td>312,89</td><td>41,62</td><td>271,27</td><td>2.040,93</td></tr><tr><td>42</td><td>312,89</td><td>36,74</td><td>276,15</td><td>1.764,78</td></tr><tr><td>43</td><td>312,89</td><td>31,77</td><td>281,12</td><td>1.483,66</td></tr><tr><td>44</td><td>312,89</td><td>26,71</td><td>286,18</td><td>1.197,48</td></tr><tr><td>45</td><td>312,89</td><td>21,55</td><td>291,34</td><td>906,14</td></tr><tr><td>46</td><td>312,89</td><td>16,31</td><td>296,58</td><td>609,56</td></tr><tr><td>47</td><td>312,89</td><td>10,97</td><td>301,92</td><td>307,64</td></tr><tr><td>48</td><td>312,89</td><td>5,25</td><td>307,64</td><td>0,00</td></tr></tbody><tfoot><tr><th scope="row">Total</th><td>15.018,72</td><td>5.018,72</td><td>10.000,00</td><td></td></tr></tfoot></table></div></details><p class="aviso">Simulação ilustrativa. Não oferecemos nem intermediamos crédito e não temos vínculo com bancos, financeiras ou órgãos públicos. Antes de contratar, confira o Custo Efetivo Total (CET) informado pela instituição.</p></div>
+</section>
+<aside class="cta-app" aria-label="App para Android">
+<p class="cta-titulo">Leve a calculadora no celular — grátis, sem cadastro</p>
+<p class="cta-texto">Com o app Calculadora Empréstimo e Juros você simula parcelas e juros direto no seu Android.</p>
+<a class="botao-play" href="https://play.google.com/store/apps/details?id=com.josephsantiago.calculadoraemprestimos&amp;referrer=utm_source%3Dsite%26utm_medium%3Demprestimo-consignado%26utm_campaign%3Dorganico" rel="noopener"><svg width="26" height="28" viewBox="0 0 26 28" aria-hidden="true" focusable="false"><path d="M3 2.6v22.8a1.6 1.6 0 0 0 2.4 1.4l18.6-11.4a1.6 1.6 0 0 0 0-2.8L5.4 1.2A1.6 1.6 0 0 0 3 2.6z" fill="#FFD166"/><path d="M8 9.5v9l7.4-4.5z" fill="#111"/></svg><span><small>Disponível no</small><b>Google Play</b></span></a>
+</aside>
+<article class="texto">
+
+<h2>Como funciona o empréstimo consignado</h2>
+<p>No consignado, a parcela é descontada direto do salário, da aposentadoria ou da pensão, antes de o dinheiro chegar à sua conta. Como o pagamento é automático, o risco de atraso para quem empresta é menor, e isso costuma aparecer em taxas menores do que as do empréstimo pessoal sem garantia. Em troca, você compromete parte da renda por meses ou anos, sem poder “pular” uma parcela.</p>
+<p>Há três públicos principais, cada um com regras próprias:</p>
+<ul>
+<li><strong>Trabalhadores com carteira assinada (CLT):</strong> o desconto é feito na folha de pagamento da empresa.</li>
+<li><strong>Aposentados e pensionistas:</strong> o desconto é feito no benefício, e existe um teto para a taxa de juros, definido pelo governo e revisto de tempos em tempos.</li>
+<li><strong>Servidores públicos:</strong> o desconto é feito no contracheque, conforme as regras de cada órgão.</li>
+</ul>
+
+<h2>O que é a margem consignável</h2>
+<p>É o percentual máximo da renda líquida que pode ser comprometido com parcelas descontadas em folha ou no benefício. O limite é definido em lei e nas normas de cada tipo de vínculo, e parte dele pode ficar reservada para cartão consignado ou cartão de benefício. Como as regras mudam, confira a margem disponível no contracheque, no extrato do benefício ou com o setor de pessoal. No simulador, digite o percentual que vale para você; os 35% que aparecem preenchidos são só um exemplo.</p>
+
+<h2>Exemplo resolvido</h2>
+<p>Renda líquida de R$ 3.000 e margem de 35%: dá para comprometer até R$ 1.050,00 por mês. Pegando R$ 10.000 a 1,8% ao mês (23,87% ao ano) em 48 meses:</p>
+<ul>
+<li>Parcela: <strong>R$ 312,89</strong>. Cabe na margem, usando 30% dela e 10,4% da renda.</li>
+<li>Total pago: R$ 15.018,72</li>
+<li>Juros: R$ 5.018,72</li>
+</ul>
+<p>Com a margem inteira de R$ 1.050 por mês, na mesma taxa e prazo, o valor máximo seria de cerca de R$ 33.557,78. Mas usar a margem toda deixa você sem espaço para imprevistos, e a parcela sai da renda todo mês, sem negociação.</p>
+
+<h2>Prazo longo: parcela menor, juros maiores</h2>
+<p>O consignado permite prazos longos, o que deixa a parcela pequena. Só que o custo cresce rápido: os mesmos R$ 10.000 a 1,8% ao mês em 84 meses têm parcela de R$ 231,80, mas os juros chegam a R$ 9.471,20, quase o valor emprestado e R$ 4.452,48 a mais do que em 48 meses.</p>
+
+<h2>CET, IOF e outros custos</h2>
+<p>Como em qualquer crédito, o consignado tem <strong>IOF</strong>, imposto sobre operações de crédito, com uma parte fixa e outra que cresce com o prazo, e pode ter tarifas e seguros. Tudo isso entra no <strong>Custo Efetivo Total (CET)</strong>, que deve aparecer na proposta. Compare o CET entre instituições: mesmo quando existe teto de juros, as propostas podem ser bem diferentes.</p>
+
+<h2>Cuidados e dicas</h2>
+<ul>
+<li><strong>Nunca pague nada antes</strong> para “liberar” um consignado. Pedido de depósito antecipado é golpe.</li>
+<li><strong>Não passe senhas nem códigos</strong> recebidos por mensagem para quem ligar oferecendo crédito.</li>
+<li><strong>Se cair na conta um empréstimo que você não pediu</strong>, não use o dinheiro: procure a instituição para devolver e cancelar.</li>
+<li><strong>Considere a portabilidade:</strong> você pode levar o consignado para outra instituição que ofereça CET menor.</li>
+<li><strong>Quite ou antecipe parcelas quando puder:</strong> o abatimento proporcional dos juros é um direito seu.</li>
+<li><strong>Use o consignado para trocar dívidas caras</strong>, como o rotativo do cartão, e não para criar dívidas novas.</li>
+</ul>
+</article>
+<section class="faq" aria-labelledby="titulo-faq"><h2 id="titulo-faq">Perguntas frequentes</h2>
+<details><summary>Como calcular a parcela do consignado?</summary><p>Use a fórmula da Tabela Price com o valor, a taxa mensal e o prazo. Exemplo: R$ 10.000 a 1,8% ao mês em 48 meses dá parcela de R$ 312,89. Depois, confira se a parcela cabe na sua margem consignável.</p></details>
+<details><summary>O que é margem consignável?</summary><p>É o percentual máximo da renda líquida que pode ser descontado em folha ou no benefício para pagar parcelas. O limite depende do tipo de vínculo e das regras em vigor; confira o seu no contracheque ou no extrato do benefício.</p></details>
+<details><summary>Qual é a taxa de juros do consignado?</summary><p>Varia conforme a instituição, o tipo de consignado e o prazo. Para aposentados e pensionistas existe um teto definido pelo governo, que muda de tempos em tempos. Use a taxa da sua proposta no simulador e compare sempre o CET.</p></details>
+<details><summary>Qual é o prazo máximo do consignado?</summary><p>Depende do tipo de vínculo e das regras em vigor. Prazos mais longos reduzem a parcela, mas aumentam muito os juros totais.</p></details>
+<details><summary>Posso quitar o consignado antes do prazo?</summary><p>Sim. Na quitação antecipada ou no adiantamento de parcelas, você tem direito ao abatimento proporcional dos juros. Peça o saldo devedor atualizado à instituição.</p></details>
+<details><summary>Este site faz empréstimo consignado?</summary><p>Não. É apenas uma calculadora. Não oferecemos nem intermediamos crédito e não temos vínculo com bancos, financeiras ou órgãos públicos.</p></details>
+</section>
+<nav class="outras" aria-labelledby="titulo-outras"><h2 id="titulo-outras">Outras calculadoras</h2><ul class="links">
+<li><a href="/simulador-emprestimo/"><strong>Simulador de empréstimo</strong><span>Parcela, juros e tabela mês a mês (Price ou SAC).</span></a></li>
+<li><a href="/quanto-fica-emprestimo/"><strong>Quanto fica um empréstimo</strong><span>Tabelas prontas de parcelas de R$ 1 mil a R$ 50 mil.</span></a></li>
+<li><a href="/simulador-financiamento-carro/"><strong>Financiamento de carro</strong><span>Entrada, parcela e custo total do carro.</span></a></li>
+<li><a href="/simulador-financiamento-moto/"><strong>Financiamento de moto</strong><span>Quanto fica a parcela da moto e o custo final.</span></a></li>
+<li><a href="/juros-parcelamento/"><strong>Juros no parcelamento</strong><span>Descubra o juro escondido no “sem juros”.</span></a></li>
+<li><a href="/descobrir-taxa-de-juros/"><strong>Descobrir a taxa de juros</strong><span>A taxa real a partir do valor da parcela.</span></a></li>
+<li><a href="/juros-cartao-de-credito/"><strong>Juros do cartão de crédito</strong><span>Rotativo ou parcelamento da fatura: quanto custa.</span></a></li>
+<li><a href="/tabela-price/"><strong>Tabela Price</strong><span>Tabela de amortização completa, mês a mês.</span></a></li>
+<li><a href="/price-ou-sac/"><strong>Price ou SAC</strong><span>Compare os dois sistemas lado a lado.</span></a></li>
+<li><a href="/juros-compostos/"><strong>Juros compostos</strong><span>Quanto o dinheiro cresce com aportes mensais.</span></a></li>
+</ul></nav>
+</main>
+<footer class="rodape"><div class="rodape-in">
+<aside class="cta-app" aria-label="App para Android">
+<p class="cta-titulo">Leve a calculadora no celular — grátis, sem cadastro</p>
+<p class="cta-texto">Com o app Calculadora Empréstimo e Juros você simula parcelas e juros direto no seu Android.</p>
+<a class="botao-play" href="https://play.google.com/store/apps/details?id=com.josephsantiago.calculadoraemprestimos&amp;referrer=utm_source%3Dsite%26utm_medium%3Demprestimo-consignado%26utm_campaign%3Dorganico" rel="noopener"><svg width="26" height="28" viewBox="0 0 26 28" aria-hidden="true" focusable="false"><path d="M3 2.6v22.8a1.6 1.6 0 0 0 2.4 1.4l18.6-11.4a1.6 1.6 0 0 0 0-2.8L5.4 1.2A1.6 1.6 0 0 0 3 2.6z" fill="#FFD166"/><path d="M8 9.5v9l7.4-4.5z" fill="#111"/></svg><span><small>Disponível no</small><b>Google Play</b></span></a>
+</aside>
+<p class="aviso">Simulação ilustrativa. Não oferecemos nem intermediamos crédito e não temos vínculo com bancos, financeiras ou órgãos públicos. Antes de contratar, confira o Custo Efetivo Total (CET) informado pela instituição.</p>
+<nav aria-label="Todas as calculadoras"><ul class="rodape-links"><li><a href="/">Início</a></li><li><a href="/simulador-emprestimo/">Simulador de empréstimo</a></li><li><a href="/quanto-fica-emprestimo/">Quanto fica um empréstimo</a></li><li><a href="/simulador-financiamento-carro/">Financiamento de carro</a></li><li><a href="/simulador-financiamento-moto/">Financiamento de moto</a></li><li><a href="/emprestimo-consignado/">Empréstimo consignado</a></li><li><a href="/juros-parcelamento/">Juros no parcelamento</a></li><li><a href="/descobrir-taxa-de-juros/">Descobrir a taxa de juros</a></li><li><a href="/juros-cartao-de-credito/">Juros do cartão de crédito</a></li><li><a href="/tabela-price/">Tabela Price</a></li><li><a href="/price-ou-sac/">Price ou SAC</a></li><li><a href="/juros-compostos/">Juros compostos</a></li></ul></nav>
+<p>Feito por Joseph Santiago, desenvolvedor de apps Android. <a href="https://play.google.com/store/apps/details?id=com.josephsantiago.calculadoraemprestimos">Calculadora Empréstimo e Juros na Google Play</a> · <a href="https://josephsantiagos.github.io/pilitica-de-privacidade-play-sotre-/">Política de privacidade</a> · Contato: <a href="mailto:josephsantiago250@gmail.com">josephsantiago250@gmail.com</a></p>
+<p>Este site não exibe anúncios e não coleta os valores digitados: as contas são feitas no seu próprio aparelho.</p>
+</div></footer>
+<script src="/assets/calc.js" defer></script>
+</body>
+</html>

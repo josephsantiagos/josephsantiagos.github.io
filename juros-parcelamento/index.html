@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Juros no Parcelamento: calcule os juros escondidos</title>
+<meta name="description" content="Compare o preço à vista com as parcelas e descubra a taxa de juros escondida no parcelado de celular, TV e eletrodomésticos. Grátis.">
+<link rel="canonical" href="https://josephsantiagos.github.io/juros-parcelamento/">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#0A5F5B">
+<meta name="format-detection" content="telephone=no">
+<link rel="icon" href="/assets/logo.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="Calculadora Empréstimo e Juros">
+<meta property="og:title" content="Juros no Parcelamento: calcule os juros escondidos">
+<meta property="og:description" content="Compare o preço à vista com as parcelas e descubra a taxa de juros escondida no parcelado de celular, TV e eletrodomésticos. Grátis.">
+<meta property="og:url" content="https://josephsantiagos.github.io/juros-parcelamento/">
+<meta property="og:image" content="https://josephsantiagos.github.io/assets/og-calculadora.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Calculadora Empréstimo e Juros: simule parcelas e juros">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="/assets/site.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","@id":"https://josephsantiagos.github.io/juros-parcelamento/#calculadora","name":"Calculadora de juros no parcelamento","url":"https://josephsantiagos.github.io/juros-parcelamento/","description":"Compare o preço à vista com as parcelas e descubra a taxa de juros escondida no parcelado de celular, TV e eletrodomésticos. Grátis.","applicationCategory":"FinanceApplication","operatingSystem":"Qualquer sistema com navegador","browserRequirements":"Requer JavaScript","inLanguage":"pt-BR","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"BRL"},"author":{"@type":"Person","name":"Joseph Santiago"}},{"@type":"FAQPage","@id":"https://josephsantiagos.github.io/juros-parcelamento/#faq","mainEntity":[{"@type":"Question","name":"Parcelado sem juros tem juros?","acceptedAnswer":{"@type":"Answer","text":"Pode ter. Se a loja dá desconto para pagamento à vista, o preço parcelado embute juros. Exemplo: R$ 1.800 à vista ou 12x de R$ 179,90 equivale a uma taxa de 2,91% ao mês."}},{"@type":"Question","name":"Como calcular os juros de uma compra parcelada?","acceptedAnswer":{"@type":"Answer","text":"Informe o preço à vista, o valor da parcela e o número de parcelas. A calculadora encontra a taxa mensal que iguala o valor presente das parcelas ao preço à vista e mostra também a taxa anual."}},{"@type":"Question","name":"Pagar a primeira parcela no ato muda a taxa?","acceptedAnswer":{"@type":"Answer","text":"Muda. Com a primeira parcela paga na hora, a mesma parcela representa uma taxa maior. No exemplo do celular, a taxa sobe de 2,91% para 3,49% ao mês."}},{"@type":"Question","name":"Vale mais a pena parcelar ou pagar à vista?","acceptedAnswer":{"@type":"Answer","text":"Se há desconto à vista, compare a taxa implícita com quanto o seu dinheiro rende; quase sempre pagar à vista é mais barato. Se o parcelado é realmente sem juros (taxa 0%), parcelar pode valer a pena, desde que caiba no orçamento."}},{"@type":"Question","name":"Por que não basta dividir a diferença pelo número de parcelas?","acceptedAnswer":{"@type":"Answer","text":"Porque a dívida diminui a cada parcela paga. Os juros incidem sobre um saldo cada vez menor, então a taxa real é maior do que a divisão simples sugere."}},{"@type":"Question","name":"Crediário tem IOF?","acceptedAnswer":{"@type":"Answer","text":"O crediário é uma operação de crédito, então normalmente tem IOF e pode ter tarifas, tudo incluído no CET. No parcelado sem juros do cartão, em geral não há IOF para quem compra."}}]},{"@type":"BreadcrumbList","@id":"https://josephsantiagos.github.io/juros-parcelamento/#trilha","itemListElement":[{"@type":"ListItem","position":1,"name":"Início","item":"https://josephsantiagos.github.io/"},{"@type":"ListItem","position":2,"name":"Juros no parcelamento","item":"https://josephsantiagos.github.io/juros-parcelamento/"}]}]}</script>
+</head>
+<body>
+<a class="pular" href="#conteudo">Pular para o conteúdo</a>
+<header class="topo"><div class="topo-in"><a class="marca" href="/"><img src="/assets/logo.svg" alt="" width="32" height="32">Calculadora Empréstimo e Juros</a></div></header>
+<main id="conteudo">
+<nav class="trilha" aria-label="Você está em"><ol><li><a href="/">Início</a></li><li aria-current="page">Juros no parcelamento</li></ol></nav>
+<h1>Calculadora de juros no parcelamento</h1>
+<p class="lead">Celular, TV, geladeira: quando o preço à vista é menor que a soma das parcelas, existe juro embutido. Descubra quanto.</p>
+<section class="calc" id="calculadora" aria-labelledby="titulo-calc">
+<h2 id="titulo-calc" style="margin-top:0">À vista ou parcelado?</h2>
+<form data-calc="parcelamento" data-saida="resultado-parcelamento" data-anuncio="anuncio-parcelamento" novalidate>
+<div class="campos">
+<div class="campo"><label for="parcelamento-avista">Preço à vista</label><div class="entrada"><span class="un" aria-hidden="true">R$</span><input id="parcelamento-avista" name="avista" type="text" inputmode="decimal" autocomplete="off" value="1.800"></div></div>
+<div class="campo"><label for="parcelamento-parcela">Valor de cada parcela</label><div class="entrada"><span class="un" aria-hidden="true">R$</span><input id="parcelamento-parcela" name="parcela" type="text" inputmode="decimal" autocomplete="off" value="179,90"></div></div>
+<div class="campo"><label for="parcelamento-n">Número de parcelas</label><div class="entrada"><input id="parcelamento-n" name="n" type="text" inputmode="numeric" pattern="[0-9]*" autocomplete="off" value="12"><span class="un" aria-hidden="true">parcelas</span></div></div>
+<div class="campo"><label for="parcelamento-ato">Primeira parcela</label><select id="parcelamento-ato" name="ato"><option value="nao" selected>Daqui a 30 dias</option><option value="sim">No ato da compra (entrada)</option></select></div>
+</div>
+<button class="botao" type="submit">Calcular</button>
+</form>
+<p class="sr" id="anuncio-parcelamento" aria-live="polite"></p>
+<div class="resultado" id="resultado-parcelamento"><div class="res-destaque"><span class="res-rotulo">Juros escondidos no parcelado</span><strong class="res-valor">2,91% ao mês</strong><span class="res-sub">equivale a 41,15% ao ano</span></div><dl class="res-grade"><div><dt>Total parcelado</dt><dd>12 × R$ 179,90 = R$ 2.158,80</dd></div><div><dt>Preço à vista</dt><dd>R$ 1.800,00</dd></div><div><dt>Você paga a mais</dt><dd>R$ 358,80</dd></div><div><dt>Diferença sobre o preço à vista</dt><dd>19,9%</dd></div></dl><p class="res-frase">Mesmo anunciado como "sem juros", parcelar aqui custa como um empréstimo de 2,91% ao mês.</p><p class="aviso">Simulação ilustrativa. Não oferecemos nem intermediamos crédito e não temos vínculo com bancos, financeiras ou órgãos públicos. Antes de contratar, confira o Custo Efetivo Total (CET) informado pela instituição.</p></div>
+</section>
+<aside class="cta-app" aria-label="App para Android">
+<p class="cta-titulo">Leve a calculadora no celular — grátis, sem cadastro</p>
+<p class="cta-texto">Com o app Calculadora Empréstimo e Juros você simula parcelas e juros direto no seu Android.</p>
+<a class="botao-play" href="https://play.google.com/store/apps/details?id=com.josephsantiago.calculadoraemprestimos&amp;referrer=utm_source%3Dsite%26utm_medium%3Djuros-parcelamento%26utm_campaign%3Dorganico" rel="noopener"><svg width="26" height="28" viewBox="0 0 26 28" aria-hidden="true" focusable="false"><path d="M3 2.6v22.8a1.6 1.6 0 0 0 2.4 1.4l18.6-11.4a1.6 1.6 0 0 0 0-2.8L5.4 1.2A1.6 1.6 0 0 0 3 2.6z" fill="#FFD166"/><path d="M8 9.5v9l7.4-4.5z" fill="#111"/></svg><span><small>Disponível no</small><b>Google Play</b></span></a>
+</aside>
+<article class="texto">
+
+<h2>O juro escondido no “sem juros”</h2>
+<p>Muitas lojas anunciam “12x sem juros”, mas dão um preço menor para quem paga à vista. Se a soma das parcelas é maior que o preço à vista, a diferença é juro, só que embutido no preço, sem aparecer como taxa. Esta calculadora faz a conta inversa: a partir do preço à vista, do valor da parcela e do número de parcelas, ela encontra a taxa mensal que transforma um no outro.</p>
+
+<h2>Exemplo resolvido: celular de R$ 1.800 à vista ou 12x de R$ 179,90</h2>
+<ul>
+<li>Total parcelado: 12 × R$ 179,90 = R$ 2.158,80</li>
+<li>Diferença para o preço à vista: R$ 358,80 (19,9% a mais)</li>
+<li>Taxa implícita: <strong>2,91% ao mês</strong>, o equivalente a 41,15% ao ano</li>
+</ul>
+<p>Ou seja, parcelar esse celular custa o mesmo que pegar um empréstimo de R$ 1.800 a 2,91% ao mês. Se a primeira parcela for paga no ato da compra, a taxa sobe para 3,49% ao mês, porque você começa a pagar antes e fica menos tempo com o dinheiro “emprestado”.</p>
+<p>Repare que não basta dividir a diferença pelo prazo: 19,9% ÷ 12 daria 1,66% ao mês, bem menos que a taxa real. A cada parcela paga você deve menos, então os mesmos R$ 358,80 de juros, cobrados sobre um saldo que diminui, representam uma taxa maior.</p>
+<p>Outro exemplo: uma TV de R$ 2.000 à vista ou 10x de R$ 229,90 tem juro embutido de 2,62% ao mês (36,34% ao ano). Já um produto de R$ 1.800 à vista ou 12x de R$ 150,00 é parcelado sem juros de verdade: as parcelas somam exatamente o preço à vista e a taxa é 0%.</p>
+
+<h2>Como a calculadora encontra a taxa</h2>
+<p>Não existe fórmula direta para isolar a taxa quando se conhece a parcela. Calculadoras financeiras resolvem isso por aproximações: testam uma taxa, veem se o valor presente das parcelas ficou acima ou abaixo do preço à vista e corrigem o palpite até a diferença praticamente sumir. Esta usa o método de Newton, com uma rotina de segurança (bisseção), e só para quando a taxa muda menos de um décimo de bilionésimo entre duas tentativas.</p>
+
+<h2>Parcelar ou pagar à vista?</h2>
+<p>Se há desconto à vista, compare a taxa encontrada com quanto o seu dinheiro rende guardado. Se a taxa do parcelamento for maior que o rendimento, e quase sempre é, pagar à vista sai mais barato, desde que você não desmonte a reserva de emergência para isso. Se a taxa for 0%, parcelar pode ser vantajoso: o dinheiro continua rendendo e você paga o mesmo preço, contanto que as parcelas caibam no orçamento.</p>
+<p>Atenção ao acúmulo: várias compras pequenas parceladas ao mesmo tempo comprometem a renda dos próximos meses e podem empurrar a fatura do cartão para o rotativo, que tem juros muito altos. Veja quanto isso custa em <a href="/juros-cartao-de-credito/">juros do cartão de crédito</a>.</p>
+
+<h2>Crediário, CET e IOF</h2>
+<p>No parcelado “sem juros” do cartão, o custo, quando existe, está no preço. Já no crediário da loja ou no parcelamento “com juros”, a compra é uma operação de crédito: há taxa de juros declarada, <strong>IOF</strong> (imposto sobre operações de crédito) e, às vezes, tarifas e seguros. Nesse caso a loja deve informar o <strong>Custo Efetivo Total (CET)</strong>, que reúne tudo isso. Para comparar com a calculadora, use o valor total que você vai pagar, com todos os acréscimos.</p>
+<p>Recuse seguros e garantias estendidas que você não pediu: eles entram nas parcelas e aumentam o custo sem que você perceba.</p>
+
+<h2>Dicas para não pagar juros sem perceber</h2>
+<ul>
+<li>Sempre pergunte o preço à vista antes de escolher o parcelamento.</li>
+<li>Calcule a taxa implícita e compare com o rendimento do seu dinheiro.</li>
+<li>Quando o parcelado sai mais caro, prefira menos parcelas ou junte o dinheiro antes.</li>
+<li>Some todas as parcelas que já tem antes de assumir uma nova.</li>
+</ul>
+</article>
+<section class="faq" aria-labelledby="titulo-faq"><h2 id="titulo-faq">Perguntas frequentes</h2>
+<details><summary>Parcelado sem juros tem juros?</summary><p>Pode ter. Se a loja dá desconto para pagamento à vista, o preço parcelado embute juros. Exemplo: R$ 1.800 à vista ou 12x de R$ 179,90 equivale a uma taxa de 2,91% ao mês.</p></details>
+<details><summary>Como calcular os juros de uma compra parcelada?</summary><p>Informe o preço à vista, o valor da parcela e o número de parcelas. A calculadora encontra a taxa mensal que iguala o valor presente das parcelas ao preço à vista e mostra também a taxa anual.</p></details>
+<details><summary>Pagar a primeira parcela no ato muda a taxa?</summary><p>Muda. Com a primeira parcela paga na hora, a mesma parcela representa uma taxa maior. No exemplo do celular, a taxa sobe de 2,91% para 3,49% ao mês.</p></details>
+<details><summary>Vale mais a pena parcelar ou pagar à vista?</summary><p>Se há desconto à vista, compare a taxa implícita com quanto o seu dinheiro rende; quase sempre pagar à vista é mais barato. Se o parcelado é realmente sem juros (taxa 0%), parcelar pode valer a pena, desde que caiba no orçamento.</p></details>
+<details><summary>Por que não basta dividir a diferença pelo número de parcelas?</summary><p>Porque a dívida diminui a cada parcela paga. Os juros incidem sobre um saldo cada vez menor, então a taxa real é maior do que a divisão simples sugere.</p></details>
+<details><summary>Crediário tem IOF?</summary><p>O crediário é uma operação de crédito, então normalmente tem IOF e pode ter tarifas, tudo incluído no CET. No parcelado sem juros do cartão, em geral não há IOF para quem compra.</p></details>
+</section>
+<nav class="outras" aria-labelledby="titulo-outras"><h2 id="titulo-outras">Outras calculadoras</h2><ul class="links">
+<li><a href="/simulador-emprestimo/"><strong>Simulador de empréstimo</strong><span>Parcela, juros e tabela mês a mês (Price ou SAC).</span></a></li>
+<li><a href="/quanto-fica-emprestimo/"><strong>Quanto fica um empréstimo</strong><span>Tabelas prontas de parcelas de R$ 1 mil a R$ 50 mil.</span></a></li>
+<li><a href="/simulador-financiamento-carro/"><strong>Financiamento de carro</strong><span>Entrada, parcela e custo total do carro.</span></a></li>
+<li><a href="/simulador-financiamento-moto/"><strong>Financiamento de moto</strong><span>Quanto fica a parcela da moto e o custo final.</span></a></li>
+<li><a href="/emprestimo-consignado/"><strong>Empréstimo consignado</strong><span>Parcela, margem consignável e juros.</span></a></li>
+<li><a href="/descobrir-taxa-de-juros/"><strong>Descobrir a taxa de juros</strong><span>A taxa real a partir do valor da parcela.</span></a></li>
+<li><a href="/juros-cartao-de-credito/"><strong>Juros do cartão de crédito</strong><span>Rotativo ou parcelamento da fatura: quanto custa.</span></a></li>
+<li><a href="/tabela-price/"><strong>Tabela Price</strong><span>Tabela de amortização completa, mês a mês.</span></a></li>
+<li><a href="/price-ou-sac/"><strong>Price ou SAC</strong><span>Compare os dois sistemas lado a lado.</span></a></li>
+<li><a href="/juros-compostos/"><strong>Juros compostos</strong><span>Quanto o dinheiro cresce com aportes mensais.</span></a></li>
+</ul></nav>
+</main>
+<footer class="rodape"><div class="rodape-in">
+<aside class="cta-app" aria-label="App para Android">
+<p class="cta-titulo">Leve a calculadora no celular — grátis, sem cadastro</p>
+<p class="cta-texto">Com o app Calculadora Empréstimo e Juros você simula parcelas e juros direto no seu Android.</p>
+<a class="botao-play" href="https://play.google.com/store/apps/details?id=com.josephsantiago.calculadoraemprestimos&amp;referrer=utm_source%3Dsite%26utm_medium%3Djuros-parcelamento%26utm_campaign%3Dorganico" rel="noopener"><svg width="26" height="28" viewBox="0 0 26 28" aria-hidden="true" focusable="false"><path d="M3 2.6v22.8a1.6 1.6 0 0 0 2.4 1.4l18.6-11.4a1.6 1.6 0 0 0 0-2.8L5.4 1.2A1.6 1.6 0 0 0 3 2.6z" fill="#FFD166"/><path d="M8 9.5v9l7.4-4.5z" fill="#111"/></svg><span><small>Disponível no</small><b>Google Play</b></span></a>
+</aside>
+<p class="aviso">Simulação ilustrativa. Não oferecemos nem intermediamos crédito e não temos vínculo com bancos, financeiras ou órgãos públicos. Antes de contratar, confira o Custo Efetivo Total (CET) informado pela instituição.</p>
+<nav aria-label="Todas as calculadoras"><ul class="rodape-links"><li><a href="/">Início</a></li><li><a href="/simulador-emprestimo/">Simulador de empréstimo</a></li><li><a href="/quanto-fica-emprestimo/">Quanto fica um empréstimo</a></li><li><a href="/simulador-financiamento-carro/">Financiamento de carro</a></li><li><a href="/simulador-financiamento-moto/">Financiamento de moto</a></li><li><a href="/emprestimo-consignado/">Empréstimo consignado</a></li><li><a href="/juros-parcelamento/">Juros no parcelamento</a></li><li><a href="/descobrir-taxa-de-juros/">Descobrir a taxa de juros</a></li><li><a href="/juros-cartao-de-credito/">Juros do cartão de crédito</a></li><li><a href="/tabela-price/">Tabela Price</a></li><li><a href="/price-ou-sac/">Price ou SAC</a></li><li><a href="/juros-compostos/">Juros compostos</a></li></ul></nav>
+<p>Feito por Joseph Santiago, desenvolvedor de apps Android. <a href="https://play.google.com/store/apps/details?id=com.josephsantiago.calculadoraemprestimos">Calculadora Empréstimo e Juros na Google Play</a> · <a href="https://josephsantiagos.github.io/pilitica-de-privacidade-play-sotre-/">Política de privacidade</a> · Contato: <a href="mailto:josephsantiago250@gmail.com">josephsantiago250@gmail.com</a></p>
+<p>Este site não exibe anúncios e não coleta os valores digitados: as contas são feitas no seu próprio aparelho.</p>
+</div></footer>
+<script src="/assets/calc.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Simulador de Empréstimo: parcela, juros e tabela</title>
+<meta name="description" content="Simule seu empréstimo grátis: valor, taxa ao mês ou ao ano e prazo. Veja parcela, total pago, juros e a tabela mês a mês (Price ou SAC).">
+<link rel="canonical" href="https://josephsantiagos.github.io/simulador-emprestimo/">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#0A5F5B">
+<meta name="format-detection" content="telephone=no">
+<link rel="icon" href="/assets/logo.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="Calculadora Empréstimo e Juros">
+<meta property="og:title" content="Simulador de Empréstimo: parcela, juros e tabela">
+<meta property="og:description" content="Simule seu empréstimo grátis: valor, taxa ao mês ou ao ano e prazo. Veja parcela, total pago, juros e a tabela mês a mês (Price ou SAC).">
+<meta property="og:url" content="https://josephsantiagos.github.io/simulador-emprestimo/">
+<meta property="og:image" content="https://josephsantiagos.github.io/assets/og-calculadora.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Calculadora Empréstimo e Juros: simule parcelas e juros">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="/assets/site.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","@id":"https://josephsantiagos.github.io/simulador-emprestimo/#calculadora","name":"Simulador de empréstimo","url":"https://josephsantiagos.github.io/simulador-emprestimo/","description":"Simule seu empréstimo grátis: valor, taxa ao mês ou ao ano e prazo. Veja parcela, total pago, juros e a tabela mês a mês (Price ou SAC).","applicationCategory":"FinanceApplication","operatingSystem":"Qualquer sistema com navegador","browserRequirements":"Requer JavaScript","inLanguage":"pt-BR","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"BRL"},"author":{"@type":"Person","name":"Joseph Santiago"}},{"@type":"FAQPage","@id":"https://josephsantiagos.github.io/simulador-emprestimo/#faq","mainEntity":[{"@type":"Question","name":"Como calcular a parcela de um empréstimo?","acceptedAnswer":{"@type":"Answer","text":"Use a fórmula da Tabela Price: parcela = valor × i ÷ [1 − (1 + i)^−n], com a taxa mensal em decimal. Exemplo: R$ 15.000 a 2,2% ao mês em 24 meses dá parcela de R$ 811,15. O simulador desta página faz a conta automaticamente."}},{"@type":"Question","name":"Qual a diferença entre taxa ao mês e taxa ao ano?","acceptedAnswer":{"@type":"Answer","text":"Os juros são compostos, então a taxa anual não é 12 vezes a mensal. Uma taxa de 2,2% ao mês equivale a 29,84% ao ano. Para converter de anual para mensal, use (1 + taxa anual)^(1/12) − 1."}},{"@type":"Question","name":"Price ou SAC: qual paga menos juros?","acceptedAnswer":{"@type":"Answer","text":"Com a mesma taxa e o mesmo prazo, o SAC paga menos juros porque abate a dívida mais rápido, mas começa com parcelas maiores. Para R$ 15.000 a 2,2% ao mês em 24 meses, os juros são R$ 4.467,60 na Price e R$ 4.125,00 no SAC."}},{"@type":"Question","name":"O resultado inclui IOF e tarifas?","acceptedAnswer":{"@type":"Answer","text":"Não. O simulador calcula apenas os juros. IOF, tarifas e seguros entram no Custo Efetivo Total (CET), que a instituição deve informar na proposta. Por isso a parcela real pode ser um pouco maior."}},{"@type":"Question","name":"Posso quitar o empréstimo antes e pagar menos juros?","acceptedAnswer":{"@type":"Answer","text":"Sim. Ao antecipar parcelas ou quitar o contrato, o consumidor tem direito ao abatimento proporcional dos juros. Peça à instituição o valor atualizado para a quitação."}},{"@type":"Question","name":"Este site oferece empréstimo?","acceptedAnswer":{"@type":"Answer","text":"Não. É apenas uma calculadora gratuita. Não oferecemos nem intermediamos crédito e não temos vínculo com bancos, financeiras ou órgãos públicos."}}]},{"@type":"BreadcrumbList","@id":"https://josephsantiagos.github.io/simulador-emprestimo/#trilha","itemListElement":[{"@type":"ListItem","position":1,"name":"Início","item":"https://josephsantiagos.github.io/"},{"@type":"ListItem","position":2,"name":"Simulador de empréstimo","item":"https://josephsantiagos.github.io/simulador-emprestimo/"}]}]}</script>
+</head>
+<body>
+<a class="pular" href="#conteudo">Pular para o conteúdo</a>
+<header class="topo"><div class="topo-in"><a class="marca" href="/"><img src="/assets/logo.svg" alt="" width="32" height="32">Calculadora Empréstimo e Juros</a></div></header>
+<main id="conteudo">
+<nav class="trilha" aria-label="Você está em"><ol><li><a href="/">Início</a></li><li aria-current="page">Simulador de empréstimo</li></ol></nav>
+<h1>Simulador de empréstimo</h1>
+<p class="lead">Digite o valor, a taxa de juros e o prazo. O simulador mostra na hora a parcela, o total pago, quanto disso é só juros e a tabela mês a mês.</p>
+<section class="calc" id="calculadora" aria-labelledby="titulo-calc">
+<h2 id="titulo-calc" style="margin-top:0">Simule seu empréstimo</h2>
+<form data-calc="emprestimo" data-saida="resultado-emprestimo" data-anuncio="anuncio-emprestimo" novalidate>
+<div class="campos">
+<div class="campo"><label for="emprestimo-valor">Valor do empréstimo</label><div class="entrada"><span class="un" aria-hidden="true">R$</span><input id="emprestimo-valor" name="valor" type="text" inputmode="decimal" autocomplete="off" value="15.000"></div></div>
+<div class="campo"><label for="emprestimo-taxa">Taxa de juros</label><div class="dupla"><div class="entrada"><input id="emprestimo-taxa" name="taxa" type="text" inputmode="decimal" autocomplete="off" value="2,2"><span class="un" aria-hidden="true">%</span></div><select name="tipo" aria-label="Período da taxa"><option value="mes" selected>ao mês</option><option value="ano">ao ano</option></select></div></div>
+<div class="campo"><label for="emprestimo-prazo">Prazo</label><div class="entrada"><input id="emprestimo-prazo" name="prazo" type="text" inputmode="numeric" pattern="[0-9]*" autocomplete="off" value="24"><span class="un" aria-hidden="true">meses</span></div></div>
+<fieldset class="campo largo opcoes"><legend>Sistema de amortização</legend><label><input type="radio" name="sistema" value="price" checked> Price — parcelas iguais</label><label><input type="radio" name="sistema" value="sac"> SAC — parcelas que diminuem</label></fieldset>
+</div>
+<button class="botao" type="submit">Calcular</button>
+</form>
+<p class="sr" id="anuncio-emprestimo" aria-live="polite"></p>
+<div class="resultado" id="resultado-emprestimo"><div class="res-destaque"><span class="res-rotulo">Parcela mensal (Price)</span><strong class="res-valor">R$ 811,15</strong><span class="res-sub">24 parcelas fixas</span></div><dl class="res-grade"><div><dt>Total pago</dt><dd>R$ 19.467,60</dd></div><div><dt>Juros totais</dt><dd>R$ 4.467,60</dd></div><div><dt>Juros sobre o valor emprestado</dt><dd>29,78%</dd></div><div><dt>Taxa</dt><dd>2,20% ao mês = 29,84% ao ano</dd></div></dl><p class="res-frase">De cada R$ 100 que você paga, <strong>R$ 22,95</strong> são juros.</p><details class="tabela"><summary>Ver tabela mês a mês (24 parcelas)</summary><div class="rolagem" tabindex="0" role="region" aria-label="Tabela de amortização"><table><caption>Valores em R$ — sistema Price</caption><thead><tr><th scope="col">Mês</th><th scope="col">Parcela</th><th scope="col">Juros</th><th scope="col">Amortização</th><th scope="col">Saldo</th></tr></thead><tbody><tr><td>1</td><td>811,15</td><td>330,00</td><td>481,15</td><td>14.518,85</td></tr><tr><td>2</td><td>811,15</td><td>319,41</td><td>491,74</td><td>14.027,11</td></tr><tr><td>3</td><td>811,15</td><td>308,60</td><td>502,55</td><td>13.524,56</td></tr><tr><td>4</td><td>811,15</td><td>297,54</td><td>513,61</td><td>13.010,95</td></tr><tr><td>5</td><td>811,15</td><td>286,24</td><td>524,91</td><td>12.486,04</td></tr><tr><td>6</td><td>811,15</td><td>274,69</td><td>536,46</td><td>11.949,58</td></tr><tr><td>7</td><td>811,15</td><td>262,89</td><td>548,26</td><td>11.401,32</td></tr><tr><td>8</td><td>811,15</td><td>250,83</td><td>560,32</td><td>10.841,00</td></tr><tr><td>9</td><td>811,15</td><td>238,50</td><td>572,65</td><td>10.268,35</td></tr><tr><td>10</td><td>811,15</td><td>225,90</td><td>585,25</td><td>9.683,10</td></tr><tr><td>11</td><td>811,15</td><td>213,03</td><td>598,12</td><td>9.084,98</td></tr><tr><td>12</td><td>811,15</td><td>199,87</td><td>611,28</td><td>8.473,70</td></tr><tr><td>13</td><td>811,15</td><td>186,42</td><td>624,73</td><td>7.848,97</td></tr><tr><td>14</td><td>811,15</td><td>172,68</td><td>638,47</td><td>7.210,50</td></tr><tr><td>15</td><td>811,15</td><td>158,63</td><td>652,52</td><td>6.557,98</td></tr><tr><td>16</td><td>811,15</td><td>144,28</td><td>666,87</td><td>5.891,11</td></tr><tr><td>17</td><td>811,15</td><td>129,60</td><td>681,55</td><td>5.209,56</td></tr><tr><td>18</td><td>811,15</td><td>114,61</td><td>696,54</td><td>4.513,02</td></tr><tr><td>19</td><td>811,15</td><td>99,29</td><td>711,86</td><td>3.801,16</td></tr><tr><td>20</td><td>811,15</td><td>83,63</td><td>727,52</td><td>3.073,64</td></tr><tr><td>21</td><td>811,15</td><td>67,62</td><td>743,53</td><td>2.330,11</td></tr><tr><td>22</td><td>811,15</td><td>51,26</td><td>759,89</td><td>1.570,22</td></tr><tr><td>23</td><td>811,15</td><td>34,54</td><td>776,61</td><td>793,61</td></tr><tr><td>24</td><td>811,15</td><td>17,54</td><td>793,61</td><td>0,00</td></tr></tbody><tfoot><tr><th scope="row">Total</th><td>19.467,60</td><td>4.467,60</td><td>15.000,00</td><td></td></tr></tfoot></table></div></details><p class="aviso">Simulação ilustrativa. Não oferecemos nem intermediamos crédito e não temos vínculo com bancos, financeiras ou órgãos públicos. Antes de contratar, confira o Custo Efetivo Total (CET) informado pela instituição.</p></div>
+</section>
+<aside class="cta-app" aria-label="App para Android">
+<p class="cta-titulo">Leve a calculadora no celular — grátis, sem cadastro</p>
+<p class="cta-texto">Com o app Calculadora Empréstimo e Juros você simula parcelas e juros direto no seu Android.</p>
+<a class="botao-play" href="https://play.google.com/store/apps/details?id=com.josephsantiago.calculadoraemprestimos&amp;referrer=utm_source%3Dsite%26utm_medium%3Dsimulador-emprestimo%26utm_campaign%3Dorganico" rel="noopener"><svg width="26" height="28" viewBox="0 0 26 28" aria-hidden="true" focusable="false"><path d="M3 2.6v22.8a1.6 1.6 0 0 0 2.4 1.4l18.6-11.4a1.6 1.6 0 0 0 0-2.8L5.4 1.2A1.6 1.6 0 0 0 3 2.6z" fill="#FFD166"/><path d="M8 9.5v9l7.4-4.5z" fill="#111"/></svg><span><small>Disponível no</small><b>Google Play</b></span></a>
+</aside>
+<article class="texto">
+
+<h2>Como usar o simulador de empréstimo</h2>
+<p>Preencha as três informações que aparecem em qualquer proposta de crédito: o <strong>valor</strong> que você quer pegar, a <strong>taxa de juros</strong> e o <strong>prazo</strong> em meses. A taxa pode ser digitada ao mês ou ao ano; basta escolher no seletor ao lado do campo. Pode usar vírgula ou ponto: “2,2” e “2.2” dão o mesmo resultado.</p>
+<p>O resultado aparece na hora: a parcela, o total que você vai devolver, quanto desse total é só juros e a tabela mês a mês, que mostra como cada parcela se divide entre juros e abatimento da dívida. Para ver parcelas que diminuem com o tempo, marque a opção SAC.</p>
+
+<h2>Como a parcela é calculada</h2>
+<p>A maioria dos empréstimos pessoais, consignados e financiamentos usa a <a href="/tabela-price/">Tabela Price</a>, em que todas as parcelas são iguais. A fórmula é:</p>
+<p class="formula"><strong>Parcela = Valor × i ÷ [1 − (1 + i)<sup>−n</sup>]</strong></p>
+<p>Nela, <em>i</em> é a taxa mensal em forma decimal (2,2% vira 0,022) e <em>n</em> é o número de parcelas. Se a taxa vier ao ano, ela precisa virar a taxa mensal equivalente: <strong>(1 + taxa anual)<sup>1/12</sup> − 1</strong>. Dividir a taxa anual por 12 dá um número errado, porque os juros são compostos. Por exemplo, 24% ao ano equivalem a 1,81% ao mês, e não a 2%.</p>
+
+<h2>Exemplo resolvido: R$ 15.000 em 24 meses a 2,2% ao mês</h2>
+<ol>
+<li>Taxa mensal: i = 0,022. Prazo: n = 24.</li>
+<li>(1,022)<sup>−24</sup> ≈ 0,5932, então 1 − 0,5932 = 0,4068.</li>
+<li>Parcela = 15.000 × 0,022 ÷ 0,4068 ≈ <strong>R$ 811,15</strong>.</li>
+<li>Total pago = 24 × R$ 811,15 = <strong>R$ 19.467,60</strong>.</li>
+<li>Juros = R$ 19.467,60 − R$ 15.000,00 = <strong>R$ 4.467,60</strong>, ou 29,78% do valor emprestado.</li>
+</ol>
+<p>No primeiro mês, os juros são 2,2% sobre a dívida inteira: R$ 330,00. O resto da parcela, R$ 481,15, abate o saldo, que cai para R$ 14.518,85. A cada mês os juros diminuem e a amortização aumenta, e é isso que a tabela do simulador mostra linha por linha.</p>
+<p>O prazo muda tudo. Com a mesma taxa, em 12 meses a parcela sobe para R$ 1.435,87, mas os juros caem para R$ 2.230,44. Em 36 meses a parcela fica em R$ 607,56, porém os juros chegam a R$ 6.872,16. No SAC, a primeira parcela seria R$ 955,00, a última R$ 638,75 e os juros totais R$ 4.125,00. Veja a comparação completa em <a href="/price-ou-sac/">Price ou SAC</a>.</p>
+
+<h2>CET e IOF: o que mais entra no custo</h2>
+<p>A taxa de juros não é o único custo. Todo contrato de crédito precisa informar o <strong>Custo Efetivo Total (CET)</strong>, que junta juros, impostos, tarifas e seguros em uma taxa só. Na hora de comparar propostas, é o CET que conta: duas ofertas com a mesma taxa de juros podem ter CET bem diferentes.</p>
+<p>O principal imposto é o <strong>IOF</strong> (Imposto sobre Operações Financeiras). Em empréstimos para pessoa física ele costuma ter uma parte fixa, cobrada uma vez, e uma parte diária, que cresce com o prazo até um limite. Somadas, ficam em poucos pontos percentuais do valor. As alíquotas são definidas pelo governo e podem mudar, então confira o valor exato na proposta. Muitas vezes o IOF é financiado junto com o empréstimo, o que aumenta um pouco a parcela.</p>
+<p>Também podem aparecer tarifa de cadastro e seguro prestamista. Se houver seguro, pergunte se ele é opcional: o consumidor não pode ser obrigado a contratá-lo com a seguradora indicada por quem empresta.</p>
+
+<h2>Dicas para pagar menos juros</h2>
+<ul>
+<li><strong>Compare o CET de pelo menos três propostas</strong> para o mesmo valor e prazo. Use o simulador para ver quanto cada diferença de taxa vale em reais.</li>
+<li><strong>Escolha o menor prazo com parcela que caiba com folga</strong> no orçamento. Prazos longos aliviam o mês, mas multiplicam os juros.</li>
+<li><strong>Peça só o que precisa.</strong> No exemplo acima, cada R$ 1.000 a menos economiza R$ 297,92 de juros.</li>
+<li><strong>Antecipe parcelas quando sobrar dinheiro.</strong> Quem quita ou adianta parcelas tem direito ao abatimento proporcional dos juros.</li>
+<li><strong>Troque dívidas caras por mais baratas</strong>, como o rotativo do cartão por um crédito de CET menor, e não o contrário.</li>
+<li><strong>Desconfie de quem pede depósito antecipado</strong> para “liberar” um empréstimo. Instituições sérias não cobram nada antes de liberar o dinheiro.</li>
+</ul>
+</article>
+<section class="faq" aria-labelledby="titulo-faq"><h2 id="titulo-faq">Perguntas frequentes</h2>
+<details><summary>Como calcular a parcela de um empréstimo?</summary><p>Use a fórmula da Tabela Price: parcela = valor × i ÷ [1 − (1 + i)^−n], com a taxa mensal em decimal. Exemplo: R$ 15.000 a 2,2% ao mês em 24 meses dá parcela de R$ 811,15. O simulador desta página faz a conta automaticamente.</p></details>
+<details><summary>Qual a diferença entre taxa ao mês e taxa ao ano?</summary><p>Os juros são compostos, então a taxa anual não é 12 vezes a mensal. Uma taxa de 2,2% ao mês equivale a 29,84% ao ano. Para converter de anual para mensal, use (1 + taxa anual)^(1/12) − 1.</p></details>
+<details><summary>Price ou SAC: qual paga menos juros?</summary><p>Com a mesma taxa e o mesmo prazo, o SAC paga menos juros porque abate a dívida mais rápido, mas começa com parcelas maiores. Para R$ 15.000 a 2,2% ao mês em 24 meses, os juros são R$ 4.467,60 na Price e R$ 4.125,00 no SAC.</p></details>
+<details><summary>O resultado inclui IOF e tarifas?</summary><p>Não. O simulador calcula apenas os juros. IOF, tarifas e seguros entram no Custo Efetivo Total (CET), que a instituição deve informar na proposta. Por isso a parcela real pode ser um pouco maior.</p></details>
+<details><summary>Posso quitar o empréstimo antes e pagar menos juros?</summary><p>Sim. Ao antecipar parcelas ou quitar o contrato, o consumidor tem direito ao abatimento proporcional dos juros. Peça à instituição o valor atualizado para a quitação.</p></details>
+<details><summary>Este site oferece empréstimo?</summary><p>Não. É apenas uma calculadora gratuita. Não oferecemos nem intermediamos crédito e não temos vínculo com bancos, financeiras ou órgãos públicos.</p></details>
+</section>
+<nav class="outras" aria-labelledby="titulo-outras"><h2 id="titulo-outras">Outras calculadoras</h2><ul class="links">
+<li><a href="/quanto-fica-emprestimo/"><strong>Quanto fica um empréstimo</strong><span>Tabelas prontas de parcelas de R$ 1 mil a R$ 50 mil.</span></a></li>
+<li><a href="/simulador-financiamento-carro/"><strong>Financiamento de carro</strong><span>Entrada, parcela e custo total do carro.</span></a></li>
+<li><a href="/simulador-financiamento-moto/"><strong>Financiamento de moto</strong><span>Quanto fica a parcela da moto e o custo final.</span></a></li>
+<li><a href="/emprestimo-consignado/"><strong>Empréstimo consignado</strong><span>Parcela, margem consignável e juros.</span></a></li>
+<li><a href="/juros-parcelamento/"><strong>Juros no parcelamento</strong><span>Descubra o juro escondido no “sem juros”.</span></a></li>
+<li><a href="/descobrir-taxa-de-juros/"><strong>Descobrir a taxa de juros</strong><span>A taxa real a partir do valor da parcela.</span></a></li>
+<li><a href="/juros-cartao-de-credito/"><strong>Juros do cartão de crédito</strong><span>Rotativo ou parcelamento da fatura: quanto custa.</span></a></li>
+<li><a href="/tabela-price/"><strong>Tabela Price</strong><span>Tabela de amortização completa, mês a mês.</span></a></li>
+<li><a href="/price-ou-sac/"><strong>Price ou SAC</strong><span>Compare os dois sistemas lado a lado.</span></a></li>
+<li><a href="/juros-compostos/"><strong>Juros compostos</strong><span>Quanto o dinheiro cresce com aportes mensais.</span></a></li>
+</ul></nav>
+</main>
+<footer class="rodape"><div class="rodape-in">
+<aside class="cta-app" aria-label="App para Android">
+<p class="cta-titulo">Leve a calculadora no celular — grátis, sem cadastro</p>
+<p class="cta-texto">Com o app Calculadora Empréstimo e Juros você simula parcelas e juros direto no seu Android.</p>
+<a class="botao-play" href="https://play.google.com/store/apps/details?id=com.josephsantiago.calculadoraemprestimos&amp;referrer=utm_source%3Dsite%26utm_medium%3Dsimulador-emprestimo%26utm_campaign%3Dorganico" rel="noopener"><svg width="26" height="28" viewBox="0 0 26 28" aria-hidden="true" focusable="false"><path d="M3 2.6v22.8a1.6 1.6 0 0 0 2.4 1.4l18.6-11.4a1.6 1.6 0 0 0 0-2.8L5.4 1.2A1.6 1.6 0 0 0 3 2.6z" fill="#FFD166"/><path d="M8 9.5v9l7.4-4.5z" fill="#111"/></svg><span><small>Disponível no</small><b>Google Play</b></span></a>
+</aside>
+<p class="aviso">Simulação ilustrativa. Não oferecemos nem intermediamos crédito e não temos vínculo com bancos, financeiras ou órgãos públicos. Antes de contratar, confira o Custo Efetivo Total (CET) informado pela instituição.</p>
+<nav aria-label="Todas as calculadoras"><ul class="rodape-links"><li><a href="/">Início</a></li><li><a href="/simulador-emprestimo/">Simulador de empréstimo</a></li><li><a href="/quanto-fica-emprestimo/">Quanto fica um empréstimo</a></li><li><a href="/simulador-financiamento-carro/">Financiamento de carro</a></li><li><a href="/simulador-financiamento-moto/">Financiamento de moto</a></li><li><a href="/emprestimo-consignado/">Empréstimo consignado</a></li><li><a href="/juros-parcelamento/">Juros no parcelamento</a></li><li><a href="/descobrir-taxa-de-juros/">Descobrir a taxa de juros</a></li><li><a href="/juros-cartao-de-credito/">Juros do cartão de crédito</a></li><li><a href="/tabela-price/">Tabela Price</a></li><li><a href="/price-ou-sac/">Price ou SAC</a></li><li><a href="/juros-compostos/">Juros compostos</a></li></ul></nav>
+<p>Feito por Joseph Santiago, desenvolvedor de apps Android. <a href="https://play.google.com/store/apps/details?id=com.josephsantiago.calculadoraemprestimos">Calculadora Empréstimo e Juros na Google Play</a> · <a href="https://josephsantiagos.github.io/pilitica-de-privacidade-play-sotre-/">Política de privacidade</a> · Contato: <a href="mailto:josephsantiago250@gmail.com">josephsantiago250@gmail.com</a></p>
+<p>Este site não exibe anúncios e não coleta os valores digitados: as contas são feitas no seu próprio aparelho.</p>
+</div></footer>
+<script src="/assets/calc.js" defer></script>
+</body>
+</html>
