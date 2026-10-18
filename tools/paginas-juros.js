@@ -50,7 +50,7 @@ const parcelamento = {
 <p>Atenção ao acúmulo: várias compras pequenas parceladas ao mesmo tempo comprometem a renda dos próximos meses e podem empurrar a fatura do cartão para o rotativo, que tem juros muito altos. Veja quanto isso custa em <a href="/juros-cartao-de-credito/">juros do cartão de crédito</a>.</p>
 
 <h2>Crediário, CET e IOF</h2>
-<p>No parcelado “sem juros” do cartão, o custo, quando existe, está no preço. Já no crediário da loja ou no parcelamento “com juros”, a compra é uma operação de crédito: há taxa de juros declarada, <strong>IOF</strong> (imposto sobre operações de crédito) e, às vezes, tarifas e seguros. Nesse caso a loja deve informar o <strong>Custo Efetivo Total (CET)</strong>, que reúne tudo isso. Para comparar com a calculadora, use o valor total que você vai pagar, com todos os acréscimos.</p>
+<p>No parcelado “sem juros” do cartão, o custo, quando existe, está no preço. Já no crediário da loja ou no parcelamento “com juros”, a compra é uma operação de crédito: há taxa de juros declarada, <strong>IOF</strong> (imposto sobre operações de crédito) e, às vezes, tarifas e seguros. Nesse caso a loja deve informar o <strong>Custo Efetivo Total (CET)</strong>, que reúne tudo isso; a calculadora de <a href="/juros-crediario/">juros do crediário</a> considera também a entrada. Para comparar com a calculadora, use o valor total que você vai pagar, com todos os acréscimos.</p>
 <p>Recuse seguros e garantias estendidas que você não pediu: eles entram nas parcelas e aumentam o custo sem que você perceba.</p>
 
 <h2>Dicas para não pagar juros sem perceber</h2>
@@ -116,10 +116,10 @@ const descobrirTaxa = {
 <p>Você pode indicar se a primeira parcela vence em 30 dias, o normal em empréstimos, ou se é paga no ato, comum no comércio. Pagar a primeira na hora aumenta a taxa efetiva.</p>
 
 <h2>A taxa encontrada é o CET?</h2>
-<p>Depende do que você digitar. O <strong>Custo Efetivo Total (CET)</strong> junta juros, IOF, tarifas e seguros. Se você informar o valor que realmente caiu na sua conta e a parcela que realmente vai pagar, a taxa encontrada mostra o custo efetivo mensal da operação, bem próximo do CET. Se informar o valor bruto do contrato, antes dos descontos, o resultado fica mais perto da taxa de juros nominal. A diferença entre as duas mostra quanto pesam o <strong>IOF</strong>, imposto sobre operações de crédito com uma parte fixa e outra que cresce com o prazo, e as tarifas.</p>
+<p>Depende do que você digitar. O <strong>Custo Efetivo Total (CET)</strong> junta juros, IOF, tarifas e seguros. Se você informar o valor que realmente caiu na sua conta e a parcela que realmente vai pagar, a taxa encontrada mostra o custo efetivo mensal da operação, bem próximo do CET. Se informar o valor bruto do contrato, antes dos descontos, o resultado fica mais perto da taxa de juros nominal. Veja mais em <a href="/o-que-e-cet/">o que é CET</a>. A diferença entre as duas mostra quanto pesam o <strong>IOF</strong>, imposto sobre operações de crédito com uma parte fixa e outra que cresce com o prazo, e as tarifas.</p>
 
 <h2>Como converter taxa mensal em anual</h2>
-<p>Use (1 + taxa mensal)<sup>12</sup> − 1. Com 4,5% ao mês: 1,045<sup>12</sup> − 1 = ${p(C.anualDeMensal(0.045))} ao ano, bem mais que 4,5 × 12 = 54%. É por isso que taxas mensais que parecem pequenas viram números grandes no ano.</p>
+<p>Use (1 + taxa mensal)<sup>12</sup> − 1. Com 4,5% ao mês: 1,045<sup>12</sup> − 1 = ${p(C.anualDeMensal(0.045))} ao ano, bem mais que 4,5 × 12 = 54%. É por isso que taxas mensais que parecem pequenas viram números grandes no ano. O <a href="/converter-taxa-de-juros/">conversor de taxa de juros</a> faz essa conta para qualquer taxa.</p>
 
 <h2>Dicas</h2>
 <ul>
@@ -234,11 +234,11 @@ const compostos = {
     return `
 <h2>O que são juros compostos</h2>
 <p>Juros compostos são “juros sobre juros”: os juros de cada mês são somados ao saldo e passam a render também. No começo a diferença para os juros simples é pequena, mas ela cresce com o tempo, porque a base de cálculo aumenta todo mês.</p>
-<p>Um exemplo curto: R$ 10.000 a 1% ao mês por 12 meses. Com juros simples, você teria R$ 11.200,00. Com juros compostos, ${b(jc2.final)}. Em prazos longos essa diferença fica enorme, a seu favor quando você investe e contra você quando deve.</p>
+<p>Um exemplo curto: R$ 10.000 a 1% ao mês por 12 meses. Com juros simples, você teria R$ 11.200,00. Com juros compostos, ${b(jc2.final)}. Compare os dois regimes lado a lado na <a href="/calculadora-juros-simples/">calculadora de juros simples</a>. Em prazos longos essa diferença fica enorme, a seu favor quando você investe e contra você quando deve.</p>
 
 <h2>A fórmula</h2>
 <p class="formula"><strong>Valor final = C × (1 + i)<sup>n</sup> + A × [(1 + i)<sup>n</sup> − 1] ÷ i</strong></p>
-<p>C é o valor inicial, A é o aporte mensal (considerado no fim de cada mês), i é a taxa mensal em decimal e n é o número de meses. Se a taxa estiver ao ano, converta: taxa mensal = (1 + taxa anual)<sup>1/12</sup> − 1. A calculadora faz isso sozinha quando você escolhe “ao ano”.</p>
+<p>C é o valor inicial, A é o aporte mensal (considerado no fim de cada mês), i é a taxa mensal em decimal e n é o número de meses. Se a taxa estiver ao ano, converta: taxa mensal = (1 + taxa anual)<sup>1/12</sup> − 1. A calculadora faz isso sozinha quando você escolhe “ao ano”, e o <a href="/converter-taxa-de-juros/">conversor de taxas</a> mostra outras equivalências.</p>
 
 <h2>Exemplo resolvido</h2>
 <p>R$ 1.000 iniciais mais R$ 300 por mês, a 0,8% ao mês (${p(C.anualDeMensal(0.008))} ao ano), durante 10 anos (120 meses):</p>

@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Calculadora de Juros Simples x Juros Compostos</title>
+<meta name="description" content="Calcule juros simples e compare com juros compostos lado a lado: valor final, juros e a diferença mês a mês. Fórmula J = C × i × t e exemplos.">
+<link rel="canonical" href="https://josephsantiagos.github.io/calculadora-juros-simples/">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#0A5F5B">
+<meta name="format-detection" content="telephone=no">
+<link rel="icon" href="/assets/logo.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="Calculadora Empréstimo e Juros">
+<meta property="og:title" content="Calculadora de Juros Simples x Juros Compostos">
+<meta property="og:description" content="Calcule juros simples e compare com juros compostos lado a lado: valor final, juros e a diferença mês a mês. Fórmula J = C × i × t e exemplos.">
+<meta property="og:url" content="https://josephsantiagos.github.io/calculadora-juros-simples/">
+<meta property="og:image" content="https://josephsantiagos.github.io/assets/og-calculadora.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Calculadora Empréstimo e Juros: simule parcelas e juros">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="/assets/site.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","@id":"https://josephsantiagos.github.io/calculadora-juros-simples/#calculadora","name":"Calculadora de juros simples e compostos","url":"https://josephsantiagos.github.io/calculadora-juros-simples/","description":"Calcule juros simples e compare com juros compostos lado a lado: valor final, juros e a diferença mês a mês. Fórmula J = C × i × t e exemplos.","applicationCategory":"FinanceApplication","operatingSystem":"Qualquer sistema com navegador","browserRequirements":"Requer JavaScript","inLanguage":"pt-BR","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"BRL"},"author":{"@type":"Person","name":"Joseph Santiago"}},{"@type":"FAQPage","@id":"https://josephsantiagos.github.io/calculadora-juros-simples/#faq","mainEntity":[{"@type":"Question","name":"Qual é a fórmula dos juros simples?","acceptedAnswer":{"@type":"Answer","text":"J = C × i × t, em que C é o capital, i a taxa por período em decimal e t o número de períodos. O montante é M = C × (1 + i × t)."}},{"@type":"Question","name":"Quanto rendem R$ 10.000 a 2% ao mês em 24 meses?","acceptedAnswer":{"@type":"Answer","text":"Nos juros simples, J = 10.000 × 0,02 × 24 = R$ 4.800,00 e o montante fica em R$ 14.800,00. Nos juros compostos, o mesmo caso chega a R$ 16.084,37."}},{"@type":"Question","name":"Qual a diferença entre juros simples e compostos?","acceptedAnswer":{"@type":"Answer","text":"Nos simples, os juros são sempre calculados sobre o valor inicial. Nos compostos, os juros de cada período entram no saldo e também rendem juros, e por isso a diferença cresce com o prazo."}},{"@type":"Question","name":"Empréstimos usam juros simples?","acceptedAnswer":{"@type":"Answer","text":"Não. Empréstimos e financiamentos usam juros compostos sobre o saldo devedor. Os juros simples aparecem mais em juros de mora de contas em atraso."}},{"@type":"Question","name":"Juros simples dão mais que compostos em algum caso?","acceptedAnswer":{"@type":"Answer","text":"Sim, quando o prazo é menor que o período da taxa. Com 10% ao ano por 6 meses, os simples dão 5% e os compostos dão 4,88%."}},{"@type":"Question","name":"Como calcular juros simples por dia de atraso?","acceptedAnswer":{"@type":"Answer","text":"Divida a taxa mensal por 30 e multiplique pelos dias de atraso e pelo valor. Juros de 1% ao mês sobre R$ 500 por 15 dias dão R$ 2,50."}}]},{"@type":"BreadcrumbList","@id":"https://josephsantiagos.github.io/calculadora-juros-simples/#trilha","itemListElement":[{"@type":"ListItem","position":1,"name":"Início","item":"https://josephsantiagos.github.io/"},{"@type":"ListItem","position":2,"name":"Juros simples","item":"https://josephsantiagos.github.io/calculadora-juros-simples/"}]}]}</script>
+</head>
+<body>
+<a class="pular" href="#conteudo">Pular para o conteúdo</a>
+<header class="topo"><div class="topo-in"><a class="marca" href="/"><img src="/assets/logo.svg" alt="" width="32" height="32">Calculadora Empréstimo e Juros</a></div></header>
+<main id="conteudo">
+<nav class="trilha" aria-label="Você está em"><ol><li><a href="/">Início</a></li><li aria-current="page">Juros simples</li></ol></nav>
+<h1>Calculadora de juros simples e compostos</h1>
+<p class="lead">Informe o valor, a taxa e o prazo para ver os juros simples e os compostos lado a lado, com a diferença entre eles mês a mês.</p>
+<section class="calc" id="calculadora" aria-labelledby="titulo-calc">
+<h2 id="titulo-calc" style="margin-top:0">Juros simples × compostos</h2>
+<form data-calc="simples" data-saida="resultado-simples" data-anuncio="anuncio-simples" novalidate>
+<div class="campos">
+<div class="campo"><label for="simples-capital">Valor inicial (capital)</label><div class="entrada"><span class="un" aria-hidden="true">R$</span><input id="simples-capital" name="capital" type="text" inputmode="decimal" autocomplete="off" value="10.000"></div></div>
+<div class="campo"><label for="simples-taxa">Taxa de juros</label><div class="dupla"><div class="entrada"><input id="simples-taxa" name="taxa" type="text" inputmode="decimal" autocomplete="off" value="2"><span class="un" aria-hidden="true">%</span></div><select name="tipo" aria-label="Período da taxa"><option value="mes" selected>ao mês</option><option value="ano">ao ano</option></select></div></div>
+<div class="campo"><label for="simples-prazo">Prazo</label><div class="dupla"><div class="entrada"><input id="simples-prazo" name="prazo" type="text" inputmode="numeric" pattern="[0-9]*" autocomplete="off" value="24"></div><select name="unidade" aria-label="Unidade do prazo"><option value="meses" selected>meses</option><option value="anos">anos</option></select></div></div>
+</div>
+<button class="botao" type="submit">Calcular</button>
+</form>
+<p class="sr" id="anuncio-simples" aria-live="polite"></p>
+<div class="resultado" id="resultado-simples"><div class="res-destaque"><span class="res-rotulo">Juros compostos</span><strong class="res-valor">R$ 6.084,37</strong><span class="res-sub">Juros simples: R$ 4.800,00. Diferença: R$ 1.284,37 em 24 meses.</span></div><div class="rolagem"><table class="comparativo"><caption>R$ 10.000,00 a 2,00% ao mês por 24 meses</caption><thead><tr><th scope="col"></th><th scope="col">Juros simples</th><th scope="col">Juros compostos</th></tr></thead><tbody><tr><th scope="row">Valor final</th><td>R$ 14.800,00</td><td>R$ 16.084,37</td></tr><tr><th scope="row">Juros</th><td>R$ 4.800,00</td><td>R$ 6.084,37</td></tr><tr><th scope="row">Juros sobre o valor</th><td>48,0%</td><td>60,8%</td></tr></tbody></table></div><p class="res-frase">Nos compostos, os juros de cada período entram no saldo e também rendem juros. Por isso a diferença, de <strong>R$ 1.284,37</strong> aqui, cresce cada vez mais rápido com o prazo.</p><details class="tabela"><summary>Ver evolução mês a mês</summary><div class="rolagem" tabindex="0" role="region" aria-label="Evolução dos juros simples e compostos"><table><caption>Valores em R$</caption><thead><tr><th scope="col">Mês</th><th scope="col">Simples</th><th scope="col">Compostos</th><th scope="col">Diferença</th></tr></thead><tbody><tr><td>1</td><td>10.200,00</td><td>10.200,00</td><td>0,00</td></tr><tr><td>2</td><td>10.400,00</td><td>10.404,00</td><td>4,00</td></tr><tr><td>3</td><td>10.600,00</td><td>10.612,08</td><td>12,08</td></tr><tr><td>4</td><td>10.800,00</td><td>10.824,32</td><td>24,32</td></tr><tr><td>5</td><td>11.000,00</td><td>11.040,81</td><td>40,81</td></tr><tr><td>6</td><td>11.200,00</td><td>11.261,62</td><td>61,62</td></tr><tr><td>7</td><td>11.400,00</td><td>11.486,86</td><td>86,86</td></tr><tr><td>8</td><td>11.600,00</td><td>11.716,59</td><td>116,59</td></tr><tr><td>9</td><td>11.800,00</td><td>11.950,93</td><td>150,93</td></tr><tr><td>10</td><td>12.000,00</td><td>12.189,94</td><td>189,94</td></tr><tr><td>11</td><td>12.200,00</td><td>12.433,74</td><td>233,74</td></tr><tr><td>12</td><td>12.400,00</td><td>12.682,42</td><td>282,42</td></tr><tr><td>13</td><td>12.600,00</td><td>12.936,07</td><td>336,07</td></tr><tr><td>14</td><td>12.800,00</td><td>13.194,79</td><td>394,79</td></tr><tr><td>15</td><td>13.000,00</td><td>13.458,68</td><td>458,68</td></tr><tr><td>16</td><td>13.200,00</td><td>13.727,86</td><td>527,86</td></tr><tr><td>17</td><td>13.400,00</td><td>14.002,41</td><td>602,41</td></tr><tr><td>18</td><td>13.600,00</td><td>14.282,46</td><td>682,46</td></tr><tr><td>19</td><td>13.800,00</td><td>14.568,11</td><td>768,11</td></tr><tr><td>20</td><td>14.000,00</td><td>14.859,47</td><td>859,47</td></tr><tr><td>21</td><td>14.200,00</td><td>15.156,66</td><td>956,66</td></tr><tr><td>22</td><td>14.400,00</td><td>15.459,80</td><td>1.059,80</td></tr><tr><td>23</td><td>14.600,00</td><td>15.768,99</td><td>1.168,99</td></tr><tr><td>24</td><td>14.800,00</td><td>16.084,37</td><td>1.284,37</td></tr></tbody></table></div></details><p class="aviso">Simulação ilustrativa. Não oferecemos nem intermediamos crédito e não temos vínculo com bancos, financeiras ou órgãos públicos. Antes de contratar, confira o Custo Efetivo Total (CET) informado pela instituição.</p></div>
+</section>
+<aside class="cta-app" aria-label="App para Android">
+<p class="cta-titulo">Leve a calculadora no celular — grátis, sem cadastro</p>
+<p class="cta-texto">No app você também compara ofertas, descobre a taxa embutida e vê a tabela de amortização das suas simulações.</p>
+<a class="botao-play" href="https://play.google.com/store/apps/details?id=com.josephsantiago.calculadoraemprestimos&amp;referrer=utm_source%3Dsite%26utm_medium%3Dcalculadora-juros-simples%26utm_campaign%3Dorganico" rel="noopener"><svg width="26" height="28" viewBox="0 0 26 28" aria-hidden="true" focusable="false"><path d="M3 2.6v22.8a1.6 1.6 0 0 0 2.4 1.4l18.6-11.4a1.6 1.6 0 0 0 0-2.8L5.4 1.2A1.6 1.6 0 0 0 3 2.6z" fill="#FFD166"/><path d="M8 9.5v9l7.4-4.5z" fill="#111"/></svg><span><small>Disponível no</small><b>Google Play</b></span></a>
+</aside>
+<article class="texto">
+
+<h2>O que são juros simples</h2>
+<p>Nos juros simples, os juros de cada período são calculados sempre sobre o valor inicial, o capital. Eles não entram no saldo para render novos juros, por isso crescem em linha reta: se R$ 10.000 rendem R$ 200 no primeiro mês a 2%, rendem os mesmos R$ 200 no segundo, no terceiro e em todos os outros.</p>
+<p class="formula"><strong>J = C × i × t</strong> e <strong>M = C × (1 + i × t)</strong></p>
+<p>C é o capital, i é a taxa por período em decimal, t é o número de períodos e M é o montante, o valor final. A taxa e o prazo precisam estar no mesmo período: taxa ao mês com prazo em meses, taxa ao ano com prazo em anos. Se estiverem diferentes, converta o prazo (6 meses = 0,5 ano), como a calculadora faz.</p>
+
+<h2>Exemplo resolvido: R$ 10.000 a 2% ao mês por 24 meses</h2>
+<ul>
+<li><strong>Juros simples:</strong> J = 10.000 × 0,02 × 24 = R$ 4.800,00. Montante: R$ 14.800,00.</li>
+<li><strong>Juros compostos:</strong> M = 10.000 × 1,02<sup>24</sup> = R$ 16.084,37. Juros: R$ 6.084,37.</li>
+<li><strong>Diferença:</strong> R$ 1.284,37, ou 26,8% a mais de juros nos compostos.</li>
+</ul>
+
+<h2>A diferença cresce com o tempo</h2>
+<p>No primeiro mês, juros simples e compostos dão exatamente o mesmo. A partir do segundo, os compostos passam a cobrar juros sobre os juros anteriores, e a distância só aumenta:</p>
+<div class="rolagem"><table class="comparativo"><caption>R$ 10.000 a 2% ao mês: valor final</caption>
+<thead><tr><th scope="col">Prazo</th><th scope="col">Simples</th><th scope="col">Compostos</th><th scope="col">Diferença</th></tr></thead>
+<tbody>
+<tr><td>6 meses</td><td>R$ 11.200,00</td><td>R$ 11.261,62</td><td>R$ 61,62</td></tr>
+<tr><td>12 meses</td><td>R$ 12.400,00</td><td>R$ 12.682,42</td><td>R$ 282,42</td></tr>
+<tr><td>24 meses</td><td>R$ 14.800,00</td><td>R$ 16.084,37</td><td>R$ 1.284,37</td></tr>
+<tr><td>60 meses</td><td>R$ 22.000,00</td><td>R$ 32.810,31</td><td>R$ 10.810,31</td></tr>
+<tr><td>120 meses</td><td>R$ 34.000,00</td><td>R$ 107.651,63</td><td>R$ 73.651,63</td></tr>
+</tbody></table></div>
+<p>Em 10 anos, os juros compostos chegam a 4,1 vezes os juros simples. É esse efeito que faz uma dívida esquecida crescer tão rápido e uma aplicação de longo prazo render tanto. Veja mais na <a href="/juros-compostos/">calculadora de juros compostos</a>.</p>
+
+<h2>Em menos de um período, o simples é maior</h2>
+<p>Quando o prazo é menor que o período da taxa, a ordem se inverte. Com 10% ao ano por 6 meses, os juros simples dão 10% × 0,5 = 5%, enquanto os compostos dão 1,1<sup>0,5</sup> − 1 = 4,88%. Pelo mesmo motivo, a taxa mensal equivalente a uma taxa anual é sempre um pouco menor que a anual dividida por 12, como mostra o <a href="/converter-taxa-de-juros/">conversor de taxas</a>.</p>
+
+<h2>Onde os juros simples aparecem</h2>
+<p>Empréstimos, financiamentos, cartão de crédito e investimentos usam juros compostos. Os juros simples aparecem principalmente em <strong>atrasos de contas e boletos</strong>: é comum o contrato prever uma multa fixa e juros de mora proporcionais aos dias de atraso. Por exemplo, juros de mora de 1% ao mês sobre uma conta de R$ 500 paga com 15 dias de atraso somam 500 × 0,01 × 15 ÷ 30 = R$ 2,50, além da multa.</p>
+<p>Outra situação comum é a <strong>conta simplificada</strong> em propostas: dividir os juros totais pelo valor e pelo prazo para chegar a uma “taxa ao mês”. Essa conta trata o empréstimo como se fossem juros simples sobre a dívida inteira e chega a uma taxa menor que a real, porque a dívida cai a cada parcela. Para achar a taxa verdadeira, use <a href="/descobrir-taxa-de-juros/">descobrir taxa de juros</a>.</p>
+
+<h2>Dicas</h2>
+<ul>
+<li>Use juros simples só para estimativas rápidas ou quando o contrato disser expressamente que são simples.</li>
+<li>Em dívidas e aplicações de longo prazo, pense sempre em juros compostos.</li>
+<li>Confira se a taxa e o prazo estão no mesmo período antes de fazer a conta.</li>
+</ul>
+</article>
+<section class="faq" aria-labelledby="titulo-faq"><h2 id="titulo-faq">Perguntas frequentes</h2>
+<details><summary>Qual é a fórmula dos juros simples?</summary><p>J = C × i × t, em que C é o capital, i a taxa por período em decimal e t o número de períodos. O montante é M = C × (1 + i × t).</p></details>
+<details><summary>Quanto rendem R$ 10.000 a 2% ao mês em 24 meses?</summary><p>Nos juros simples, J = 10.000 × 0,02 × 24 = R$ 4.800,00 e o montante fica em R$ 14.800,00. Nos juros compostos, o mesmo caso chega a R$ 16.084,37.</p></details>
+<details><summary>Qual a diferença entre juros simples e compostos?</summary><p>Nos simples, os juros são sempre calculados sobre o valor inicial. Nos compostos, os juros de cada período entram no saldo e também rendem juros, e por isso a diferença cresce com o prazo.</p></details>
+<details><summary>Empréstimos usam juros simples?</summary><p>Não. Empréstimos e financiamentos usam juros compostos sobre o saldo devedor. Os juros simples aparecem mais em juros de mora de contas em atraso.</p></details>
+<details><summary>Juros simples dão mais que compostos em algum caso?</summary><p>Sim, quando o prazo é menor que o período da taxa. Com 10% ao ano por 6 meses, os simples dão 5% e os compostos dão 4,88%.</p></details>
+<details><summary>Como calcular juros simples por dia de atraso?</summary><p>Divida a taxa mensal por 30 e multiplique pelos dias de atraso e pelo valor. Juros de 1% ao mês sobre R$ 500 por 15 dias dão R$ 2,50.</p></details>
+</section>
+<nav class="outras" aria-labelledby="titulo-outras"><h2 id="titulo-outras">Outras calculadoras</h2>
+<h3>Juros e taxas</h3>
+<ul class="links">
+<li><a href="/descobrir-taxa-de-juros/"><strong>Descobrir a taxa de juros</strong><span>A taxa real a partir do valor da parcela.</span></a></li>
+<li><a href="/o-que-e-cet/"><strong>O que é CET</strong><span>O custo real com IOF, tarifas e seguros.</span></a></li>
+<li><a href="/converter-taxa-de-juros/"><strong>Converter taxa de juros</strong><span>Mensal ↔ anual e diária ↔ mensal.</span></a></li>
+<li><a href="/juros-parcelamento/"><strong>Juros no parcelamento</strong><span>Descubra o juro escondido no “sem juros”.</span></a></li>
+<li><a href="/juros-crediario/"><strong>Juros do crediário</strong><span>A taxa escondida no carnê da loja.</span></a></li>
+<li><a href="/juros-cartao-de-credito/"><strong>Juros do cartão de crédito</strong><span>Rotativo ou parcelamento da fatura: quanto custa.</span></a></li>
+<li><a href="/juros-compostos/"><strong>Juros compostos</strong><span>Quanto o dinheiro cresce com aportes mensais.</span></a></li>
+</ul>
+<h3>Empréstimo</h3>
+<ul class="indice"><li><a href="/simulador-emprestimo/">Simulador de empréstimo</a></li><li><a href="/quanto-fica-emprestimo/">Quanto fica um empréstimo</a></li><li><a href="/como-calcular-juros-de-emprestimo/">Como calcular juros de empréstimo</a></li><li><a href="/quitar-emprestimo-antecipado/">Quitar empréstimo antecipado</a></li><li><a href="/emprestimo-consignado/">Empréstimo consignado</a></li><li><a href="/emprestimo-pessoal-ou-consignado/">Pessoal ou consignado</a></li></ul>
+<h3>Financiamento e amortização</h3>
+<ul class="indice"><li><a href="/simulador-financiamento-carro/">Financiamento de carro</a></li><li><a href="/simulador-financiamento-moto/">Financiamento de moto</a></li><li><a href="/financiamento-imobiliario/">Financiamento imobiliário</a></li><li><a href="/tabela-price/">Tabela Price</a></li><li><a href="/price-ou-sac/">Price ou SAC</a></li></ul>
+<h3>Empréstimo por valor</h3>
+<ul class="indice"><li><a href="/emprestimo-de-1000-reais/">R$ 1 mil</a></li><li><a href="/emprestimo-de-2000-reais/">R$ 2 mil</a></li><li><a href="/emprestimo-de-3000-reais/">R$ 3 mil</a></li><li><a href="/emprestimo-de-5000-reais/">R$ 5 mil</a></li><li><a href="/emprestimo-de-10000-reais/">R$ 10 mil</a></li><li><a href="/emprestimo-de-15000-reais/">R$ 15 mil</a></li><li><a href="/emprestimo-de-20000-reais/">R$ 20 mil</a></li><li><a href="/emprestimo-de-30000-reais/">R$ 30 mil</a></li><li><a href="/emprestimo-de-50000-reais/">R$ 50 mil</a></li></ul>
+</nav>
+</main>
+<footer class="rodape"><div class="rodape-in">
+<aside class="cta-app" aria-label="App para Android">
+<p class="cta-titulo">Leve a calculadora no celular — grátis, sem cadastro</p>
+<p class="cta-texto">Com o app Calculadora Empréstimo e Juros você simula parcelas em Price ou SAC, com taxa ao mês ou ao ano, e vê a tabela de amortização no seu Android.</p>
+<a class="botao-play" href="https://play.google.com/store/apps/details?id=com.josephsantiago.calculadoraemprestimos&amp;referrer=utm_source%3Dsite%26utm_medium%3Dcalculadora-juros-simples%26utm_campaign%3Dorganico" rel="noopener"><svg width="26" height="28" viewBox="0 0 26 28" aria-hidden="true" focusable="false"><path d="M3 2.6v22.8a1.6 1.6 0 0 0 2.4 1.4l18.6-11.4a1.6 1.6 0 0 0 0-2.8L5.4 1.2A1.6 1.6 0 0 0 3 2.6z" fill="#FFD166"/><path d="M8 9.5v9l7.4-4.5z" fill="#111"/></svg><span><small>Disponível no</small><b>Google Play</b></span></a>
+</aside>
+<p class="aviso">Simulação ilustrativa. Não oferecemos nem intermediamos crédito e não temos vínculo com bancos, financeiras ou órgãos públicos. Antes de contratar, confira o Custo Efetivo Total (CET) informado pela instituição.</p>
+<nav aria-label="Todas as calculadoras"><p class="rodape-titulo"><a href="/">Início: todas as calculadoras</a></p>
+<p class="rodape-titulo">Empréstimo</p><ul class="rodape-links"><li><a href="/simulador-emprestimo/">Simulador de empréstimo</a></li><li><a href="/quanto-fica-emprestimo/">Quanto fica um empréstimo</a></li><li><a href="/como-calcular-juros-de-emprestimo/">Como calcular juros de empréstimo</a></li><li><a href="/quitar-emprestimo-antecipado/">Quitar empréstimo antecipado</a></li><li><a href="/emprestimo-consignado/">Empréstimo consignado</a></li><li><a href="/emprestimo-pessoal-ou-consignado/">Pessoal ou consignado</a></li></ul>
+<p class="rodape-titulo">Financiamento e amortização</p><ul class="rodape-links"><li><a href="/simulador-financiamento-carro/">Financiamento de carro</a></li><li><a href="/simulador-financiamento-moto/">Financiamento de moto</a></li><li><a href="/financiamento-imobiliario/">Financiamento imobiliário</a></li><li><a href="/tabela-price/">Tabela Price</a></li><li><a href="/price-ou-sac/">Price ou SAC</a></li></ul>
+<p class="rodape-titulo">Juros e taxas</p><ul class="rodape-links"><li><a href="/descobrir-taxa-de-juros/">Descobrir a taxa de juros</a></li><li><a href="/o-que-e-cet/">O que é CET</a></li><li><a href="/converter-taxa-de-juros/">Converter taxa de juros</a></li><li><a href="/juros-parcelamento/">Juros no parcelamento</a></li><li><a href="/juros-crediario/">Juros do crediário</a></li><li><a href="/juros-cartao-de-credito/">Juros do cartão de crédito</a></li><li><a href="/juros-compostos/">Juros compostos</a></li><li><a href="/calculadora-juros-simples/">Juros simples</a></li></ul>
+<p class="rodape-titulo">Empréstimo por valor</p><ul class="rodape-links"><li><a href="/emprestimo-de-1000-reais/">R$ 1 mil</a></li><li><a href="/emprestimo-de-2000-reais/">R$ 2 mil</a></li><li><a href="/emprestimo-de-3000-reais/">R$ 3 mil</a></li><li><a href="/emprestimo-de-5000-reais/">R$ 5 mil</a></li><li><a href="/emprestimo-de-10000-reais/">R$ 10 mil</a></li><li><a href="/emprestimo-de-15000-reais/">R$ 15 mil</a></li><li><a href="/emprestimo-de-20000-reais/">R$ 20 mil</a></li><li><a href="/emprestimo-de-30000-reais/">R$ 30 mil</a></li><li><a href="/emprestimo-de-50000-reais/">R$ 50 mil</a></li></ul>
+</nav>
+<p>Feito por Joseph Santiago, desenvolvedor de apps Android. <a href="https://play.google.com/store/apps/details?id=com.josephsantiago.calculadoraemprestimos">Calculadora Empréstimo e Juros na Google Play</a> · <a href="https://josephsantiagos.github.io/pilitica-de-privacidade-play-sotre-/">Política de privacidade</a> · Contato: <a href="mailto:josephsantiago250@gmail.com">josephsantiago250@gmail.com</a></p>
+<p>Este site não exibe anúncios e não coleta os valores digitados: as contas são feitas no seu próprio aparelho.</p>
+</div></footer>
+<script src="/assets/calc.js" defer></script>
+</body>
+</html>

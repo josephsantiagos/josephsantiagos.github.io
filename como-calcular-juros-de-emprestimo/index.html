@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Como Calcular Juros de Empréstimo: passo a passo</title>
+<meta name="description" content="Aprenda a calcular os juros de um empréstimo pela Tabela Price, passo a passo, com fórmula, exemplo resolvido e uma calculadora que mostra cada conta.">
+<link rel="canonical" href="https://josephsantiagos.github.io/como-calcular-juros-de-emprestimo/">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#0A5F5B">
+<meta name="format-detection" content="telephone=no">
+<link rel="icon" href="/assets/logo.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="Calculadora Empréstimo e Juros">
+<meta property="og:title" content="Como Calcular Juros de Empréstimo: passo a passo">
+<meta property="og:description" content="Aprenda a calcular os juros de um empréstimo pela Tabela Price, passo a passo, com fórmula, exemplo resolvido e uma calculadora que mostra cada conta.">
+<meta property="og:url" content="https://josephsantiagos.github.io/como-calcular-juros-de-emprestimo/">
+<meta property="og:image" content="https://josephsantiagos.github.io/assets/og-calculadora.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Calculadora Empréstimo e Juros: simule parcelas e juros">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="/assets/site.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","@id":"https://josephsantiagos.github.io/como-calcular-juros-de-emprestimo/#calculadora","name":"Calculadora passo a passo de juros de empréstimo","url":"https://josephsantiagos.github.io/como-calcular-juros-de-emprestimo/","description":"Aprenda a calcular os juros de um empréstimo pela Tabela Price, passo a passo, com fórmula, exemplo resolvido e uma calculadora que mostra cada conta.","applicationCategory":"FinanceApplication","operatingSystem":"Qualquer sistema com navegador","browserRequirements":"Requer JavaScript","inLanguage":"pt-BR","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"BRL"},"author":{"@type":"Person","name":"Joseph Santiago"}},{"@type":"FAQPage","@id":"https://josephsantiagos.github.io/como-calcular-juros-de-emprestimo/#faq","mainEntity":[{"@type":"Question","name":"Como calcular os juros de um empréstimo?","acceptedAnswer":{"@type":"Answer","text":"Calcule a parcela pela fórmula da Tabela Price, parcela = valor × i ÷ [1 − (1 + i)^−n], multiplique pelo número de parcelas e subtraia o valor emprestado. Exemplo: R$ 8.000 a 3% ao mês em 12 meses dá parcela de R$ 803,70 e R$ 1.644,40 de juros."}},{"@type":"Question","name":"Qual é a fórmula dos juros de empréstimo?","acceptedAnswer":{"@type":"Answer","text":"Na Tabela Price, a parcela é valor × i ÷ [1 − (1 + i)^−n], com i a taxa mensal em decimal e n o número de meses. Os juros totais são a soma das parcelas menos o valor emprestado."}},{"@type":"Question","name":"Posso calcular os juros de empréstimo com juros simples?","acceptedAnswer":{"@type":"Answer","text":"Não. Em empréstimos com parcelas, os juros são calculados sobre o saldo devedor, que cai a cada mês. A conta simples (valor × taxa × prazo) dá um número bem diferente do real."}},{"@type":"Question","name":"Como calcular os juros com a taxa ao ano?","acceptedAnswer":{"@type":"Answer","text":"Converta para a taxa mensal equivalente: (1 + taxa anual)^(1/12) − 1. Por exemplo, 36% ao ano equivalem a 2,60% ao mês. Depois use a fórmula normalmente."}},{"@type":"Question","name":"Qual função da planilha calcula a parcela?","acceptedAnswer":{"@type":"Answer","text":"Em planilhas em português, a função PGTO: =PGTO(taxa;prazo;-valor). Para achar a taxa a partir da parcela, use a função TAXA."}},{"@type":"Question","name":"Os juros calculados incluem IOF?","acceptedAnswer":{"@type":"Answer","text":"Não. A fórmula considera só os juros. IOF, tarifas e seguros entram no Custo Efetivo Total (CET), que a instituição deve informar."}}]},{"@type":"BreadcrumbList","@id":"https://josephsantiagos.github.io/como-calcular-juros-de-emprestimo/#trilha","itemListElement":[{"@type":"ListItem","position":1,"name":"Início","item":"https://josephsantiagos.github.io/"},{"@type":"ListItem","position":2,"name":"Como calcular juros de empréstimo","item":"https://josephsantiagos.github.io/como-calcular-juros-de-emprestimo/"}]}]}</script>
+</head>
+<body>
+<a class="pular" href="#conteudo">Pular para o conteúdo</a>
+<header class="topo"><div class="topo-in"><a class="marca" href="/"><img src="/assets/logo.svg" alt="" width="32" height="32">Calculadora Empréstimo e Juros</a></div></header>
+<main id="conteudo">
+<nav class="trilha" aria-label="Você está em"><ol><li><a href="/">Início</a></li><li aria-current="page">Como calcular juros de empréstimo</li></ol></nav>
+<h1>Como calcular os juros de um empréstimo</h1>
+<p class="lead">Digite o valor, a taxa e o prazo: a calculadora resolve a fórmula da Tabela Price passo a passo, com os seus números, do jeito que você faria no papel.</p>
+<section class="calc" id="calculadora" aria-labelledby="titulo-calc">
+<h2 id="titulo-calc" style="margin-top:0">Calcule passo a passo</h2>
+<form data-calc="passos" data-saida="resultado-passos" data-anuncio="anuncio-passos" novalidate>
+<div class="campos">
+<div class="campo"><label for="passos-valor">Valor do empréstimo</label><div class="entrada"><span class="un" aria-hidden="true">R$</span><input id="passos-valor" name="valor" type="text" inputmode="decimal" autocomplete="off" value="8.000"></div></div>
+<div class="campo"><label for="passos-taxa">Taxa de juros</label><div class="dupla"><div class="entrada"><input id="passos-taxa" name="taxa" type="text" inputmode="decimal" autocomplete="off" value="3"><span class="un" aria-hidden="true">%</span></div><select name="tipo" aria-label="Período da taxa"><option value="mes" selected>ao mês</option><option value="ano">ao ano</option></select></div></div>
+<div class="campo"><label for="passos-prazo">Prazo</label><div class="entrada"><input id="passos-prazo" name="prazo" type="text" inputmode="numeric" pattern="[0-9]*" autocomplete="off" value="12"><span class="un" aria-hidden="true">meses</span></div></div>
+</div>
+<button class="botao" type="submit">Calcular</button>
+</form>
+<p class="sr" id="anuncio-passos" aria-live="polite"></p>
+<div class="resultado" id="resultado-passos"><div class="res-destaque"><span class="res-rotulo">Parcela mensal</span><strong class="res-valor">R$ 803,70</strong><span class="res-sub">12 parcelas fixas (Tabela Price)</span></div><ol class="res-passos"><li>Taxa em decimal: 3,00 ÷ 100 = <strong>i = 0,0300</strong>.</li><li>(1 + i)<sup>12</sup> = 1,030000<sup>12</sup> = 1,425761.</li><li>(1 + i)<sup>−12</sup> = 1 ÷ 1,425761 = 0,701380.</li><li>Divisor: 1 − 0,701380 = 0,298620.</li><li>Parcela = 8.000,00 × 0,030000 ÷ 0,298620 = <strong>R$ 803,70</strong>.</li><li>Total pago = 12 × R$ 803,70 = R$ 9.644,40. Juros = R$ 9.644,40 − R$ 8.000,00 = <strong>R$ 1.644,40</strong>.</li><li>1º mês: juros = 8.000,00 × 0,030000 = R$ 240,00; amortização = R$ 803,70 − R$ 240,00 = R$ 563,70; saldo = R$ 7.436,30.</li></ol><dl class="res-grade"><div><dt>Total pago</dt><dd>R$ 9.644,40</dd></div><div><dt>Juros totais</dt><dd>R$ 1.644,40</dd></div><div><dt>Taxa</dt><dd>3,00% ao mês = 42,58% ao ano</dd></div></dl><details class="tabela"><summary>Ver tabela mês a mês (12 parcelas)</summary><div class="rolagem" tabindex="0" role="region" aria-label="Tabela de amortização"><table><caption>Valores em R$ — sistema Price</caption><thead><tr><th scope="col">Mês</th><th scope="col">Parcela</th><th scope="col">Juros</th><th scope="col">Amortização</th><th scope="col">Saldo</th></tr></thead><tbody><tr><td>1</td><td>803,70</td><td>240,00</td><td>563,70</td><td>7.436,30</td></tr><tr><td>2</td><td>803,70</td><td>223,09</td><td>580,61</td><td>6.855,69</td></tr><tr><td>3</td><td>803,70</td><td>205,67</td><td>598,03</td><td>6.257,66</td></tr><tr><td>4</td><td>803,70</td><td>187,73</td><td>615,97</td><td>5.641,69</td></tr><tr><td>5</td><td>803,70</td><td>169,25</td><td>634,45</td><td>5.007,24</td></tr><tr><td>6</td><td>803,70</td><td>150,22</td><td>653,48</td><td>4.353,76</td></tr><tr><td>7</td><td>803,70</td><td>130,61</td><td>673,09</td><td>3.680,67</td></tr><tr><td>8</td><td>803,70</td><td>110,42</td><td>693,28</td><td>2.987,39</td></tr><tr><td>9</td><td>803,70</td><td>89,62</td><td>714,08</td><td>2.273,31</td></tr><tr><td>10</td><td>803,70</td><td>68,20</td><td>735,50</td><td>1.537,81</td></tr><tr><td>11</td><td>803,70</td><td>46,13</td><td>757,57</td><td>780,24</td></tr><tr><td>12</td><td>803,70</td><td>23,46</td><td>780,24</td><td>0,00</td></tr></tbody><tfoot><tr><th scope="row">Total</th><td>9.644,40</td><td>1.644,40</td><td>8.000,00</td><td></td></tr></tfoot></table></div></details><p class="aviso">Simulação ilustrativa. Não oferecemos nem intermediamos crédito e não temos vínculo com bancos, financeiras ou órgãos públicos. Antes de contratar, confira o Custo Efetivo Total (CET) informado pela instituição.</p></div>
+</section>
+<aside class="cta-app" aria-label="App para Android">
+<p class="cta-titulo">Leve a calculadora no celular — grátis, sem cadastro</p>
+<p class="cta-texto">No app você também compara ofertas e descobre a taxa embutida, com histórico das simulações e tabela de amortização no seu Android.</p>
+<a class="botao-play" href="https://play.google.com/store/apps/details?id=com.josephsantiago.calculadoraemprestimos&amp;referrer=utm_source%3Dsite%26utm_medium%3Dcomo-calcular-juros-de-emprestimo%26utm_campaign%3Dorganico" rel="noopener"><svg width="26" height="28" viewBox="0 0 26 28" aria-hidden="true" focusable="false"><path d="M3 2.6v22.8a1.6 1.6 0 0 0 2.4 1.4l18.6-11.4a1.6 1.6 0 0 0 0-2.8L5.4 1.2A1.6 1.6 0 0 0 3 2.6z" fill="#FFD166"/><path d="M8 9.5v9l7.4-4.5z" fill="#111"/></svg><span><small>Disponível no</small><b>Google Play</b></span></a>
+</aside>
+<article class="texto">
+
+<h2>O que você precisa ter em mãos</h2>
+<p>Para calcular os juros de um empréstimo bastam três números: o <strong>valor</strong> emprestado, a <strong>taxa de juros</strong> mensal e o <strong>prazo</strong> em meses. Eles aparecem em qualquer proposta ou contrato. Se a taxa estiver ao ano, converta para a taxa mensal equivalente com (1 + taxa anual)<sup>1/12</sup> − 1, porque dividir por 12 dá um número errado. A conversão está explicada em <a href="/converter-taxa-de-juros/">converter taxa de juros</a>.</p>
+<p>Quase todo empréstimo pessoal, consignado e financiamento de veículo usa a <a href="/tabela-price/">Tabela Price</a>, com parcelas iguais. O passo a passo abaixo é o dela; mais adiante há também a conta do SAC.</p>
+
+<h2>Passo a passo com exemplo: R$ 8.000 a 3% ao mês em 12 meses</h2>
+<ol>
+<li><strong>Transforme a taxa em decimal.</strong> 3 ÷ 100 = 0,03. Esse é o <em>i</em>.</li>
+<li><strong>Eleve (1 + i) ao prazo.</strong> 1,03<sup>12</sup> = 1,425761.</li>
+<li><strong>Inverta o resultado.</strong> 1 ÷ 1,425761 = 0,701380. Esse é o (1 + i)<sup>−n</sup>.</li>
+<li><strong>Subtraia de 1.</strong> 1 − 0,701380 = 0,298620.</li>
+<li><strong>Aplique a fórmula da parcela.</strong> Parcela = 8.000 × 0,03 ÷ 0,298620 = <strong>R$ 803,70</strong>.</li>
+<li><strong>Calcule o total e os juros.</strong> Total = 12 × R$ 803,70 = R$ 9.644,40. Juros = R$ 9.644,40 − R$ 8.000,00 = <strong>R$ 1.644,40</strong>.</li>
+</ol>
+<p>Os juros desse empréstimo somam 20,6% do valor emprestado. A fórmula completa, em uma linha, é:</p>
+<p class="formula"><strong>Parcela = Valor × i ÷ [1 − (1 + i)<sup>−n</sup>]</strong></p>
+
+<h2>Como os juros se dividem mês a mês</h2>
+<p>A parcela é sempre a mesma, mas a parte dela que é juros muda. No 1º mês, os juros são 3% sobre a dívida inteira: 8.000 × 0,03 = R$ 240,00. O restante, R$ 563,70, abate a dívida, que cai para R$ 7.436,30. No 2º mês, os juros são 3% sobre esse saldo menor: R$ 223,09. Na última parcela, sobram só R$ 23,46 de juros. A calculadora acima monta essa tabela completa para os seus números.</p>
+
+<h2>Como fazer a conta na calculadora do celular</h2>
+<p>Gire o celular na horizontal para abrir a calculadora científica, que tem a tecla de potência (x<sup>y</sup>). Digite 1,03, toque na potência, digite 12 e confirme: aparece 1,425761. Depois calcule 1 ÷ esse número, subtraia o resultado de 1 e divida 8.000 × 0,03 pelo que sobrou. São poucos toques a mais do que uma conta comum.</p>
+
+<h2>Como fazer a conta na planilha</h2>
+<p>Em planilhas em português, a função <strong>PGTO</strong> calcula a parcela: =PGTO(3%;12;-8000) devolve R$ 803,70. O valor entra negativo porque, para a planilha, é dinheiro que sai de um lado e entra do outro. Para descobrir a taxa a partir da parcela, use =TAXA(12;-803,70;8000). Em planilhas configuradas em inglês, as funções se chamam PMT e RATE, e o separador costuma ser a vírgula.</p>
+
+<h2>E no sistema SAC?</h2>
+<p>No SAC a conta é ainda mais simples, porque a amortização é fixa: valor ÷ prazo. Com R$ 8.000 em 12 meses, a amortização é R$ 666,67 por mês. Os juros de cada mês são a taxa vezes o saldo devedor, e a parcela é a soma dos dois. A primeira parcela seria R$ 906,67 e a última R$ 686,63, com R$ 1.560,00 de juros no total, R$ 84,40 a menos que na Price. Veja a comparação em <a href="/price-ou-sac/">Price ou SAC</a>.</p>
+
+<h2>Erros comuns ao calcular juros de empréstimo</h2>
+<ul>
+<li><strong>Dividir a taxa anual por 12.</strong> Com juros compostos, 36% ao ano equivalem a 2,60% ao mês, e não a 3%.</li>
+<li><strong>Usar juros simples.</strong> 8.000 × 3% × 12 = R$ 2.880,00 seria a conta de juros simples sobre a dívida inteira, mas a dívida cai a cada mês. Os juros reais são R$ 1.644,40.</li>
+<li><strong>Esquecer IOF, tarifas e seguros.</strong> A fórmula calcula só os juros. O custo completo é o <a href="/o-que-e-cet/">CET</a>.</li>
+<li><strong>Comparar só a parcela.</strong> Parcela menor com prazo maior quase sempre significa mais juros no total.</li>
+</ul>
+</article>
+<section class="faq" aria-labelledby="titulo-faq"><h2 id="titulo-faq">Perguntas frequentes</h2>
+<details><summary>Como calcular os juros de um empréstimo?</summary><p>Calcule a parcela pela fórmula da Tabela Price, parcela = valor × i ÷ [1 − (1 + i)^−n], multiplique pelo número de parcelas e subtraia o valor emprestado. Exemplo: R$ 8.000 a 3% ao mês em 12 meses dá parcela de R$ 803,70 e R$ 1.644,40 de juros.</p></details>
+<details><summary>Qual é a fórmula dos juros de empréstimo?</summary><p>Na Tabela Price, a parcela é valor × i ÷ [1 − (1 + i)^−n], com i a taxa mensal em decimal e n o número de meses. Os juros totais são a soma das parcelas menos o valor emprestado.</p></details>
+<details><summary>Posso calcular os juros de empréstimo com juros simples?</summary><p>Não. Em empréstimos com parcelas, os juros são calculados sobre o saldo devedor, que cai a cada mês. A conta simples (valor × taxa × prazo) dá um número bem diferente do real.</p></details>
+<details><summary>Como calcular os juros com a taxa ao ano?</summary><p>Converta para a taxa mensal equivalente: (1 + taxa anual)^(1/12) − 1. Por exemplo, 36% ao ano equivalem a 2,60% ao mês. Depois use a fórmula normalmente.</p></details>
+<details><summary>Qual função da planilha calcula a parcela?</summary><p>Em planilhas em português, a função PGTO: =PGTO(taxa;prazo;-valor). Para achar a taxa a partir da parcela, use a função TAXA.</p></details>
+<details><summary>Os juros calculados incluem IOF?</summary><p>Não. A fórmula considera só os juros. IOF, tarifas e seguros entram no Custo Efetivo Total (CET), que a instituição deve informar.</p></details>
+</section>
+<nav class="outras" aria-labelledby="titulo-outras"><h2 id="titulo-outras">Outras calculadoras</h2>
+<h3>Empréstimo</h3>
+<ul class="links">
+<li><a href="/simulador-emprestimo/"><strong>Simulador de empréstimo</strong><span>Parcela, juros e tabela mês a mês (Price ou SAC).</span></a></li>
+<li><a href="/quanto-fica-emprestimo/"><strong>Quanto fica um empréstimo</strong><span>Tabelas prontas de parcelas de R$ 1 mil a R$ 50 mil.</span></a></li>
+<li><a href="/quitar-emprestimo-antecipado/"><strong>Quitar empréstimo antecipado</strong><span>Quanto pagar hoje e o desconto dos juros.</span></a></li>
+<li><a href="/emprestimo-consignado/"><strong>Empréstimo consignado</strong><span>Parcela, margem consignável e juros.</span></a></li>
+<li><a href="/emprestimo-pessoal-ou-consignado/"><strong>Pessoal ou consignado</strong><span>Duas ofertas lado a lado: qual custa menos.</span></a></li>
+</ul>
+<h3>Financiamento e amortização</h3>
+<ul class="indice"><li><a href="/simulador-financiamento-carro/">Financiamento de carro</a></li><li><a href="/simulador-financiamento-moto/">Financiamento de moto</a></li><li><a href="/financiamento-imobiliario/">Financiamento imobiliário</a></li><li><a href="/tabela-price/">Tabela Price</a></li><li><a href="/price-ou-sac/">Price ou SAC</a></li></ul>
+<h3>Juros e taxas</h3>
+<ul class="indice"><li><a href="/descobrir-taxa-de-juros/">Descobrir a taxa de juros</a></li><li><a href="/o-que-e-cet/">O que é CET</a></li><li><a href="/converter-taxa-de-juros/">Converter taxa de juros</a></li><li><a href="/juros-parcelamento/">Juros no parcelamento</a></li><li><a href="/juros-crediario/">Juros do crediário</a></li><li><a href="/juros-cartao-de-credito/">Juros do cartão de crédito</a></li><li><a href="/juros-compostos/">Juros compostos</a></li><li><a href="/calculadora-juros-simples/">Juros simples</a></li></ul>
+<h3>Empréstimo por valor</h3>
+<ul class="indice"><li><a href="/emprestimo-de-1000-reais/">R$ 1 mil</a></li><li><a href="/emprestimo-de-2000-reais/">R$ 2 mil</a></li><li><a href="/emprestimo-de-3000-reais/">R$ 3 mil</a></li><li><a href="/emprestimo-de-5000-reais/">R$ 5 mil</a></li><li><a href="/emprestimo-de-10000-reais/">R$ 10 mil</a></li><li><a href="/emprestimo-de-15000-reais/">R$ 15 mil</a></li><li><a href="/emprestimo-de-20000-reais/">R$ 20 mil</a></li><li><a href="/emprestimo-de-30000-reais/">R$ 30 mil</a></li><li><a href="/emprestimo-de-50000-reais/">R$ 50 mil</a></li></ul>
+</nav>
+</main>
+<footer class="rodape"><div class="rodape-in">
+<aside class="cta-app" aria-label="App para Android">
+<p class="cta-titulo">Leve a calculadora no celular — grátis, sem cadastro</p>
+<p class="cta-texto">Com o app Calculadora Empréstimo e Juros você simula parcelas em Price ou SAC, com taxa ao mês ou ao ano, e vê a tabela de amortização no seu Android.</p>
+<a class="botao-play" href="https://play.google.com/store/apps/details?id=com.josephsantiago.calculadoraemprestimos&amp;referrer=utm_source%3Dsite%26utm_medium%3Dcomo-calcular-juros-de-emprestimo%26utm_campaign%3Dorganico" rel="noopener"><svg width="26" height="28" viewBox="0 0 26 28" aria-hidden="true" focusable="false"><path d="M3 2.6v22.8a1.6 1.6 0 0 0 2.4 1.4l18.6-11.4a1.6 1.6 0 0 0 0-2.8L5.4 1.2A1.6 1.6 0 0 0 3 2.6z" fill="#FFD166"/><path d="M8 9.5v9l7.4-4.5z" fill="#111"/></svg><span><small>Disponível no</small><b>Google Play</b></span></a>
+</aside>
+<p class="aviso">Simulação ilustrativa. Não oferecemos nem intermediamos crédito e não temos vínculo com bancos, financeiras ou órgãos públicos. Antes de contratar, confira o Custo Efetivo Total (CET) informado pela instituição.</p>
+<nav aria-label="Todas as calculadoras"><p class="rodape-titulo"><a href="/">Início: todas as calculadoras</a></p>
+<p class="rodape-titulo">Empréstimo</p><ul class="rodape-links"><li><a href="/simulador-emprestimo/">Simulador de empréstimo</a></li><li><a href="/quanto-fica-emprestimo/">Quanto fica um empréstimo</a></li><li><a href="/como-calcular-juros-de-emprestimo/">Como calcular juros de empréstimo</a></li><li><a href="/quitar-emprestimo-antecipado/">Quitar empréstimo antecipado</a></li><li><a href="/emprestimo-consignado/">Empréstimo consignado</a></li><li><a href="/emprestimo-pessoal-ou-consignado/">Pessoal ou consignado</a></li></ul>
+<p class="rodape-titulo">Financiamento e amortização</p><ul class="rodape-links"><li><a href="/simulador-financiamento-carro/">Financiamento de carro</a></li><li><a href="/simulador-financiamento-moto/">Financiamento de moto</a></li><li><a href="/financiamento-imobiliario/">Financiamento imobiliário</a></li><li><a href="/tabela-price/">Tabela Price</a></li><li><a href="/price-ou-sac/">Price ou SAC</a></li></ul>
+<p class="rodape-titulo">Juros e taxas</p><ul class="rodape-links"><li><a href="/descobrir-taxa-de-juros/">Descobrir a taxa de juros</a></li><li><a href="/o-que-e-cet/">O que é CET</a></li><li><a href="/converter-taxa-de-juros/">Converter taxa de juros</a></li><li><a href="/juros-parcelamento/">Juros no parcelamento</a></li><li><a href="/juros-crediario/">Juros do crediário</a></li><li><a href="/juros-cartao-de-credito/">Juros do cartão de crédito</a></li><li><a href="/juros-compostos/">Juros compostos</a></li><li><a href="/calculadora-juros-simples/">Juros simples</a></li></ul>
+<p class="rodape-titulo">Empréstimo por valor</p><ul class="rodape-links"><li><a href="/emprestimo-de-1000-reais/">R$ 1 mil</a></li><li><a href="/emprestimo-de-2000-reais/">R$ 2 mil</a></li><li><a href="/emprestimo-de-3000-reais/">R$ 3 mil</a></li><li><a href="/emprestimo-de-5000-reais/">R$ 5 mil</a></li><li><a href="/emprestimo-de-10000-reais/">R$ 10 mil</a></li><li><a href="/emprestimo-de-15000-reais/">R$ 15 mil</a></li><li><a href="/emprestimo-de-20000-reais/">R$ 20 mil</a></li><li><a href="/emprestimo-de-30000-reais/">R$ 30 mil</a></li><li><a href="/emprestimo-de-50000-reais/">R$ 50 mil</a></li></ul>
+</nav>
+<p>Feito por Joseph Santiago, desenvolvedor de apps Android. <a href="https://play.google.com/store/apps/details?id=com.josephsantiago.calculadoraemprestimos">Calculadora Empréstimo e Juros na Google Play</a> · <a href="https://josephsantiagos.github.io/pilitica-de-privacidade-play-sotre-/">Política de privacidade</a> · Contato: <a href="mailto:josephsantiago250@gmail.com">josephsantiago250@gmail.com</a></p>
+<p>Este site não exibe anúncios e não coleta os valores digitados: as contas são feitas no seu próprio aparelho.</p>
+</div></footer>
+<script src="/assets/calc.js" defer></script>
+</body>
+</html>

@@ -18,11 +18,19 @@ AVISO = ("Simulação ilustrativa. Não oferecemos nem intermediamos crédito e 
          "financeiras ou órgãos públicos. Antes de contratar, confira o Custo Efetivo Total (CET) informado pela instituição.")
 PLAY = "https://play.google.com/store/apps/details?id=com.josephsantiago.calculadoraemprestimos"
 
+VALORES = [1000, 2000, 3000, 5000, 10000, 15000, 20000, 30000, 50000]
+PAGINAS_VALOR = [f"/emprestimo-de-{v}-reais/" for v in VALORES]
 PAGINAS = [
     "/simulador-emprestimo/", "/simulador-financiamento-carro/", "/simulador-financiamento-moto/",
     "/juros-parcelamento/", "/descobrir-taxa-de-juros/", "/tabela-price/", "/price-ou-sac/",
     "/emprestimo-consignado/", "/juros-compostos/", "/juros-cartao-de-credito/", "/quanto-fica-emprestimo/",
-]
+    # páginas de 2026-10-18
+    "/quitar-emprestimo-antecipado/", "/converter-taxa-de-juros/", "/calculadora-juros-simples/",
+    "/o-que-e-cet/", "/como-calcular-juros-de-emprestimo/", "/financiamento-imobiliario/",
+    "/juros-crediario/", "/emprestimo-pessoal-ou-consignado/",
+] + PAGINAS_VALOR
+LASTMOD = "2026-10-18"
+VERIFICACAO_GOOGLE = "google-site-verification: googlecc214a75d6d5c7dd.html"
 
 
 class Coletor(HTMLParser):
@@ -103,6 +111,7 @@ def main():
     base = (sys.argv[1] if len(sys.argv) > 1 else "http://127.0.0.1:8811").rstrip("/")
     erros = []
     links_internos = set()
+    links_por_pagina = {}
 
     def falha(msg):
         erros.append(msg)
@@ -134,11 +143,23 @@ def main():
             problemas.append("og:url diferente do canonical")
         # JSON-LD
         tipos = set()
+        trilha = []
         for bloco in c.jsonld:
             try:
-                tipos |= tipos_ld(json.loads(bloco))
+                dados = json.loads(bloco)
+                tipos |= tipos_ld(dados)
+                for it in dados.get("@graph", []):
+                    if it.get("@type") == "BreadcrumbList":
+                        trilha = it.get("itemListElement", [])
             except Exception as e:  # noqa: BLE001
                 problemas.append(f"JSON-LD inválido: {e}")
+        if caminho != "/":
+            if not trilha or trilha[-1].get("item") != SITE + caminho or trilha[0].get("item") != SITE + "/":
+                problemas.append("BreadcrumbList não começa no início ou não termina na página")
+            if [x.get("position") for x in trilha] != list(range(1, len(trilha) + 1)):
+                problemas.append("BreadcrumbList com posições erradas")
+            if caminho in PAGINAS_VALOR and (len(trilha) != 3 or trilha[1].get("item") != SITE + "/quanto-fica-emprestimo/"):
+                problemas.append("página por valor sem trilha Início › Quanto fica › valor")
         esperado = {"WebSite", "MobileApplication", "FAQPage"} if caminho == "/" else {"WebApplication", "FAQPage", "BreadcrumbList"}
         if not esperado <= tipos:
             problemas.append(f"JSON-LD sem {esperado - tipos}")
@@ -175,19 +196,47 @@ def main():
                 problemas.append("calculadora não está antes do texto")
             if 'inputmode="decimal"' not in html:
                 problemas.append("sem inputmode decimal")
+            if html.count('class="res-erro"') and 'class="resultado"' in html:
+                corte = html[html.find('class="resultado"'):html.find("</section>", html.find('class="resultado"'))]
+                if "res-erro" in corte:
+                    problemas.append("resultado pré-calculado com erro")
+        if caminho in PAGINAS_VALOR:
+            v = int(re.search(r"\d+", caminho).group(0))
+            if 'class="tabela-pronta"' not in html:
+                problemas.append("página por valor sem tabela pronta")
+            elif html.split('class="tabela-pronta"')[1].split("</table>")[0].count("<td>") != 28:
+                problemas.append("tabela por valor não tem 7 prazos × 4 taxas")
+            valor_fmt = f"{v:,}".replace(",", ".")
+            if f'id="emprestimo-valor" name="valor" type="text" inputmode="decimal" autocomplete="off" value="{valor_fmt}"' not in html:
+                problemas.append("calculadora não vem preenchida com o valor da página")
         if re.search(r"https?://(?!josephsantiagos\.github\.io|play\.google\.com|schema\.org|www\.sitemaps\.org|www\.w3\.org)", html):
             problemas.append("recurso externo inesperado: " + re.search(r"https?://[^\"' <]+", html).group(0))
+        links_por_pagina[caminho] = set()
         for href in c.links:
             if href.startswith("/"):
-                links_internos.add(href.split("#")[0].split("?")[0])
+                limpo = href.split("#")[0].split("?")[0]
+                links_internos.add(limpo)
+                links_por_pagina[caminho].add(limpo)
         print(f"{'OK ' if not problemas else 'ERR'} {caminho:34} {len(titulo):2}/{len(desc):3}  JSON-LD: {', '.join(sorted(tipos))}")
         for p in problemas:
             falha(f"{caminho}: {p}")
 
+    # ligações internas: o início leva a todas as páginas; quanto-fica leva a todas as páginas por valor;
+    # nenhuma página fica órfã (cada uma recebe link de pelo menos 3 outras)
+    if set(PAGINAS) - links_por_pagina.get("/", set()):
+        falha(f"início sem link para {sorted(set(PAGINAS) - links_por_pagina.get('/', set()))}")
+    if set(PAGINAS_VALOR) - links_por_pagina.get("/quanto-fica-emprestimo/", set()):
+        falha("quanto-fica-emprestimo sem link para todas as páginas por valor")
+    for alvo in PAGINAS:
+        origem = [pg for pg, ls in links_por_pagina.items() if pg != alvo and alvo in ls]
+        if len(origem) < 3:
+            falha(f"{alvo}: recebe link de só {len(origem)} páginas")
+
     # links internos, assets e arquivos auxiliares
     for href in sorted(links_internos | {"/assets/site.css", "/assets/calc.js", "/assets/logo.svg", "/assets/favicon-32.png",
                                           "/assets/apple-touch-icon.png", "/assets/og-calculadora.png", "/favicon.ico",
-                                          "/404.html", "/robots.txt", "/sitemap.xml", "/app-ads.txt"}):
+                                          "/404.html", "/robots.txt", "/sitemap.xml", "/app-ads.txt",
+                                          "/googlecc214a75d6d5c7dd.html"}):
         status, corpo, ctype = baixar(base + href)
         if status != 200:
             falha(f"link/arquivo {href}: HTTP {status}")
@@ -205,7 +254,7 @@ def main():
     mods = {u.find("s:lastmod", ns).text for u in raiz.findall("s:url", ns)}
     if sorted(locs) != sorted([SITE + "/"] + [SITE + p for p in PAGINAS]):
         falha("sitemap com URLs diferentes das páginas")
-    if mods != {"2026-10-17"}:
+    if mods != {LASTMOD}:
         falha(f"lastmod {mods}")
     status, corpo, _ = baixar(base + "/robots.txt")
     rb = corpo.decode()
@@ -214,6 +263,9 @@ def main():
     status, corpo, _ = baixar(base + "/app-ads.txt")
     if corpo.decode().strip() != "google.com, pub-6560293652268094, DIRECT, f08c47fec0942fa0":
         falha("app-ads.txt mudou!")
+    status, corpo, _ = baixar(base + "/googlecc214a75d6d5c7dd.html")
+    if corpo.decode().strip() != VERIFICACAO_GOOGLE:
+        falha("arquivo de verificação do Search Console mudou!")
     status, corpo, _ = baixar(base + "/404.html")
     if b"noindex" not in corpo:
         falha("404 sem noindex")

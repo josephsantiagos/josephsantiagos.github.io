@@ -38,7 +38,7 @@ const simuladorEmprestimo = {
 <h2>Como a parcela é calculada</h2>
 <p>A maioria dos empréstimos pessoais, consignados e financiamentos usa a <a href="/tabela-price/">Tabela Price</a>, em que todas as parcelas são iguais. A fórmula é:</p>
 <p class="formula"><strong>Parcela = Valor × i ÷ [1 − (1 + i)<sup>−n</sup>]</strong></p>
-<p>Nela, <em>i</em> é a taxa mensal em forma decimal (2,2% vira 0,022) e <em>n</em> é o número de parcelas. Se a taxa vier ao ano, ela precisa virar a taxa mensal equivalente: <strong>(1 + taxa anual)<sup>1/12</sup> − 1</strong>. Dividir a taxa anual por 12 dá um número errado, porque os juros são compostos. Por exemplo, 24% ao ano equivalem a ${p(C.mensalDeAnual(0.24))} ao mês, e não a 2%.</p>
+<p>Nela, <em>i</em> é a taxa mensal em forma decimal (2,2% vira 0,022) e <em>n</em> é o número de parcelas. Se a taxa vier ao ano, ela precisa virar a taxa mensal equivalente: <strong>(1 + taxa anual)<sup>1/12</sup> − 1</strong>. Dividir a taxa anual por 12 dá um número errado, porque os juros são compostos (veja o <a href="/converter-taxa-de-juros/">conversor de taxas</a>). Por exemplo, 24% ao ano equivalem a ${p(C.mensalDeAnual(0.24))} ao mês, e não a 2%.</p>
 
 <h2>Exemplo resolvido: R$ 15.000 em 24 meses a 2,2% ao mês</h2>
 <ol>
@@ -52,7 +52,7 @@ const simuladorEmprestimo = {
 <p>O prazo muda tudo. Com a mesma taxa, em 12 meses a parcela sobe para ${b(e12.parcela)}, mas os juros caem para ${b(e12.juros)}. Em 36 meses a parcela fica em ${b(e36.parcela)}, porém os juros chegam a ${b(e36.juros)}. No SAC, a primeira parcela seria ${b(s.primeira)}, a última ${b(s.ultima)} e os juros totais ${b(s.juros)}. Veja a comparação completa em <a href="/price-ou-sac/">Price ou SAC</a>.</p>
 
 <h2>CET e IOF: o que mais entra no custo</h2>
-<p>A taxa de juros não é o único custo. Todo contrato de crédito precisa informar o <strong>Custo Efetivo Total (CET)</strong>, que junta juros, impostos, tarifas e seguros em uma taxa só. Na hora de comparar propostas, é o CET que conta: duas ofertas com a mesma taxa de juros podem ter CET bem diferentes.</p>
+<p>A taxa de juros não é o único custo. Todo contrato de crédito precisa informar o <strong><a href="/o-que-e-cet/">Custo Efetivo Total (CET)</a></strong>, que junta juros, impostos, tarifas e seguros em uma taxa só. Na hora de comparar propostas, é o CET que conta: duas ofertas com a mesma taxa de juros podem ter CET bem diferentes.</p>
 <p>O principal imposto é o <strong>IOF</strong> (Imposto sobre Operações Financeiras). Em empréstimos para pessoa física ele costuma ter uma parte fixa, cobrada uma vez, e uma parte diária, que cresce com o prazo até um limite. Somadas, ficam em poucos pontos percentuais do valor. As alíquotas são definidas pelo governo e podem mudar, então confira o valor exato na proposta. Muitas vezes o IOF é financiado junto com o empréstimo, o que aumenta um pouco a parcela.</p>
 <p>Também podem aparecer tarifa de cadastro e seguro prestamista. Se houver seguro, pergunte se ele é opcional: o consumidor não pode ser obrigado a contratá-lo com a seguradora indicada por quem empresta.</p>
 
@@ -61,7 +61,7 @@ const simuladorEmprestimo = {
 <li><strong>Compare o CET de pelo menos três propostas</strong> para o mesmo valor e prazo. Use o simulador para ver quanto cada diferença de taxa vale em reais.</li>
 <li><strong>Escolha o menor prazo com parcela que caiba com folga</strong> no orçamento. Prazos longos aliviam o mês, mas multiplicam os juros.</li>
 <li><strong>Peça só o que precisa.</strong> No exemplo acima, cada R$ 1.000 a menos economiza ${b(mil.juros)} de juros.</li>
-<li><strong>Antecipe parcelas quando sobrar dinheiro.</strong> Quem quita ou adianta parcelas tem direito ao abatimento proporcional dos juros.</li>
+<li><strong>Antecipe parcelas quando sobrar dinheiro.</strong> Quem quita ou adianta parcelas tem direito ao abatimento proporcional dos juros; veja quanto em <a href="/quitar-emprestimo-antecipado/">quitar empréstimo antecipado</a>.</li>
 <li><strong>Troque dívidas caras por mais baratas</strong>, como o rotativo do cartão por um crédito de CET menor, e não o contrário.</li>
 <li><strong>Desconfie de quem pede depósito antecipado</strong> para “liberar” um empréstimo. Instituições sérias não cobram nada antes de liberar o dinheiro.</li>
 </ul>`;
@@ -128,7 +128,8 @@ const quantoFica = {
     const indice = VALORES.map((v) => `<li><a href="#r-${v}">${curto(v)}</a></li>`).join('');
     const secoes = VALORES.map((v) => `<h2 id="r-${v}">Quanto fica um empréstimo de ${nomeValor(v)}?</h2>
 <p>${fraseValor(v)}</p>
-${tabelaValor(v)}`).join('\n\n');
+${tabelaValor(v)}
+<p>Até 60 meses: <a href="/emprestimo-de-${v}-reais/">empréstimo de ${nomeValor(v)}</a>.</p>`).join('\n\n');
     return `
 <h2>Como ler as tabelas</h2>
 <p>Cada tabela abaixo corresponde a um valor de empréstimo. As linhas são os prazos, de 6 a 48 meses, e as colunas são as taxas de juros mensais: 1,5%, 2,5%, 3,5% e 5% ao mês. Em cada célula, o número de cima é a <strong>parcela mensal</strong> e o de baixo, em cinza, é o <strong>total pago</strong> até o fim do contrato. Todos os valores estão em reais e foram calculados pela Tabela Price, com parcelas fixas.</p>
@@ -229,7 +230,7 @@ const carro = {
 <li>Peça simulações em mais de uma instituição e compare o CET, não só a parcela.</li>
 <li>Aumente a entrada sempre que possível, nem que seja adiando a compra por alguns meses.</li>
 <li>Escolha o menor prazo com parcela confortável. Uma regra prática comum é não comprometer mais de 30% da renda com todas as dívidas somadas.</li>
-<li>Antecipe parcelas quando sobrar dinheiro, de preferência as últimas: você paga o valor delas descontado dos juros. Logo depois de assinar, a 48ª parcela do exemplo sairia por cerca de ${b(pvUltima)}, em vez de ${b(c48.parcela)}.</li>
+<li>Antecipe parcelas quando sobrar dinheiro, de preferência as últimas: você paga o valor delas descontado dos juros (calcule em <a href="/quitar-emprestimo-antecipado/">quitar empréstimo antecipado</a>). Logo depois de assinar, a 48ª parcela do exemplo sairia por cerca de ${b(pvUltima)}, em vez de ${b(c48.parcela)}.</li>
 <li>Leia o contrato antes de assinar e recuse itens que você não pediu, como seguros ou serviços extras.</li>
 </ul>`;
   },
@@ -294,7 +295,7 @@ const moto = {
 <p>O consórcio não cobra juros, mas tem taxa de administração e outros encargos, e a moto só vem quando você é contemplado por sorteio ou lance, sem data certa. Pode servir para quem tem disciplina e não tem pressa. Para quem precisa da moto agora, o financiamento costuma ser o caminho, desde que a parcela caiba no orçamento.</p>
 
 <h2>CET, IOF e outros custos</h2>
-<p>Além dos juros, o financiamento tem <strong>IOF</strong>, imposto cobrado em operações de crédito, com uma parte fixa e outra que cresce com o prazo, e pode ter tarifas de cadastro e de registro do contrato. Tudo isso entra no <strong>Custo Efetivo Total (CET)</strong>, que deve estar na proposta. Compare o CET, não só a taxa ou a parcela. E lembre dos custos de manter a moto: seguro, manutenção, combustível, licenciamento e equipamentos de segurança.</p>
+<p>Além dos juros, o financiamento tem <strong>IOF</strong>, imposto cobrado em operações de crédito, com uma parte fixa e outra que cresce com o prazo, e pode ter tarifas de cadastro e de registro do contrato. Tudo isso entra no <strong>Custo Efetivo Total (CET)</strong>, que deve estar na proposta. Compare o CET, não só a taxa ou a parcela; para achar o custo efetivo a partir do valor financiado e da parcela, use a calculadora de <a href="/o-que-e-cet/">CET</a>. E lembre dos custos de manter a moto: seguro, manutenção, combustível, licenciamento e equipamentos de segurança.</p>
 
 <h2>Dicas para pagar menos juros</h2>
 <ul>
@@ -302,7 +303,7 @@ const moto = {
 <li>Prefira prazos curtos: no exemplo, 24 meses custam ${b(m48.juros - m24.juros)} a menos de juros do que 48.</li>
 <li>Peça propostas em mais de uma instituição e compare o CET.</li>
 <li>Se a loja anuncia “parcelado sem juros”, pergunte o preço à vista. Se ele for menor, há juros embutidos; a calculadora de <a href="/juros-parcelamento/">juros no parcelamento</a> mostra quanto.</li>
-<li>Antecipe parcelas quando puder, de preferência as últimas, que têm o maior desconto de juros.</li>
+<li>Antecipe parcelas quando puder, de preferência as últimas, que têm o maior desconto de juros. Veja quanto custa em <a href="/quitar-emprestimo-antecipado/">quitar empréstimo antecipado</a>.</li>
 </ul>`;
   },
   faq: [
@@ -376,7 +377,7 @@ const consignado = {
 <li><strong>Se cair na conta um empréstimo que você não pediu</strong>, não use o dinheiro: procure a instituição para devolver e cancelar.</li>
 <li><strong>Considere a portabilidade:</strong> você pode levar o consignado para outra instituição que ofereça CET menor.</li>
 <li><strong>Quite ou antecipe parcelas quando puder:</strong> o abatimento proporcional dos juros é um direito seu.</li>
-<li><strong>Use o consignado para trocar dívidas caras</strong>, como o rotativo do cartão, e não para criar dívidas novas.</li>
+<li><strong>Use o consignado para trocar dívidas caras</strong>, como o rotativo do cartão, e não para criar dívidas novas. Para comparar com outra proposta, veja <a href="/emprestimo-pessoal-ou-consignado/">empréstimo pessoal ou consignado</a>.</li>
 </ul>`;
   },
   faq: [

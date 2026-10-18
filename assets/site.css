@@ -135,6 +135,9 @@ tfoot th, tfoot td { font-weight: 700; border-top: 2px solid var(--borda); }
 .indice a { display: inline-block; padding: 6px 10px; border: 1px solid var(--borda); border-radius: 999px; background: var(--card); text-decoration: none; font-size: .875rem; }
 .tabela-pronta td b { display: block; }
 .tabela-pronta td small { display: block; color: var(--suave); font-size: .75rem; }
+.outras h3, .hero-hub h3 { font-size: 1.0625rem; margin: 18px 0 8px; color: var(--marca-escura); }
+.res-passos { margin: 12px 0; padding-left: 22px; }
+.res-passos li { margin-bottom: 6px; }
 .tabela-pronta { font-size: .8125rem; }
 .tabela-pronta td, .tabela-pronta th { padding: 6px 3px; }
 .hero-hub { padding-top: 6px; }
@@ -146,7 +149,8 @@ tfoot th, tfoot td { font-weight: 700; border-top: 2px solid var(--borda); }
 .rodape .botao-play, .rodape .botao-play:hover { color: #fff; }
 .rodape .aviso { background: rgba(255, 255, 255, .07); color: #E6EFED; border-left-color: var(--amarelo); }
 .rodape .cta-app { margin-top: 20px; }
-.rodape-links { list-style: none; padding: 0; margin: 16px 0; display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: .875rem; }
+.rodape-titulo { font-weight: 700; font-size: .875rem; margin: 14px 0 4px; }
+.rodape-links { list-style: none; padding: 0; margin: 0 0 6px; display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: .875rem; }
 .rodape-links li { margin: 0; }
 .rodape-in > p { font-size: .875rem; margin: 10px 0 0; }
 

@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quitar Empréstimo Antecipado: calcule o desconto</title>
+<meta name="description" content="Calcule quanto pagar para quitar o empréstimo antes do prazo: valor presente das parcelas que faltam, desconto dos juros e antecipação das últimas.">
+<link rel="canonical" href="https://josephsantiagos.github.io/quitar-emprestimo-antecipado/">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#0A5F5B">
+<meta name="format-detection" content="telephone=no">
+<link rel="icon" href="/assets/logo.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="Calculadora Empréstimo e Juros">
+<meta property="og:title" content="Quitar Empréstimo Antecipado: calcule o desconto">
+<meta property="og:description" content="Calcule quanto pagar para quitar o empréstimo antes do prazo: valor presente das parcelas que faltam, desconto dos juros e antecipação das últimas.">
+<meta property="og:url" content="https://josephsantiagos.github.io/quitar-emprestimo-antecipado/">
+<meta property="og:image" content="https://josephsantiagos.github.io/assets/og-calculadora.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Calculadora Empréstimo e Juros: simule parcelas e juros">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="/assets/site.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","@id":"https://josephsantiagos.github.io/quitar-emprestimo-antecipado/#calculadora","name":"Calculadora de quitação antecipada de empréstimo","url":"https://josephsantiagos.github.io/quitar-emprestimo-antecipado/","description":"Calcule quanto pagar para quitar o empréstimo antes do prazo: valor presente das parcelas que faltam, desconto dos juros e antecipação das últimas.","applicationCategory":"FinanceApplication","operatingSystem":"Qualquer sistema com navegador","browserRequirements":"Requer JavaScript","inLanguage":"pt-BR","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"BRL"},"author":{"@type":"Person","name":"Joseph Santiago"}},{"@type":"FAQPage","@id":"https://josephsantiagos.github.io/quitar-emprestimo-antecipado/#faq","mainEntity":[{"@type":"Question","name":"Como calcular o valor para quitar um empréstimo antecipado?","acceptedAnswer":{"@type":"Answer","text":"Traga as parcelas restantes a valor presente pela taxa do contrato: valor = parcela × [1 − (1 + i)^−n] ÷ i. Exemplo: 18 parcelas de R$ 650,00 a 2,5% ao mês dão R$ 9.329,69 para quitar hoje, em vez de R$ 11.700,00."}},{"@type":"Question","name":"Tenho direito a desconto ao quitar o empréstimo antes?","acceptedAnswer":{"@type":"Answer","text":"Sim. O Código de Defesa do Consumidor assegura a liquidação antecipada, total ou parcial, com redução proporcional dos juros e demais acréscimos. Peça à instituição o saldo devedor atualizado."}},{"@type":"Question","name":"É melhor antecipar as primeiras ou as últimas parcelas?","acceptedAnswer":{"@type":"Answer","text":"As últimas. Elas têm mais meses de juros embutidos e por isso recebem o maior desconto. No exemplo da página, a última de 18 parcelas de R$ 650,00 sai hoje por R$ 416,76."}},{"@type":"Question","name":"Por que o valor da instituição é diferente do da calculadora?","acceptedAnswer":{"@type":"Answer","text":"A calculadora supõe a próxima parcela em exatamente um mês. A instituição usa os dias até cada vencimento e a data de pagamento do boleto, o que pode mudar o valor em alguns reais. Diferenças grandes devem ser explicadas por escrito."}},{"@type":"Question","name":"Vale a pena quitar ou é melhor investir o dinheiro?","acceptedAnswer":{"@type":"Answer","text":"Compare a taxa do contrato com o rendimento líquido do seu dinheiro. Se a dívida cobra mais do que a aplicação rende, quitar costuma compensar, desde que você mantenha uma reserva para emergências."}},{"@type":"Question","name":"Posso quitar o consignado antes do prazo?","acceptedAnswer":{"@type":"Answer","text":"Sim, com o mesmo direito ao desconto proporcional dos juros. Depois de pagar, confirme que os descontos em folha ou no benefício foram encerrados."}}]},{"@type":"BreadcrumbList","@id":"https://josephsantiagos.github.io/quitar-emprestimo-antecipado/#trilha","itemListElement":[{"@type":"ListItem","position":1,"name":"Início","item":"https://josephsantiagos.github.io/"},{"@type":"ListItem","position":2,"name":"Quitar empréstimo antecipado","item":"https://josephsantiagos.github.io/quitar-emprestimo-antecipado/"}]}]}</script>
+</head>
+<body>
+<a class="pular" href="#conteudo">Pular para o conteúdo</a>
+<header class="topo"><div class="topo-in"><a class="marca" href="/"><img src="/assets/logo.svg" alt="" width="32" height="32">Calculadora Empréstimo e Juros</a></div></header>
+<main id="conteudo">
+<nav class="trilha" aria-label="Você está em"><ol><li><a href="/">Início</a></li><li aria-current="page">Quitar empréstimo antecipado</li></ol></nav>
+<h1>Quanto pagar para quitar o empréstimo antes</h1>
+<p class="lead">Informe a parcela, a taxa do contrato e quantas parcelas faltam. A calculadora mostra quanto custa quitar hoje e quanto de juros você deixa de pagar.</p>
+<section class="calc" id="calculadora" aria-labelledby="titulo-calc">
+<h2 id="titulo-calc" style="margin-top:0">Quanto custa quitar hoje</h2>
+<form data-calc="quitacao" data-saida="resultado-quitacao" data-anuncio="anuncio-quitacao" novalidate>
+<div class="campos">
+<div class="campo"><label for="quitacao-parcela">Valor da parcela</label><div class="entrada"><span class="un" aria-hidden="true">R$</span><input id="quitacao-parcela" name="parcela" type="text" inputmode="decimal" autocomplete="off" value="650,00"></div></div>
+<div class="campo"><label for="quitacao-taxa">Taxa de juros do contrato</label><div class="dupla"><div class="entrada"><input id="quitacao-taxa" name="taxa" type="text" inputmode="decimal" autocomplete="off" value="2,5"><span class="un" aria-hidden="true">%</span></div><select name="tipo" aria-label="Período da taxa"><option value="mes" selected>ao mês</option><option value="ano">ao ano</option></select></div></div>
+<div class="campo"><label for="quitacao-restantes">Parcelas que faltam</label><div class="entrada"><input id="quitacao-restantes" name="restantes" type="text" inputmode="numeric" pattern="[0-9]*" autocomplete="off" value="18"><span class="un" aria-hidden="true">parcelas</span></div></div>
+</div>
+<button class="botao" type="submit">Calcular</button>
+</form>
+<p class="sr" id="anuncio-quitacao" aria-live="polite"></p>
+<div class="resultado" id="resultado-quitacao"><div class="res-destaque"><span class="res-rotulo">Valor para quitar hoje</span><strong class="res-valor">R$ 9.329,69</strong><span class="res-sub">em vez de 18 parcelas de R$ 650,00 (R$ 11.700,00)</span></div><dl class="res-grade"><div><dt>Soma das parcelas que faltam</dt><dd>R$ 11.700,00</dd></div><div><dt>Desconto dos juros futuros</dt><dd>R$ 2.370,31</dd></div><div><dt>Desconto sobre o que falta</dt><dd>20,3%</dd></div><div><dt>Taxa do contrato</dt><dd>2,50% ao mês = 34,49% ao ano</dd></div></dl><p class="res-frase">Quitando agora você deixa de pagar <strong>R$ 2.370,31</strong> de juros que ainda não venceram.</p><div class="rolagem"><table class="comparativo"><caption>Antecipar só as últimas parcelas, pagando hoje (valores em R$)</caption><thead><tr><th scope="col">Últimas</th><th scope="col">Valor cheio</th><th scope="col">Paga hoje</th><th scope="col">Desconto</th></tr></thead><tbody><tr><th scope="row">1 parcela</th><td>650,00</td><td>416,76</td><td>233,24</td></tr><tr><th scope="row">3 parcelas</th><td>1.950,00</td><td>1.281,79</td><td>668,21</td></tr><tr><th scope="row">6 parcelas</th><td>3.900,00</td><td>2.662,14</td><td>1.237,86</td></tr><tr><th scope="row">12 parcelas</th><td>7.800,00</td><td>5.749,40</td><td>2.050,60</td></tr></tbody></table></div><p class="res-nota">Conta feita com a próxima parcela vencendo daqui a um mês. A instituição usa as datas exatas de cada vencimento, então o valor oficial pode variar alguns reais. Peça sempre o saldo devedor atualizado.</p><p class="aviso">Simulação ilustrativa. Não oferecemos nem intermediamos crédito e não temos vínculo com bancos, financeiras ou órgãos públicos. Antes de contratar, confira o Custo Efetivo Total (CET) informado pela instituição.</p></div>
+</section>
+<aside class="cta-app" aria-label="App para Android">
+<p class="cta-titulo">Leve a calculadora no celular — grátis, sem cadastro</p>
+<p class="cta-texto">No app você também compara ofertas e descobre a taxa embutida, com histórico das simulações e tabela de amortização no seu Android.</p>
+<a class="botao-play" href="https://play.google.com/store/apps/details?id=com.josephsantiago.calculadoraemprestimos&amp;referrer=utm_source%3Dsite%26utm_medium%3Dquitar-emprestimo-antecipado%26utm_campaign%3Dorganico" rel="noopener"><svg width="26" height="28" viewBox="0 0 26 28" aria-hidden="true" focusable="false"><path d="M3 2.6v22.8a1.6 1.6 0 0 0 2.4 1.4l18.6-11.4a1.6 1.6 0 0 0 0-2.8L5.4 1.2A1.6 1.6 0 0 0 3 2.6z" fill="#FFD166"/><path d="M8 9.5v9l7.4-4.5z" fill="#111"/></svg><span><small>Disponível no</small><b>Google Play</b></span></a>
+</aside>
+<article class="texto">
+
+<h2>Por que quitar antes sai mais barato</h2>
+<p>Cada parcela de um empréstimo carrega juros pelo tempo em que o dinheiro fica com você. A parcela que vence daqui a um mês tem um mês de juros embutido; a que vence daqui a dois anos tem dois anos. Quando você paga tudo hoje, os juros dos meses que ainda não passaram deixam de existir. Por isso o valor para quitar é sempre menor que a soma das parcelas que faltam, e a diferença é maior quanto mais longo for o prazo restante e mais alta for a taxa.</p>
+<p>Em linguagem financeira, o valor de quitação é o <strong>valor presente</strong> das parcelas restantes, calculado com a taxa de juros do contrato. É exatamente isso que a calculadora acima mostra.</p>
+
+<h2>O direito ao desconto dos juros</h2>
+<p>O Código de Defesa do Consumidor garante a quem tem um contrato de crédito a possibilidade de liquidar a dívida antes do prazo, no todo ou em parte, com redução proporcional dos juros e demais acréscimos. Isso vale para empréstimo pessoal, consignado, financiamento de veículo ou de imóvel e crediário. Em contratos com taxa prefixada, o desconto costuma ser calculado com a própria taxa do contrato, como nesta calculadora.</p>
+<p>Na prática, basta pedir à instituição o <strong>saldo devedor para quitação</strong>, ou o valor para antecipar parcelas. Ela informa o valor atualizado, válido até uma data. O desconto incide sobre os juros que ainda iam correr; impostos e tarifas cobrados na contratação seguem as regras do contrato.</p>
+
+<h2>A fórmula da quitação antecipada</h2>
+<p class="formula"><strong>Valor para quitar = Parcela × [1 − (1 + i)<sup>−n</sup>] ÷ i</strong></p>
+<p>Aqui <em>i</em> é a taxa mensal do contrato em decimal e <em>n</em> é o número de parcelas que ainda faltam. A conta supõe que a próxima parcela vence daqui a um mês. Se a taxa do contrato estiver ao ano, converta antes para a mensal equivalente; o <a href="/converter-taxa-de-juros/">conversor de taxa de juros</a> faz isso.</p>
+
+<h2>Exemplo resolvido: 18 parcelas de R$ 650 a 2,5% ao mês</h2>
+<ol>
+<li>Soma do que falta: 18 × R$ 650,00 = R$ 11.700,00.</li>
+<li>(1,025)<sup>−18</sup> ≈ 0,6412; 1 − 0,6412 = 0,3588.</li>
+<li>Valor para quitar = 650 × 0,3588 ÷ 0,025 ≈ <strong>R$ 9.329,69</strong>.</li>
+<li>Desconto: R$ 11.700,00 − R$ 9.329,69 = <strong>R$ 2.370,31</strong>, ou 20,3% do que faltava pagar.</li>
+</ol>
+<p>Se faltassem só 6 parcelas, quitar custaria R$ 3.580,28 e o desconto cairia para R$ 319,72. Com 36 parcelas restantes, o desconto subiria para R$ 8.088,44. Quanto mais longe o fim do contrato, maior a economia.</p>
+
+<h2>Antecipar só as últimas parcelas</h2>
+<p>Nem sempre dá para quitar tudo de uma vez. Antecipar parcelas também dá desconto, e a ordem importa: as <strong>últimas parcelas</strong> são as que têm mais meses de juros embutidos. No exemplo, a 18ª parcela de R$ 650,00 sai hoje por R$ 416,76, um desconto de R$ 233,24. Já antecipar a próxima parcela, que vence em um mês, rende um desconto de só R$ 15,85.</p>
+<p>Ao antecipar as últimas, a parcela mensal continua igual e o contrato termina antes. Algumas instituições também permitem usar o valor para reduzir as parcelas e manter o prazo. Pergunte quais opções existem; a tabela do resultado mostra quanto custa antecipar as últimas 1, 3, 6 ou 12 parcelas.</p>
+
+<h2>Quitar ou investir o dinheiro?</h2>
+<p>Quitar uma dívida equivale a “ganhar” a taxa do contrato, sem risco. Se o empréstimo cobra 2,5% ao mês (34,49% ao ano), dificilmente uma aplicação comum rende isso, ainda mais depois do imposto. Por isso quitar costuma compensar em dívidas caras. Em dívidas mais baratas, como um financiamento com taxa abaixo do que o seu dinheiro rende guardado, a conta pode se inverter.</p>
+<p>Antes de usar todo o dinheiro, mantenha uma reserva para emergências. Quitar uma dívida e, um mês depois, precisar de outro empréstimo ou entrar no cheque especial anula a vantagem.</p>
+
+<h2>Passo a passo para pedir a quitação</h2>
+<ol>
+<li>Peça à instituição, pelos canais oficiais, o saldo devedor para quitação total ou o valor para antecipar parcelas.</li>
+<li>Compare o valor informado com o desta calculadora. Diferenças de poucos reais são normais por causa das datas; diferenças grandes merecem explicação por escrito.</li>
+<li>Pague só pelo boleto ou meio indicado nos canais oficiais e guarde o comprovante.</li>
+<li>Peça o termo de quitação. No financiamento de veículo, confira a baixa da alienação; no consignado, confirme que os descontos em folha ou no benefício pararam.</li>
+</ol>
+<p>Desconfie de mensagens que oferecem “desconto especial para quitar” e pedem pagamento em conta de terceiros: é um golpe comum.</p>
+</article>
+<section class="faq" aria-labelledby="titulo-faq"><h2 id="titulo-faq">Perguntas frequentes</h2>
+<details><summary>Como calcular o valor para quitar um empréstimo antecipado?</summary><p>Traga as parcelas restantes a valor presente pela taxa do contrato: valor = parcela × [1 − (1 + i)^−n] ÷ i. Exemplo: 18 parcelas de R$ 650,00 a 2,5% ao mês dão R$ 9.329,69 para quitar hoje, em vez de R$ 11.700,00.</p></details>
+<details><summary>Tenho direito a desconto ao quitar o empréstimo antes?</summary><p>Sim. O Código de Defesa do Consumidor assegura a liquidação antecipada, total ou parcial, com redução proporcional dos juros e demais acréscimos. Peça à instituição o saldo devedor atualizado.</p></details>
+<details><summary>É melhor antecipar as primeiras ou as últimas parcelas?</summary><p>As últimas. Elas têm mais meses de juros embutidos e por isso recebem o maior desconto. No exemplo da página, a última de 18 parcelas de R$ 650,00 sai hoje por R$ 416,76.</p></details>
+<details><summary>Por que o valor da instituição é diferente do da calculadora?</summary><p>A calculadora supõe a próxima parcela em exatamente um mês. A instituição usa os dias até cada vencimento e a data de pagamento do boleto, o que pode mudar o valor em alguns reais. Diferenças grandes devem ser explicadas por escrito.</p></details>
+<details><summary>Vale a pena quitar ou é melhor investir o dinheiro?</summary><p>Compare a taxa do contrato com o rendimento líquido do seu dinheiro. Se a dívida cobra mais do que a aplicação rende, quitar costuma compensar, desde que você mantenha uma reserva para emergências.</p></details>
+<details><summary>Posso quitar o consignado antes do prazo?</summary><p>Sim, com o mesmo direito ao desconto proporcional dos juros. Depois de pagar, confirme que os descontos em folha ou no benefício foram encerrados.</p></details>
+</section>
+<nav class="outras" aria-labelledby="titulo-outras"><h2 id="titulo-outras">Outras calculadoras</h2>
+<h3>Empréstimo</h3>
+<ul class="links">
+<li><a href="/simulador-emprestimo/"><strong>Simulador de empréstimo</strong><span>Parcela, juros e tabela mês a mês (Price ou SAC).</span></a></li>
+<li><a href="/quanto-fica-emprestimo/"><strong>Quanto fica um empréstimo</strong><span>Tabelas prontas de parcelas de R$ 1 mil a R$ 50 mil.</span></a></li>
+<li><a href="/como-calcular-juros-de-emprestimo/"><strong>Como calcular juros de empréstimo</strong><span>A fórmula da Price passo a passo, com os seus números.</span></a></li>
+<li><a href="/emprestimo-consignado/"><strong>Empréstimo consignado</strong><span>Parcela, margem consignável e juros.</span></a></li>
+<li><a href="/emprestimo-pessoal-ou-consignado/"><strong>Pessoal ou consignado</strong><span>Duas ofertas lado a lado: qual custa menos.</span></a></li>
+</ul>
+<h3>Financiamento e amortização</h3>
+<ul class="indice"><li><a href="/simulador-financiamento-carro/">Financiamento de carro</a></li><li><a href="/simulador-financiamento-moto/">Financiamento de moto</a></li><li><a href="/financiamento-imobiliario/">Financiamento imobiliário</a></li><li><a href="/tabela-price/">Tabela Price</a></li><li><a href="/price-ou-sac/">Price ou SAC</a></li></ul>
+<h3>Juros e taxas</h3>
+<ul class="indice"><li><a href="/descobrir-taxa-de-juros/">Descobrir a taxa de juros</a></li><li><a href="/o-que-e-cet/">O que é CET</a></li><li><a href="/converter-taxa-de-juros/">Converter taxa de juros</a></li><li><a href="/juros-parcelamento/">Juros no parcelamento</a></li><li><a href="/juros-crediario/">Juros do crediário</a></li><li><a href="/juros-cartao-de-credito/">Juros do cartão de crédito</a></li><li><a href="/juros-compostos/">Juros compostos</a></li><li><a href="/calculadora-juros-simples/">Juros simples</a></li></ul>
+<h3>Empréstimo por valor</h3>
+<ul class="indice"><li><a href="/emprestimo-de-1000-reais/">R$ 1 mil</a></li><li><a href="/emprestimo-de-2000-reais/">R$ 2 mil</a></li><li><a href="/emprestimo-de-3000-reais/">R$ 3 mil</a></li><li><a href="/emprestimo-de-5000-reais/">R$ 5 mil</a></li><li><a href="/emprestimo-de-10000-reais/">R$ 10 mil</a></li><li><a href="/emprestimo-de-15000-reais/">R$ 15 mil</a></li><li><a href="/emprestimo-de-20000-reais/">R$ 20 mil</a></li><li><a href="/emprestimo-de-30000-reais/">R$ 30 mil</a></li><li><a href="/emprestimo-de-50000-reais/">R$ 50 mil</a></li></ul>
+</nav>
+</main>
+<footer class="rodape"><div class="rodape-in">
+<aside class="cta-app" aria-label="App para Android">
+<p class="cta-titulo">Leve a calculadora no celular — grátis, sem cadastro</p>
+<p class="cta-texto">Com o app Calculadora Empréstimo e Juros você simula parcelas em Price ou SAC, com taxa ao mês ou ao ano, e vê a tabela de amortização no seu Android.</p>
+<a class="botao-play" href="https://play.google.com/store/apps/details?id=com.josephsantiago.calculadoraemprestimos&amp;referrer=utm_source%3Dsite%26utm_medium%3Dquitar-emprestimo-antecipado%26utm_campaign%3Dorganico" rel="noopener"><svg width="26" height="28" viewBox="0 0 26 28" aria-hidden="true" focusable="false"><path d="M3 2.6v22.8a1.6 1.6 0 0 0 2.4 1.4l18.6-11.4a1.6 1.6 0 0 0 0-2.8L5.4 1.2A1.6 1.6 0 0 0 3 2.6z" fill="#FFD166"/><path d="M8 9.5v9l7.4-4.5z" fill="#111"/></svg><span><small>Disponível no</small><b>Google Play</b></span></a>
+</aside>
+<p class="aviso">Simulação ilustrativa. Não oferecemos nem intermediamos crédito e não temos vínculo com bancos, financeiras ou órgãos públicos. Antes de contratar, confira o Custo Efetivo Total (CET) informado pela instituição.</p>
+<nav aria-label="Todas as calculadoras"><p class="rodape-titulo"><a href="/">Início: todas as calculadoras</a></p>
+<p class="rodape-titulo">Empréstimo</p><ul class="rodape-links"><li><a href="/simulador-emprestimo/">Simulador de empréstimo</a></li><li><a href="/quanto-fica-emprestimo/">Quanto fica um empréstimo</a></li><li><a href="/como-calcular-juros-de-emprestimo/">Como calcular juros de empréstimo</a></li><li><a href="/quitar-emprestimo-antecipado/">Quitar empréstimo antecipado</a></li><li><a href="/emprestimo-consignado/">Empréstimo consignado</a></li><li><a href="/emprestimo-pessoal-ou-consignado/">Pessoal ou consignado</a></li></ul>
+<p class="rodape-titulo">Financiamento e amortização</p><ul class="rodape-links"><li><a href="/simulador-financiamento-carro/">Financiamento de carro</a></li><li><a href="/simulador-financiamento-moto/">Financiamento de moto</a></li><li><a href="/financiamento-imobiliario/">Financiamento imobiliário</a></li><li><a href="/tabela-price/">Tabela Price</a></li><li><a href="/price-ou-sac/">Price ou SAC</a></li></ul>
+<p class="rodape-titulo">Juros e taxas</p><ul class="rodape-links"><li><a href="/descobrir-taxa-de-juros/">Descobrir a taxa de juros</a></li><li><a href="/o-que-e-cet/">O que é CET</a></li><li><a href="/converter-taxa-de-juros/">Converter taxa de juros</a></li><li><a href="/juros-parcelamento/">Juros no parcelamento</a></li><li><a href="/juros-crediario/">Juros do crediário</a></li><li><a href="/juros-cartao-de-credito/">Juros do cartão de crédito</a></li><li><a href="/juros-compostos/">Juros compostos</a></li><li><a href="/calculadora-juros-simples/">Juros simples</a></li></ul>
+<p class="rodape-titulo">Empréstimo por valor</p><ul class="rodape-links"><li><a href="/emprestimo-de-1000-reais/">R$ 1 mil</a></li><li><a href="/emprestimo-de-2000-reais/">R$ 2 mil</a></li><li><a href="/emprestimo-de-3000-reais/">R$ 3 mil</a></li><li><a href="/emprestimo-de-5000-reais/">R$ 5 mil</a></li><li><a href="/emprestimo-de-10000-reais/">R$ 10 mil</a></li><li><a href="/emprestimo-de-15000-reais/">R$ 15 mil</a></li><li><a href="/emprestimo-de-20000-reais/">R$ 20 mil</a></li><li><a href="/emprestimo-de-30000-reais/">R$ 30 mil</a></li><li><a href="/emprestimo-de-50000-reais/">R$ 50 mil</a></li></ul>
+</nav>
+<p>Feito por Joseph Santiago, desenvolvedor de apps Android. <a href="https://play.google.com/store/apps/details?id=com.josephsantiago.calculadoraemprestimos">Calculadora Empréstimo e Juros na Google Play</a> · <a href="https://josephsantiagos.github.io/pilitica-de-privacidade-play-sotre-/">Política de privacidade</a> · Contato: <a href="mailto:josephsantiago250@gmail.com">josephsantiago250@gmail.com</a></p>
+<p>Este site não exibe anúncios e não coleta os valores digitados: as contas são feitas no seu próprio aparelho.</p>
+</div></footer>
+<script src="/assets/calc.js" defer></script>
+</body>
+</html>

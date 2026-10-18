@@ -35,7 +35,7 @@ const tabelaPrice = {
 <li><strong>Amortização</strong> = parcela − juros do mês</li>
 <li><strong>Novo saldo</strong> = saldo anterior − amortização</li>
 </ol>
-<p>Se a taxa estiver ao ano, converta antes para a taxa mensal equivalente: (1 + taxa anual)<sup>1/12</sup> − 1. A calculadora faz isso quando você escolhe “ao ano”.</p>
+<p>Se a taxa estiver ao ano, converta antes para a taxa mensal equivalente: (1 + taxa anual)<sup>1/12</sup> − 1. A calculadora faz isso quando você escolhe “ao ano”. Para ver cada conta com os seus números, use o <a href="/como-calcular-juros-de-emprestimo/">passo a passo dos juros de empréstimo</a>.</p>
 
 <h2>Exemplo resolvido: R$ 5.000 a 3% ao mês em 12 meses</h2>
 <p>Parcela: 5.000 × 0,03 ÷ [1 − (1,03)<sup>−12</sup>] = <strong>${b(t.parcela)}</strong>.</p>
@@ -51,7 +51,7 @@ const tabelaPrice = {
 <p><strong>Vantagens:</strong> parcela fixa, fácil de planejar, e primeira parcela menor do que no SAC. <strong>Desvantagens:</strong> a dívida cai devagar no início e o total de juros é maior do que no SAC com a mesma taxa e prazo. Para ver a diferença em reais, use a comparação <a href="/price-ou-sac/">Price ou SAC</a>.</p>
 
 <h2>Antecipar parcelas na Tabela Price</h2>
-<p>Ao antecipar parcelas, você paga o valor presente delas, ou seja, sem os juros dos meses que faltam. Antecipar as últimas parcelas dá o maior desconto, porque elas carregam mais meses de juros. No exemplo, logo depois de assinar o contrato, quitar a 12ª parcela custaria cerca de ${b(t.parcela / Math.pow(1.03, 12))}, e não ${b(t.parcela)}. O consumidor tem direito a esse abatimento proporcional dos juros ao quitar ou adiantar parcelas.</p>
+<p>Ao antecipar parcelas, você paga o valor presente delas, ou seja, sem os juros dos meses que faltam. Antecipar as últimas parcelas dá o maior desconto, porque elas carregam mais meses de juros. No exemplo, logo depois de assinar o contrato, quitar a 12ª parcela custaria cerca de ${b(t.parcela / Math.pow(1.03, 12))}, e não ${b(t.parcela)}. O consumidor tem direito a esse abatimento proporcional dos juros ao quitar ou adiantar parcelas; a conta completa está em <a href="/quitar-emprestimo-antecipado/">quitar empréstimo antecipado</a>.</p>
 
 <h2>CET e IOF na Tabela Price</h2>
 <p>A tabela mostra só juros e amortização. No contrato, o custo final inclui o <strong>IOF</strong>, imposto sobre operações de crédito com uma parte fixa e outra proporcional ao prazo, além de eventuais tarifas e seguros. Tudo isso forma o <strong>Custo Efetivo Total (CET)</strong>, que deve ser informado antes da assinatura. Quando o IOF e as tarifas são financiados, eles são somados ao valor financiado e a tabela é montada sobre o total, o que aumenta a parcela.</p>
@@ -131,7 +131,7 @@ const priceSac = {
 <h2>Quando o SAC faz mais sentido</h2>
 <ul>
 <li>Quando a primeira parcela cabe com folga e você quer pagar menos juros no total.</li>
-<li>Em prazos longos, como no financiamento imobiliário, em que a economia de juros fica grande.</li>
+<li>Em prazos longos, como no <a href="/financiamento-imobiliario/">financiamento imobiliário</a>, em que a economia de juros fica grande.</li>
 <li>Quando você prefere que o peso das parcelas diminua com o tempo, por exemplo se espera uma queda de renda no futuro.</li>
 </ul>
 

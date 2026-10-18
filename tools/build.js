@@ -5,11 +5,11 @@
 const fs = require('fs');
 const path = require('path');
 const { C, R, AVISO } = require('../assets/calc.js');
-const { paginas, hub } = require('./conteudo.js');
+const { paginas, grupos, hub } = require('./conteudo.js');
 
 const RAIZ = path.resolve(__dirname, '..');
 const SITE = 'https://josephsantiagos.github.io';
-const LASTMOD = '2026-10-17';
+const LASTMOD = '2026-10-18';
 const PLAY = 'https://play.google.com/store/apps/details?id=com.josephsantiago.calculadoraemprestimos';
 const POLITICA = 'https://josephsantiagos.github.io/pilitica-de-privacidade-play-sotre-/';
 const EMAIL = 'josephsantiago250@gmail.com';
@@ -64,17 +64,20 @@ const ICONE_PLAY = '<svg width="26" height="28" viewBox="0 0 26 28" aria-hidden=
 function cta(slug, texto) {
   return `<aside class="cta-app" aria-label="App para Android">
 <p class="cta-titulo">Leve a calculadora no celular — grátis, sem cadastro</p>
-<p class="cta-texto">${texto || 'Com o app Calculadora Empréstimo e Juros você simula parcelas e juros direto no seu Android.'}</p>
+<p class="cta-texto">${texto || 'Com o app Calculadora Empréstimo e Juros você simula parcelas em Price ou SAC, com taxa ao mês ou ao ano, e vê a tabela de amortização no seu Android.'}</p>
 <a class="botao-play" href="${esc(linkPlay(slug))}" rel="noopener">${ICONE_PLAY}<span><small>Disponível no</small><b>Google Play</b></span></a>
 </aside>`;
 }
 
 function rodape(slug) {
-  const itens = paginas.map((p) => `<li><a href="${p.caminho}">${p.link.titulo}</a></li>`).join('');
+  const blocos = grupos.map((g) => `<p class="rodape-titulo">${g.nome}</p><ul class="rodape-links">` +
+    g.paginas.map((p) => `<li><a href="${p.caminho}">${g.compacto ? p.link.curto : p.link.titulo}</a></li>`).join('') + '</ul>').join('\n');
   return `<footer class="rodape"><div class="rodape-in">
 ${cta(slug)}
 <p class="aviso">${AVISO}</p>
-<nav aria-label="Todas as calculadoras"><ul class="rodape-links"><li><a href="/">Início</a></li>${itens}</ul></nav>
+<nav aria-label="Todas as calculadoras"><p class="rodape-titulo"><a href="/">Início: todas as calculadoras</a></p>
+${blocos}
+</nav>
 <p>Feito por Joseph Santiago, desenvolvedor de apps Android. <a href="${PLAY}">Calculadora Empréstimo e Juros na Google Play</a> · <a href="${POLITICA}">Política de privacidade</a> · Contato: <a href="mailto:${EMAIL}">${EMAIL}</a></p>
 <p>Este site não exibe anúncios e não coleta os valores digitados: as contas são feitas no seu próprio aparelho.</p>
 </div></footer>
@@ -149,10 +152,30 @@ ${p.calc.campos.map((f) => campo(prefixo, f)).join('\n')}
 </section>`;
 }
 
+const card = (p) => `<li><a href="${p.caminho}"><strong>${p.link.titulo}</strong><span>${p.link.desc}</span></a></li>`;
+const pilula = (p, g) => `<li><a href="${p.caminho}">${g.compacto ? p.link.curto : p.link.titulo}</a></li>`;
+
+// Bloco "Outras calculadoras": o grupo mais próximo da página vem primeiro, em cartões;
+// os demais grupos aparecem como links compactos para o bloco não ficar enorme.
 function outras(atual) {
-  const itens = paginas.filter((p) => p.slug !== atual)
-    .map((p) => `<li><a href="${p.caminho}"><strong>${p.link.titulo}</strong><span>${p.link.desc}</span></a></li>`).join('\n');
-  return `<nav class="outras" aria-labelledby="titulo-outras"><h2 id="titulo-outras">Outras calculadoras</h2><ul class="links">\n${itens}\n</ul></nav>`;
+  const alvo = atual.grupoCards || atual.grupo;
+  const ordem = grupos.filter((g) => g.id === alvo).concat(grupos.filter((g) => g.id !== alvo));
+  const partes = ordem.map((g) => {
+    const lista = g.paginas.filter((p) => p.slug !== atual.slug);
+    if (!lista.length) return '';
+    const cartoes = g.id === alvo && !g.compacto;
+    return `<h3>${g.nome}</h3>\n` + (cartoes
+      ? `<ul class="links">\n${lista.map(card).join('\n')}\n</ul>`
+      : `<ul class="indice">${lista.map((p) => pilula(p, g)).join('')}</ul>`);
+  }).filter(Boolean).join('\n');
+  return `<nav class="outras" aria-labelledby="titulo-outras"><h2 id="titulo-outras">Outras calculadoras</h2>\n${partes}\n</nav>`;
+}
+
+// Lista completa agrupada (início e 404): cartões, e links compactos nos grupos marcados como compactos.
+function listaAgrupada(nivel) {
+  return grupos.map((g) => `<${nivel}>${g.nome}</${nivel}>\n` + (g.compacto
+    ? `<ul class="indice">${g.paginas.map((p) => pilula(p, g)).join('')}</ul>`
+    : `<ul class="links">\n${g.paginas.map(card).join('\n')}\n</ul>`)).join('\n');
 }
 
 function faqHtml(faq) {
@@ -192,10 +215,10 @@ function jsonLdPagina(p) {
       {
         '@type': 'BreadcrumbList',
         '@id': url + '#trilha',
-        itemListElement: [
-          { '@type': 'ListItem', position: 1, name: 'Início', item: SITE + '/' },
-          { '@type': 'ListItem', position: 2, name: p.trilha, item: url }
-        ]
+        itemListElement: [{ name: 'Início', item: SITE + '/' }]
+          .concat(p.pai ? [{ name: p.pai.nome, item: SITE + p.pai.caminho }] : [])
+          .concat([{ name: p.trilha, item: url }])
+          .map((x, k) => Object.assign({ '@type': 'ListItem', position: k + 1 }, x))
       }
     ]
   };
@@ -207,16 +230,16 @@ function paginaCalculadora(p) {
 <body>
 ${topo()}
 <main id="conteudo">
-<nav class="trilha" aria-label="Você está em"><ol><li><a href="/">Início</a></li><li aria-current="page">${p.trilha}</li></ol></nav>
+<nav class="trilha" aria-label="Você está em"><ol><li><a href="/">Início</a></li>${p.pai ? `<li><a href="${p.pai.caminho}">${p.pai.nome}</a></li>` : ''}<li aria-current="page">${p.trilha}</li></ol></nav>
 <h1>${p.h1}</h1>
 <p class="lead">${p.lead}</p>
 ${blocoCalculadora(p)}
-${cta(p.slug)}
+${cta(p.slug, p.cta)}
 <article class="texto">
 ${typeof p.artigo === 'function' ? p.artigo() : p.artigo}
 </article>
 ${faqHtml(p.faq)}
-${outras(p.slug)}
+${outras(p)}
 </main>
 ${rodape(p.slug)}`;
 }
@@ -245,7 +268,6 @@ function paginaHub() {
       }
     ]
   };
-  const cards = paginas.map((p) => `<li><a href="${p.caminho}"><strong>${p.link.titulo}</strong><span>${p.link.desc}</span></a></li>`).join('\n');
   return cabeca({ title: hub.title, description: hub.description, canonical: url, jsonld }) + `
 <body>
 ${topo()}
@@ -253,10 +275,8 @@ ${topo()}
 <h1>${hub.h1}</h1>
 <p class="lead">${hub.lead}</p>
 <h2 style="margin-top:12px">Escolha a calculadora</h2>
-<ul class="links">
-${cards}
-</ul>
-${cta('inicio')}
+${listaAgrupada('h3')}
+${cta('inicio', hub.cta)}
 <article class="texto">
 ${hub.artigo}
 </article>
@@ -268,16 +288,13 @@ ${rodape('inicio')}`;
 /* ---------- 404 ---------- */
 
 function pagina404() {
-  const cards = paginas.map((p) => `<li><a href="${p.caminho}"><strong>${p.link.titulo}</strong><span>${p.link.desc}</span></a></li>`).join('\n');
   return cabeca({ title: 'Página não encontrada | ' + NOME_SITE, description: 'Esta página não existe. Veja as calculadoras de empréstimo, financiamento e juros disponíveis.', robots: 'noindex, follow' }) + `
 <body>
 ${topo()}
 <main id="conteudo">
 <h1>Página não encontrada</h1>
 <p class="lead">O endereço pode ter mudado ou ter sido digitado com algum erro. Escolha uma das calculadoras abaixo ou <a href="/">volte para o início</a>.</p>
-<ul class="links">
-${cards}
-</ul>
+${listaAgrupada('h2')}
 </main>
 ${rodape('404')}`;
 }
@@ -301,10 +318,18 @@ function contarPalavras(html) {
   return t.split(/\s+/).filter((w) => /[A-Za-zÀ-ú0-9]/.test(w)).length;
 }
 
+// "R$" nunca fica sozinho no fim da linha: no corpo da página, o espaço depois de "R$" vira espaço fixo
+// (o mesmo que C.brl já usa). O <head> e o JSON-LD ficam como estão.
+function semQuebraNoReal(html) {
+  const i = html.indexOf('<body>');
+  if (i < 0) return html;
+  return html.slice(0, i) + html.slice(i).replace(/R\$ (?=\d)/g, 'R$\u00a0');
+}
+
 function gravar(rel, conteudo) {
   const destino = path.join(RAIZ, rel);
   fs.mkdirSync(path.dirname(destino), { recursive: true });
-  fs.writeFileSync(destino, conteudo);
+  fs.writeFileSync(destino, rel.endsWith('.html') ? semQuebraNoReal(conteudo) : conteudo);
 }
 
 function main() {
@@ -318,10 +343,10 @@ function main() {
     const html = paginaCalculadora(p);
     const textoArtigo = (typeof p.artigo === 'function' ? p.artigo() : p.artigo);
     const palavras = contarPalavras(p.lead + ' ' + textoArtigo + ' ' + p.faq.map((x) => x.join(' ')).join(' '));
-    if (palavras < 600 || palavras > 1200) problemas.push(`${p.slug}: ${palavras} palavras (alvo 600–1.200)`);
+    if (palavras < 700 || palavras > 1200) problemas.push(`${p.slug}: ${palavras} palavras (alvo 700–1.200)`);
     if ((html.match(/<h1[\s>]/g) || []).length !== 1) problemas.push(p.slug + ': precisa de exatamente um h1');
     gravar(p.caminho.replace(/^\//, '') + 'index.html', html);
-    console.log(`${p.caminho.padEnd(34)} title ${String(p.title.length).padStart(2)}  desc ${String(p.description.length).padStart(3)}  palavras ${palavras}`);
+    console.log(`${p.caminho.padEnd(38)} title ${String(p.title.length).padStart(2)}  desc ${String(p.description.length).padStart(3)}  palavras ${palavras}`);
   }
   if (hub.title.length > 60) problemas.push('hub: title longo');
   if (hub.description.length > 155) problemas.push('hub: description longa');
@@ -329,7 +354,7 @@ function main() {
   gravar('404.html', pagina404());
   gravar('sitemap.xml', sitemap());
   gravar('robots.txt', robots());
-  console.log(`/ (hub)                            title ${hub.title.length}  desc ${hub.description.length}`);
+  console.log(`/ (hub)                                title ${hub.title.length}  desc ${hub.description.length}`);
   if (problemas.length) {
     console.error('\nPROBLEMAS:\n- ' + problemas.join('\n- '));
     process.exit(1);
@@ -338,4 +363,4 @@ function main() {
 }
 
 if (require.main === module) main();
-module.exports = { linkPlay, contarPalavras, paginas };
+module.exports = { linkPlay, contarPalavras, paginas, grupos };

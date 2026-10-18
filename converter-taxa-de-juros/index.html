@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Converter Taxa de Juros: mensal, anual e diária</title>
+<meta name="description" content="Converta taxa de juros mensal para anual, anual para mensal e diária para mensal por juros compostos. Tabela de equivalências de 1% a 10% ao mês.">
+<link rel="canonical" href="https://josephsantiagos.github.io/converter-taxa-de-juros/">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#0A5F5B">
+<meta name="format-detection" content="telephone=no">
+<link rel="icon" href="/assets/logo.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="Calculadora Empréstimo e Juros">
+<meta property="og:title" content="Converter Taxa de Juros: mensal, anual e diária">
+<meta property="og:description" content="Converta taxa de juros mensal para anual, anual para mensal e diária para mensal por juros compostos. Tabela de equivalências de 1% a 10% ao mês.">
+<meta property="og:url" content="https://josephsantiagos.github.io/converter-taxa-de-juros/">
+<meta property="og:image" content="https://josephsantiagos.github.io/assets/og-calculadora.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Calculadora Empréstimo e Juros: simule parcelas e juros">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="/assets/site.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","@id":"https://josephsantiagos.github.io/converter-taxa-de-juros/#calculadora","name":"Conversor de taxa de juros","url":"https://josephsantiagos.github.io/converter-taxa-de-juros/","description":"Converta taxa de juros mensal para anual, anual para mensal e diária para mensal por juros compostos. Tabela de equivalências de 1% a 10% ao mês.","applicationCategory":"FinanceApplication","operatingSystem":"Qualquer sistema com navegador","browserRequirements":"Requer JavaScript","inLanguage":"pt-BR","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"BRL"},"author":{"@type":"Person","name":"Joseph Santiago"}},{"@type":"FAQPage","@id":"https://josephsantiagos.github.io/converter-taxa-de-juros/#faq","mainEntity":[{"@type":"Question","name":"Como converter taxa de juros mensal para anual?","acceptedAnswer":{"@type":"Answer","text":"Use (1 + taxa mensal)^12 − 1, com a taxa em decimal. Exemplo: 2% ao mês → 1,02^12 − 1 = 26,82% ao ano."}},{"@type":"Question","name":"Como converter taxa anual para mensal?","acceptedAnswer":{"@type":"Answer","text":"Use (1 + taxa anual)^(1/12) − 1. Exemplo: 12% ao ano equivalem a 0,9489% ao mês, e não a 1%."}},{"@type":"Question","name":"Como transformar taxa diária em mensal?","acceptedAnswer":{"@type":"Answer","text":"Use (1 + taxa diária)^30 − 1, considerando o mês de 30 dias. Exemplo: 0,1% ao dia equivalem a 3,04% ao mês."}},{"@type":"Question","name":"Por que não posso multiplicar a taxa mensal por 12?","acceptedAnswer":{"@type":"Answer","text":"Porque os juros são compostos: os juros de cada mês passam a render juros nos meses seguintes. Multiplicar por 12 é a conta de juros simples e subestima a taxa anual."}},{"@type":"Question","name":"Qual a diferença entre taxa nominal e taxa efetiva?","acceptedAnswer":{"@type":"Answer","text":"A nominal é uma taxa anual dividida em partes iguais: 12% ao ano capitalizados por mês dão 1% ao mês. A efetiva é a que resulta dessa capitalização: 12,68% ao ano no exemplo."}},{"@type":"Question","name":"Quanto é 3% ao mês ao ano?","acceptedAnswer":{"@type":"Answer","text":"42,58% ao ano, por juros compostos: 1,03^12 − 1. Pela conta simples daria 36%."}}]},{"@type":"BreadcrumbList","@id":"https://josephsantiagos.github.io/converter-taxa-de-juros/#trilha","itemListElement":[{"@type":"ListItem","position":1,"name":"Início","item":"https://josephsantiagos.github.io/"},{"@type":"ListItem","position":2,"name":"Converter taxa de juros","item":"https://josephsantiagos.github.io/converter-taxa-de-juros/"}]}]}</script>
+</head>
+<body>
+<a class="pular" href="#conteudo">Pular para o conteúdo</a>
+<header class="topo"><div class="topo-in"><a class="marca" href="/"><img src="/assets/logo.svg" alt="" width="32" height="32">Calculadora Empréstimo e Juros</a></div></header>
+<main id="conteudo">
+<nav class="trilha" aria-label="Você está em"><ol><li><a href="/">Início</a></li><li aria-current="page">Converter taxa de juros</li></ol></nav>
+<h1>Converter taxa de juros: mensal, anual e diária</h1>
+<p class="lead">Digite a taxa e o período em que ela foi informada. O conversor mostra as taxas equivalentes ao dia, ao mês e ao ano, e quanto a conta simples erraria.</p>
+<section class="calc" id="calculadora" aria-labelledby="titulo-calc">
+<h2 id="titulo-calc" style="margin-top:0">Converta a taxa</h2>
+<form data-calc="converter" data-saida="resultado-converter" data-anuncio="anuncio-converter" novalidate>
+<div class="campos">
+<div class="campo"><label for="converter-taxa">Taxa de juros</label><div class="entrada"><input id="converter-taxa" name="taxa" type="text" inputmode="decimal" autocomplete="off" value="2"><span class="un" aria-hidden="true">%</span></div></div>
+<div class="campo"><label for="converter-de">A taxa digitada é</label><select id="converter-de" name="de"><option value="dia">ao dia</option><option value="mes" selected>ao mês</option><option value="ano">ao ano</option></select></div>
+</div>
+<button class="botao" type="submit">Converter</button>
+</form>
+<p class="sr" id="anuncio-converter" aria-live="polite"></p>
+<div class="resultado" id="resultado-converter"><div class="res-destaque"><span class="res-rotulo">Taxa anual equivalente</span><strong class="res-valor">26,82% ao ano</strong><span class="res-sub">2,00% ao mês, com juros compostos</span></div><div class="rolagem"><table class="comparativo"><caption>Equivalências de 2,00% ao mês</caption><thead><tr><th scope="col">Período</th><th scope="col">Juros compostos (equivalente)</th><th scope="col">Conta simples (proporcional)</th></tr></thead><tbody><tr><th scope="row">Ao dia (corrido)</th><td>0,0660%</td><td>0,0667%</td></tr><tr><th scope="row">Ao mês</th><td>2,00%</td><td>2,00%</td></tr><tr><th scope="row">Ao trimestre</th><td>6,12%</td><td>6,00%</td></tr><tr><th scope="row">Ao semestre</th><td>12,62%</td><td>12,00%</td></tr><tr><th scope="row">Ao ano</th><td>26,82%</td><td>24,00%</td></tr></tbody></table></div><p class="res-frase">Multiplicar 2,00% por 12 daria 24,00%, mas com juros sobre juros a taxa anual equivalente é <strong>26,82%</strong>.</p><p class="res-nota">Base: mês de 30 dias e ano de 360 dias. Em dias úteis (252 por ano), a taxa diária equivalente seria 0,0943%.</p><p class="aviso">Simulação ilustrativa. Não oferecemos nem intermediamos crédito e não temos vínculo com bancos, financeiras ou órgãos públicos. Antes de contratar, confira o Custo Efetivo Total (CET) informado pela instituição.</p></div>
+</section>
+<aside class="cta-app" aria-label="App para Android">
+<p class="cta-titulo">Leve a calculadora no celular — grátis, sem cadastro</p>
+<p class="cta-texto">No app você digita a taxa ao mês ou ao ano, compara ofertas e descobre a taxa embutida de qualquer parcela.</p>
+<a class="botao-play" href="https://play.google.com/store/apps/details?id=com.josephsantiago.calculadoraemprestimos&amp;referrer=utm_source%3Dsite%26utm_medium%3Dconverter-taxa-de-juros%26utm_campaign%3Dorganico" rel="noopener"><svg width="26" height="28" viewBox="0 0 26 28" aria-hidden="true" focusable="false"><path d="M3 2.6v22.8a1.6 1.6 0 0 0 2.4 1.4l18.6-11.4a1.6 1.6 0 0 0 0-2.8L5.4 1.2A1.6 1.6 0 0 0 3 2.6z" fill="#FFD166"/><path d="M8 9.5v9l7.4-4.5z" fill="#111"/></svg><span><small>Disponível no</small><b>Google Play</b></span></a>
+</aside>
+<article class="texto">
+
+<h2>Por que não dá para multiplicar por 12</h2>
+<p>Com juros compostos, os juros de cada mês entram no saldo e passam a render juros no mês seguinte. Por isso uma taxa de 2% ao mês não vira 24% ao ano. No primeiro mês, R$ 100 viram R$ 102; no segundo, os 2% incidem sobre R$ 102 e o saldo vai a R$ 104,04; ao fim de 12 meses, chega a R$ 126,82. A taxa anual equivalente é 26,82%, e não 24%.</p>
+<p>O contrário também vale: 12% ao ano não são 1% ao mês, e sim 0,9489%. A diferença parece pequena, mas em prazos longos, como nos financiamentos, muda bastante o valor da parcela.</p>
+
+<h2>As fórmulas de conversão</h2>
+<ul>
+<li><strong>Mensal para anual:</strong> taxa anual = (1 + taxa mensal)<sup>12</sup> − 1</li>
+<li><strong>Anual para mensal:</strong> taxa mensal = (1 + taxa anual)<sup>1/12</sup> − 1</li>
+<li><strong>Diária para mensal:</strong> taxa mensal = (1 + taxa diária)<sup>30</sup> − 1</li>
+<li><strong>Mensal para diária:</strong> taxa diária = (1 + taxa mensal)<sup>1/30</sup> − 1</li>
+</ul>
+<p>A regra geral é <strong>taxa equivalente = (1 + taxa)<sup>período desejado ÷ período da taxa</sup> − 1</strong>, com os dois períodos medidos na mesma unidade. As taxas sempre entram na conta em forma decimal: 2% vira 0,02.</p>
+
+<h2>Tabela de equivalências: de 1% a 10% ao mês</h2>
+<p>As taxas mensais mais comuns e as equivalentes ao ano e ao dia, por juros compostos, ao lado da conta simples (taxa × 12) para comparar.</p>
+<div class="rolagem"><table class="comparativo"><caption>Taxas equivalentes por juros compostos (mês de 30 dias)</caption>
+<thead><tr><th scope="col">Taxa mensal</th><th scope="col">Ao ano (compostos)</th><th scope="col">Ao ano (× 12)</th><th scope="col">Ao dia</th></tr></thead>
+<tbody>
+<tr><td>1% ao mês</td><td>12,68%</td><td>12,00%</td><td>0,0332%</td></tr>
+<tr><td>2% ao mês</td><td>26,82%</td><td>24,00%</td><td>0,0660%</td></tr>
+<tr><td>3% ao mês</td><td>42,58%</td><td>36,00%</td><td>0,0986%</td></tr>
+<tr><td>4% ao mês</td><td>60,10%</td><td>48,00%</td><td>0,1308%</td></tr>
+<tr><td>5% ao mês</td><td>79,59%</td><td>60,00%</td><td>0,1628%</td></tr>
+<tr><td>6% ao mês</td><td>101,22%</td><td>72,00%</td><td>0,1944%</td></tr>
+<tr><td>7% ao mês</td><td>125,22%</td><td>84,00%</td><td>0,2258%</td></tr>
+<tr><td>8% ao mês</td><td>151,82%</td><td>96,00%</td><td>0,2569%</td></tr>
+<tr><td>9% ao mês</td><td>181,27%</td><td>108,00%</td><td>0,2877%</td></tr>
+<tr><td>10% ao mês</td><td>213,84%</td><td>120,00%</td><td>0,3182%</td></tr>
+</tbody></table></div>
+<p>Repare como a distância entre as duas colunas anuais cresce com a taxa: a 1% ao mês, a conta simples erra por 0,68 pontos percentuais no ano; a 10% ao mês, erra por 94 pontos.</p>
+
+<h2>Exemplos resolvidos</h2>
+<ol>
+<li><strong>1,5% ao mês para anual:</strong> 1,015<sup>12</sup> = 1,1956; menos 1 dá 0,1956, ou 19,56% ao ano.</li>
+<li><strong>18% ao ano para mensal:</strong> 1,18<sup>1/12</sup> = 1,013888; menos 1 dá 1,3888% ao mês, e não 1,5%.</li>
+<li><strong>0,2% ao dia para mensal:</strong> 1,002<sup>30</sup> = 1,0618; menos 1 dá 6,18% ao mês. Taxas diárias parecem pequenas, mas viram uma taxa mensal considerável.</li>
+</ol>
+
+<h2>Taxa nominal e taxa efetiva</h2>
+<p>Alguns contratos informam uma <strong>taxa nominal</strong>, como “12% ao ano com capitalização mensal”. Isso quer dizer 1% ao mês (12 ÷ 12), aplicado mês a mês. A <strong>taxa efetiva</strong> anual, a que realmente pesa no bolso, é 1,01<sup>12</sup> − 1 = 12,68%. É comum ver as duas no contrato de <a href="/financiamento-imobiliario/">financiamento imobiliário</a>. Para comparar propostas, use sempre a efetiva ou, melhor ainda, o <a href="/o-que-e-cet/">CET</a>.</p>
+
+<h2>Dias corridos ou dias úteis?</h2>
+<p>Este conversor usa o ano comercial: mês de 30 dias e ano de 360 dias, convenção comum em matemática financeira. Em investimentos é comum contar só os dias úteis, cerca de 252 por ano, e por isso o resultado mostra também a taxa diária nessa base. A base escolhida muda a taxa diária, mas não muda a equivalência entre mês e ano.</p>
+
+<h2>Dicas</h2>
+<ul>
+<li>Compare taxas sempre no mesmo período: mês com mês, ano com ano.</li>
+<li>Anúncios costumam destacar a taxa mensal. Converta para a anual para enxergar o tamanho do custo.</li>
+<li>Para usar a taxa convertida, leve-a ao <a href="/simulador-emprestimo/">simulador de empréstimo</a>, que também aceita taxa ao ano.</li>
+<li>Se você só sabe a parcela, descubra primeiro a taxa em <a href="/descobrir-taxa-de-juros/">descobrir taxa de juros</a>.</li>
+</ul>
+</article>
+<section class="faq" aria-labelledby="titulo-faq"><h2 id="titulo-faq">Perguntas frequentes</h2>
+<details><summary>Como converter taxa de juros mensal para anual?</summary><p>Use (1 + taxa mensal)^12 − 1, com a taxa em decimal. Exemplo: 2% ao mês → 1,02^12 − 1 = 26,82% ao ano.</p></details>
+<details><summary>Como converter taxa anual para mensal?</summary><p>Use (1 + taxa anual)^(1/12) − 1. Exemplo: 12% ao ano equivalem a 0,9489% ao mês, e não a 1%.</p></details>
+<details><summary>Como transformar taxa diária em mensal?</summary><p>Use (1 + taxa diária)^30 − 1, considerando o mês de 30 dias. Exemplo: 0,1% ao dia equivalem a 3,04% ao mês.</p></details>
+<details><summary>Por que não posso multiplicar a taxa mensal por 12?</summary><p>Porque os juros são compostos: os juros de cada mês passam a render juros nos meses seguintes. Multiplicar por 12 é a conta de juros simples e subestima a taxa anual.</p></details>
+<details><summary>Qual a diferença entre taxa nominal e taxa efetiva?</summary><p>A nominal é uma taxa anual dividida em partes iguais: 12% ao ano capitalizados por mês dão 1% ao mês. A efetiva é a que resulta dessa capitalização: 12,68% ao ano no exemplo.</p></details>
+<details><summary>Quanto é 3% ao mês ao ano?</summary><p>42,58% ao ano, por juros compostos: 1,03^12 − 1. Pela conta simples daria 36%.</p></details>
+</section>
+<nav class="outras" aria-labelledby="titulo-outras"><h2 id="titulo-outras">Outras calculadoras</h2>
+<h3>Juros e taxas</h3>
+<ul class="links">
+<li><a href="/descobrir-taxa-de-juros/"><strong>Descobrir a taxa de juros</strong><span>A taxa real a partir do valor da parcela.</span></a></li>
+<li><a href="/o-que-e-cet/"><strong>O que é CET</strong><span>O custo real com IOF, tarifas e seguros.</span></a></li>
+<li><a href="/juros-parcelamento/"><strong>Juros no parcelamento</strong><span>Descubra o juro escondido no “sem juros”.</span></a></li>
+<li><a href="/juros-crediario/"><strong>Juros do crediário</strong><span>A taxa escondida no carnê da loja.</span></a></li>
+<li><a href="/juros-cartao-de-credito/"><strong>Juros do cartão de crédito</strong><span>Rotativo ou parcelamento da fatura: quanto custa.</span></a></li>
+<li><a href="/juros-compostos/"><strong>Juros compostos</strong><span>Quanto o dinheiro cresce com aportes mensais.</span></a></li>
+<li><a href="/calculadora-juros-simples/"><strong>Juros simples</strong><span>Simples × compostos lado a lado.</span></a></li>
+</ul>
+<h3>Empréstimo</h3>
+<ul class="indice"><li><a href="/simulador-emprestimo/">Simulador de empréstimo</a></li><li><a href="/quanto-fica-emprestimo/">Quanto fica um empréstimo</a></li><li><a href="/como-calcular-juros-de-emprestimo/">Como calcular juros de empréstimo</a></li><li><a href="/quitar-emprestimo-antecipado/">Quitar empréstimo antecipado</a></li><li><a href="/emprestimo-consignado/">Empréstimo consignado</a></li><li><a href="/emprestimo-pessoal-ou-consignado/">Pessoal ou consignado</a></li></ul>
+<h3>Financiamento e amortização</h3>
+<ul class="indice"><li><a href="/simulador-financiamento-carro/">Financiamento de carro</a></li><li><a href="/simulador-financiamento-moto/">Financiamento de moto</a></li><li><a href="/financiamento-imobiliario/">Financiamento imobiliário</a></li><li><a href="/tabela-price/">Tabela Price</a></li><li><a href="/price-ou-sac/">Price ou SAC</a></li></ul>
+<h3>Empréstimo por valor</h3>
+<ul class="indice"><li><a href="/emprestimo-de-1000-reais/">R$ 1 mil</a></li><li><a href="/emprestimo-de-2000-reais/">R$ 2 mil</a></li><li><a href="/emprestimo-de-3000-reais/">R$ 3 mil</a></li><li><a href="/emprestimo-de-5000-reais/">R$ 5 mil</a></li><li><a href="/emprestimo-de-10000-reais/">R$ 10 mil</a></li><li><a href="/emprestimo-de-15000-reais/">R$ 15 mil</a></li><li><a href="/emprestimo-de-20000-reais/">R$ 20 mil</a></li><li><a href="/emprestimo-de-30000-reais/">R$ 30 mil</a></li><li><a href="/emprestimo-de-50000-reais/">R$ 50 mil</a></li></ul>
+</nav>
+</main>
+<footer class="rodape"><div class="rodape-in">
+<aside class="cta-app" aria-label="App para Android">
+<p class="cta-titulo">Leve a calculadora no celular — grátis, sem cadastro</p>
+<p class="cta-texto">Com o app Calculadora Empréstimo e Juros você simula parcelas em Price ou SAC, com taxa ao mês ou ao ano, e vê a tabela de amortização no seu Android.</p>
+<a class="botao-play" href="https://play.google.com/store/apps/details?id=com.josephsantiago.calculadoraemprestimos&amp;referrer=utm_source%3Dsite%26utm_medium%3Dconverter-taxa-de-juros%26utm_campaign%3Dorganico" rel="noopener"><svg width="26" height="28" viewBox="0 0 26 28" aria-hidden="true" focusable="false"><path d="M3 2.6v22.8a1.6 1.6 0 0 0 2.4 1.4l18.6-11.4a1.6 1.6 0 0 0 0-2.8L5.4 1.2A1.6 1.6 0 0 0 3 2.6z" fill="#FFD166"/><path d="M8 9.5v9l7.4-4.5z" fill="#111"/></svg><span><small>Disponível no</small><b>Google Play</b></span></a>
+</aside>
+<p class="aviso">Simulação ilustrativa. Não oferecemos nem intermediamos crédito e não temos vínculo com bancos, financeiras ou órgãos públicos. Antes de contratar, confira o Custo Efetivo Total (CET) informado pela instituição.</p>
+<nav aria-label="Todas as calculadoras"><p class="rodape-titulo"><a href="/">Início: todas as calculadoras</a></p>
+<p class="rodape-titulo">Empréstimo</p><ul class="rodape-links"><li><a href="/simulador-emprestimo/">Simulador de empréstimo</a></li><li><a href="/quanto-fica-emprestimo/">Quanto fica um empréstimo</a></li><li><a href="/como-calcular-juros-de-emprestimo/">Como calcular juros de empréstimo</a></li><li><a href="/quitar-emprestimo-antecipado/">Quitar empréstimo antecipado</a></li><li><a href="/emprestimo-consignado/">Empréstimo consignado</a></li><li><a href="/emprestimo-pessoal-ou-consignado/">Pessoal ou consignado</a></li></ul>
+<p class="rodape-titulo">Financiamento e amortização</p><ul class="rodape-links"><li><a href="/simulador-financiamento-carro/">Financiamento de carro</a></li><li><a href="/simulador-financiamento-moto/">Financiamento de moto</a></li><li><a href="/financiamento-imobiliario/">Financiamento imobiliário</a></li><li><a href="/tabela-price/">Tabela Price</a></li><li><a href="/price-ou-sac/">Price ou SAC</a></li></ul>
+<p class="rodape-titulo">Juros e taxas</p><ul class="rodape-links"><li><a href="/descobrir-taxa-de-juros/">Descobrir a taxa de juros</a></li><li><a href="/o-que-e-cet/">O que é CET</a></li><li><a href="/converter-taxa-de-juros/">Converter taxa de juros</a></li><li><a href="/juros-parcelamento/">Juros no parcelamento</a></li><li><a href="/juros-crediario/">Juros do crediário</a></li><li><a href="/juros-cartao-de-credito/">Juros do cartão de crédito</a></li><li><a href="/juros-compostos/">Juros compostos</a></li><li><a href="/calculadora-juros-simples/">Juros simples</a></li></ul>
+<p class="rodape-titulo">Empréstimo por valor</p><ul class="rodape-links"><li><a href="/emprestimo-de-1000-reais/">R$ 1 mil</a></li><li><a href="/emprestimo-de-2000-reais/">R$ 2 mil</a></li><li><a href="/emprestimo-de-3000-reais/">R$ 3 mil</a></li><li><a href="/emprestimo-de-5000-reais/">R$ 5 mil</a></li><li><a href="/emprestimo-de-10000-reais/">R$ 10 mil</a></li><li><a href="/emprestimo-de-15000-reais/">R$ 15 mil</a></li><li><a href="/emprestimo-de-20000-reais/">R$ 20 mil</a></li><li><a href="/emprestimo-de-30000-reais/">R$ 30 mil</a></li><li><a href="/emprestimo-de-50000-reais/">R$ 50 mil</a></li></ul>
+</nav>
+<p>Feito por Joseph Santiago, desenvolvedor de apps Android. <a href="https://play.google.com/store/apps/details?id=com.josephsantiago.calculadoraemprestimos">Calculadora Empréstimo e Juros na Google Play</a> · <a href="https://josephsantiagos.github.io/pilitica-de-privacidade-play-sotre-/">Política de privacidade</a> · Contato: <a href="mailto:josephsantiago250@gmail.com">josephsantiago250@gmail.com</a></p>
+<p>Este site não exibe anúncios e não coleta os valores digitados: as contas são feitas no seu próprio aparelho.</p>
+</div></footer>
+<script src="/assets/calc.js" defer></script>
+</body>
+</html>

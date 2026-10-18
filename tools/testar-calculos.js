@@ -152,7 +152,15 @@ t('todas as calculadoras: exemplo padrão ok, com aviso', () => {
     pricesac: { valor: '20.000', taxa: '1,8', tipo: 'mes', prazo: '36' },
     consignado: { renda: '3.000', margem: '35', valor: '10.000', taxa: '1,8', tipo: 'mes', prazo: '48' },
     compostos: { inicial: '1.000', aporte: '300', taxa: '0,8', tipo: 'mes', prazo: '10', unidade: 'anos' },
-    cartao: { fatura: '2.000', pago: '500', rotativo: '14', taxaparc: '8', n: '6' }
+    cartao: { fatura: '2.000', pago: '500', rotativo: '14', taxaparc: '8', n: '6' },
+    quitacao: { parcela: '650,00', taxa: '2,5', tipo: 'mes', restantes: '18' },
+    converter: { taxa: '2', de: 'mes' },
+    simples: { capital: '10.000', taxa: '2', tipo: 'mes', prazo: '24', unidade: 'meses' },
+    cet: { liberado: '10.000', parcela: '595,00', n: '24', anunciada: '2,5' },
+    passos: { valor: '8.000', taxa: '3', tipo: 'mes', prazo: '12' },
+    imovel: { valor: '400.000', entrada: '100.000', taxa: '11', tipo: 'ano', prazo: '360', sistema: 'sac' },
+    crediario: { avista: '2.400', entrada: '300', parcela: '259,90', n: '10' },
+    comparar: { valor: '10.000', taxaa: '3,5', prazoa: '24', taxab: '1,8', prazob: '36' }
   };
   for (const [k, v] of Object.entries(ex)) {
     const r = R[k](Object.assign({}, v));
@@ -190,6 +198,143 @@ t('taxa 0% funciona em todas as contas', () => {
   assert.ok(R.compostos({ inicial: '100', aporte: '10', taxa: '0', tipo: 'mes', prazo: '12', unidade: 'meses' }).html.includes('R$ 220,00'));
 });
 
+// compara textos ignorando a diferença entre espaço comum e o espaço fixo usado em "R$ 1,00"
+const tem = (h, x) => h.replace(/\u00a0/g, ' ').includes(String(x).replace(/\u00a0/g, ' '));
+
+/* ---------- quitação antecipada ---------- */
+t('quitação: valor presente das parcelas restantes', () => {
+  // 18 × 650 a 2,5% a.m. → 650 × (1 − 1,025^−18) / 0,025
+  perto(C.valorPresente(650, 0.025, 18), 650 * (1 - Math.pow(1.025, -18)) / 0.025, 1e-9);
+  const h = R.quitacao({ parcela: '650,00', taxa: '2,5', tipo: 'mes', restantes: '18' }).html;
+  assert.ok(tem(h, 'R$ 9.329,69'), 'valor para quitar');
+  assert.ok(tem(h, 'R$ 2.370,31'), 'desconto');
+  assert.ok(tem(h, '416,76'), 'última parcela antecipada');
+});
+t('quitação: antecipar todas = quitar; última parcela tem o maior desconto', () => {
+  for (const [pm, i, n] of [[650, 0.025, 18], [1172.49, 0.0149, 48], [99.9, 0.08, 7]]) {
+    perto(C.anteciparUltimas(pm, i, n, n), C.valorPresente(pm, i, n), 1e-6);
+    const ultima = C.anteciparUltimas(pm, i, n, 1), proxima = pm / (1 + i);
+    assert.ok(ultima < proxima, 'a última deve sair mais barata que a próxima');
+    perto(ultima, pm / Math.pow(1 + i, n), 1e-9);
+  }
+});
+t('quitação: taxa zero não dá desconto; taxa ao ano é convertida; erros', () => {
+  assert.ok(R.quitacao({ parcela: '100', taxa: '0', tipo: 'mes', restantes: '12' }).html.replace(/\u00a0/g, ' ').includes('R$ 1.200,00'));
+  const anual = R.quitacao({ parcela: '500', taxa: '24', tipo: 'ano', restantes: '12' }).html;
+  assert.ok(tem(anual, C.brl(C.r2(C.valorPresente(500, C.mensalDeAnual(0.24), 12)))));
+  assert.ok(!R.quitacao({ parcela: '500', taxa: '2', tipo: 'mes', restantes: '421' }).ok);
+  assert.ok(!R.quitacao({ parcela: '', taxa: '2', tipo: 'mes', restantes: '10' }).ok);
+});
+
+/* ---------- conversão de taxa ---------- */
+t('conversão: mensal ↔ anual ↔ diária por juros compostos', () => {
+  perto(C.equivalente(0.02, 30, 360), Math.pow(1.02, 12) - 1, 1e-12);
+  perto(C.equivalente(0.12, 360, 30), C.mensalDeAnual(0.12), 1e-12);
+  perto(C.equivalente(C.equivalente(0.035, 30, 1), 1, 30), 0.035, 1e-12);
+  assert.strictEqual(C.pct(C.equivalente(0.001, 1, 30)), '3,04%');
+  assert.strictEqual(C.pct(C.mensalDeAnual(0.12), 4), '0,9489%');
+  assert.strictEqual(C.pct(C.anualDeMensal(0.01)), '12,68%');
+});
+t('conversão: calculadora (mês, ano, dia) e erros', () => {
+  const m = R.converter({ taxa: '2', de: 'mes' }).html;
+  assert.ok(tem(m, '26,82% ao ano') && tem(m, '24,00%'), 'mensal → anual e proporcional');
+  assert.ok(R.converter({ taxa: '12', de: 'ano' }).html.replace(/\u00a0/g, ' ').includes('0,9489%'), 'anual → mensal');
+  assert.ok(R.converter({ taxa: '0,1', de: 'dia' }).html.replace(/\u00a0/g, ' ').includes('3,04% ao mês'), 'diária → mensal');
+  assert.ok(!R.converter({ taxa: '-1', de: 'mes' }).ok);
+  assert.ok(!R.converter({ taxa: 'x', de: 'mes' }).ok);
+  assert.ok(!R.converter({ taxa: '5', de: 'dia' }).ok, 'taxa diária absurda');
+});
+
+/* ---------- juros simples ---------- */
+t('juros simples: J = C·i·t e comparação com compostos', () => {
+  perto(C.montanteSimples(10000, 0.02, 24), 14800, 1e-9);
+  perto(C.montanteComposto(10000, 0.02, 24), 10000 * Math.pow(1.02, 24), 1e-9);
+  const h = R.simples({ capital: '10.000', taxa: '2', tipo: 'mes', prazo: '24', unidade: 'meses' }).html;
+  assert.ok(tem(h, 'R$ 4.800,00') && tem(h, 'R$ 16.084,37') && tem(h, 'R$ 1.284,37'));
+  // em 1 período os dois regimes coincidem; em menos de 1 período o simples é maior
+  assert.ok(R.simples({ capital: '1000', taxa: '2', tipo: 'mes', prazo: '1', unidade: 'meses' }).html.replace(/\u00a0/g, ' ').includes('mesmo resultado'));
+  const meio = R.simples({ capital: '1000', taxa: '10', tipo: 'ano', prazo: '6', unidade: 'meses' }).html;
+  assert.ok(tem(meio, 'R$ 1.050,00') && tem(meio, C.brl(1000 * Math.sqrt(1.1))), '10% a.a. por 6 meses');
+  assert.ok(R.simples({ capital: '1000', taxa: '12', tipo: 'ano', prazo: '2', unidade: 'anos' }).html.replace(/\u00a0/g, ' ').includes('R$ 1.240,00'));
+});
+
+/* ---------- CET ---------- */
+t('CET: taxa efetiva pelo valor liberado e efeito dos encargos', () => {
+  const r = C.taxaImplicita(10000, 595, 24, false);
+  perto(C.valorPresente(595, r.i, 24), 10000, 1e-6);
+  const h = R.cet({ liberado: '10.000', parcela: '595,00', n: '24', anunciada: '2,5' }).html;
+  assert.ok(tem(h, '3,07% ao mês') && tem(h, '43,76% ao ano'), 'CET mensal/anual');
+  assert.ok(tem(h, 'R$ 10.641,57') && tem(h, 'R$ 641,57'), 'contrato bruto e encargos');
+  const sem = R.cet({ liberado: '10.000', parcela: '595,00', n: '24', anunciada: '' });
+  assert.ok(sem.ok && !sem.html.replace(/\u00a0/g, ' ').includes('anunciada de'), 'taxa anunciada é opcional');
+  assert.ok(R.cet({ liberado: '10.000', parcela: '400', n: '24', anunciada: '' }).html.replace(/\u00a0/g, ' ').includes('menos do que'), 'parcelas somam menos');
+  assert.ok(R.cet({ liberado: '10.000', parcela: '595', n: '24', anunciada: '4' }).html.replace(/\u00a0/g, ' ').includes('res-erro'), 'anunciada maior que o CET');
+});
+
+/* ---------- financiamento com entrada (veículo e imóvel) ---------- */
+t('financiamento: entrada sai do valor financiado (carro e imóvel)', () => {
+  const car = R.financiamento({ valor: '60.000', entrada: '20.000', taxa: '1,49', tipo: 'mes', prazo: '48' }).html;
+  assert.ok(tem(car, C.brl(C.price(40000, 0.0149, 48).parcela)));
+  const i = C.mensalDeAnual(0.11);
+  const sac = C.sac(300000, i, 360), pr = C.price(300000, i, 360);
+  assert.strictEqual(sac.primeira, C.r2(300000 / 360) + C.r2(300000 * i));
+  const h = R.imovel({ valor: '400.000', entrada: '100.000', taxa: '11', tipo: 'ano', prazo: '360', sistema: 'sac' }).html;
+  assert.ok(tem(h, 'R$ 3.453,71') && tem(h, 'R$ 300.000,00') && tem(h, '(25,0%)'), 'SAC com entrada');
+  assert.ok(tem(h, C.brl(pr.parcela)) && tem(h, C.brl(C.r2(pr.juros - sac.juros))), 'comparação com a Price');
+  assert.ok(tem(h, C.brl(C.r2(sac.primeira / 0.3))), 'renda de referência');
+  const hp = R.imovel({ valor: '400.000', entrada: '100.000', taxa: '11', tipo: 'ano', prazo: '360', sistema: 'price' }).html;
+  assert.ok(tem(hp, 'Parcela mensal (Price)') && tem(hp, 'R$ 2.740,07'));
+  assert.ok(R.imovel({ valor: '400.000', entrada: '0', taxa: '0,9', tipo: 'mes', prazo: '420', sistema: 'price' }).ok, '420 meses sem entrada');
+  assert.ok(!R.imovel({ valor: '400.000', entrada: '0', taxa: '0,9', tipo: 'mes', prazo: '421', sistema: 'sac' }).ok, 'prazo > 420');
+  assert.ok(!R.imovel({ valor: '400.000', entrada: '400.000', taxa: '11', tipo: 'ano', prazo: '360', sistema: 'sac' }).ok, 'entrada = valor');
+  // custo total = entrada + parcelas
+  assert.ok(tem(h, C.brl(C.r2(100000 + sac.total))));
+});
+
+/* ---------- crediário, comparação e passo a passo ---------- */
+t('crediário: taxa sobre o saldo (preço à vista − entrada)', () => {
+  const h = R.crediario({ avista: '2.400', entrada: '300', parcela: '259,90', n: '10' }).html;
+  assert.ok(tem(h, C.pct(C.taxaImplicita(2100, 259.9, 10).i) + ' ao mês') && tem(h, 'R$ 499,00'));
+  assert.strictEqual(C.pct(C.taxaImplicita(2100, 259.9, 10).i), '4,08%');
+  assert.ok(R.crediario({ avista: '1.000', entrada: '0', parcela: '100', n: '10' }).html.replace(/\u00a0/g, ' ').includes('0% ao mês'));
+  assert.ok(!R.crediario({ avista: '1.000', entrada: '1.000', parcela: '100', n: '10' }).ok);
+});
+t('comparar ofertas: escolhe a de menor custo total', () => {
+  const h = R.comparar({ valor: '10.000', taxaa: '3,5', prazoa: '24', taxab: '1,8', prazob: '36' }).html;
+  assert.ok(tem(h, 'oferta B') && tem(h, 'R$ 1.271,28') && tem(h, 'R$ 622,73') && tem(h, 'R$ 379,84'));
+  const h2 = R.comparar({ valor: '10.000', taxaa: '2', prazoa: '12', taxab: '2', prazob: '48' }).html;
+  assert.ok(tem(h2, 'oferta A') && tem(h2, 'parcela é'), 'prazo curto: mais barata, parcela maior');
+});
+t('passo a passo: mostra as contas da fórmula', () => {
+  const h = R.passos({ valor: '8.000', taxa: '3', tipo: 'mes', prazo: '12' }).html;
+  for (const x of ['1,425761', '0,701380', '0,298620', 'R$ 803,70', 'R$ 1.644,40', 'R$ 240,00', 'R$ 563,70']) assert.ok(tem(h, x), x);
+  assert.ok(R.passos({ valor: '1.200', taxa: '0', tipo: 'mes', prazo: '12' }).html.replace(/\u00a0/g, ' ').includes('R$ 100,00'));
+  assert.ok(R.passos({ valor: '10.000', taxa: '24', tipo: 'ano', prazo: '12' }).html.replace(/\u00a0/g, ' ').includes('(1 + 0,2400)'));
+});
+
+/* ---------- páginas por valor ---------- */
+t('páginas por valor: tabela 7 prazos × 4 taxas, calculadora com o valor e FAQ correta', () => {
+  const fs = require('fs'), path = require('path');
+  const raiz = path.resolve(__dirname, '..');
+  const valores = paginas.filter((p) => /^emprestimo-de-\d+-reais$/.test(p.slug));
+  assert.strictEqual(valores.length, 9);
+  for (const p of valores) {
+    const v = Number(p.slug.match(/\d+/)[0]);
+    const html = fs.readFileSync(path.join(raiz, p.caminho.slice(1), 'index.html'), 'utf8');
+    const tab = html.match(/<table class="tabela-pronta">[\s\S]*?<\/table>/)[0];
+    assert.strictEqual((tab.match(/<td>/g) || []).length, 28, p.slug + ': células');
+    for (const n of [6, 12, 18, 24, 36, 48, 60]) {
+      for (const tx of [0.015, 0.025, 0.035, 0.05]) assert.ok(tab.includes(C.fmt(C.price(v, tx, n).parcela)), `${p.slug} ${n}x ${tx}`);
+    }
+    assert.ok(tem(html, `id="emprestimo-valor" name="valor" type="text" inputmode="decimal" autocomplete="off" value="${C.fmt(v, 0)}"`), p.slug + ': valor pré-preenchido');
+    const prazo = p.calc.campos.find((x) => x.nome === 'prazo').valor;
+    assert.ok(tem(html, C.brl(C.price(v, 0.025, Number(prazo)).parcela)), p.slug + ': resultado pré-calculado');
+    assert.ok(p.faq.length >= 5);
+  }
+  const qf = fs.readFileSync(path.join(raiz, 'quanto-fica-emprestimo/index.html'), 'utf8');
+  for (const p of valores) assert.ok(qf.includes(`href="${p.caminho}"`), 'quanto-fica sem link para ' + p.caminho);
+});
+
 /* ---------- números fixos citados nos textos/FAQ ---------- */
 t('números citados nas FAQs batem com a calculadora', () => {
   const cit = {
@@ -201,11 +346,22 @@ t('números citados nas FAQs batem com a calculadora', () => {
     'descobrir-taxa-de-juros': [C.pct(C.taxaImplicita(3000, 329, 12).i), C.pct(948 / 3000 / 12), C.pct(C.anualDeMensal(0.045))],
     'tabela-price': [C.brl(C.price(5000, 0.03, 12).parcela)],
     'juros-compostos': [C.brl(C.compostos(10000, 0, 0.01, 12).final), C.pct(C.mensalDeAnual(0.12))],
-    'juros-cartao-de-credito': [C.brl(1500 * 0.14)]
+    'juros-cartao-de-credito': [C.brl(1500 * 0.14)],
+    'quitar-emprestimo-antecipado': ['R$ 9.329,69', 'R$ 11.700,00', 'R$ 416,76'],
+    'converter-taxa-de-juros': ['26,82%', '0,9489%', '3,04%', '12,68%', '42,58%'],
+    'calculadora-juros-simples': ['R$ 4.800,00', 'R$ 14.800,00', 'R$ 16.084,37', '4,88%'],
+    'o-que-e-cet': ['3,07%', '43,76%'],
+    'como-calcular-juros-de-emprestimo': ['R$ 803,70', 'R$ 1.644,40', '2,60%'],
+    'financiamento-imobiliario': ['R$ 3.453,71', 'R$ 2.740,07', 'R$ 213.445,05'],
+    'juros-crediario': ['4,08%'],
+    'emprestimo-de-1000-reais': [C.brl(C.price(1000, 0.025, 12).parcela)],
+    'emprestimo-de-5000-reais': [C.brl(C.price(5000, 0.025, 24).parcela)],
+    'emprestimo-de-10000-reais': [C.brl(C.price(10000, 0.025, 24).parcela)],
+    'emprestimo-de-50000-reais': [C.brl(C.price(50000, 0.025, 60).parcela)]
   };
   for (const p of paginas) {
-    const txt = p.faq.map((x) => x[1]).join(' ').replace(/R\$ /g, 'R$ ');
-    for (const n of cit[p.slug] || []) assert.ok(txt.includes(n), `${p.slug}: FAQ não contém ${n}`);
+    const txt = p.faq.map((x) => x[1]).join(' ');
+    for (const n of cit[p.slug] || []) assert.ok(tem(txt, n), `${p.slug}: FAQ não contém ${n}`);
   }
 });
 
