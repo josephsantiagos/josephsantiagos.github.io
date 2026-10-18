@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <base href="/assinador/">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Assinador PDF: assine PDF com certificado digital A1 (ICP-Brasil) online e grátis</title>
+  <meta name="description" content="Assine PDF com seu certificado digital A1 (e-CPF ou e-CNPJ) no padrão ICP-Brasil, direto no navegador. Escolha onde vai o selo, baixe ou envie o PDF assinado. O arquivo não sai do seu computador.">
+  <meta name="keywords" content="assinar pdf, assinador, certificado digital A1, e-CPF, e-CNPJ, ICP-Brasil, assinatura digital, PAdES, pfx">
+  <link rel="canonical" href="https://josephsantiagos.github.io/assinador/">
+  <meta name="theme-color" content="#1F4E9E">
+
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:title" content="Assinador PDF: assine com certificado digital A1">
+  <meta property="og:description" content="Assine PDF com seu e-CPF ou e-CNPJ no padrão ICP-Brasil, direto no navegador. Grátis e sem enviar o arquivo.">
+  <meta property="og:url" content="https://josephsantiagos.github.io/assinador/">
+  <meta property="og:image" content="https://josephsantiagos.github.io/assinador/previa.png">
+  <meta property="og:image:width" content="1024">
+  <meta property="og:image:height" content="500">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Assinador">
+  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="manifest" href="manifest.json">
+
+  <!-- Google AdSense (conta pub-6560293652268094, a mesma do AdMob). Os anúncios automáticos são ligados no
+       painel do AdSense depois que o site for aprovado; o banner do rodapé usa o bloco abaixo, se houver. -->
+  <meta name="google-adsense-account" content="ca-pub-6560293652268094">
+  <script>
+    window.ASSINADOR_ADSENSE = { cliente: 'ca-pub-6560293652268094', bloco: '' };
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6560293652268094" crossorigin="anonymous"></script>
+
+  <style>
+    html, body { height: 100%; margin: 0; background: #F5F7FB; }
+    body { display: flex; flex-direction: column; font-family: Roboto, "Segoe UI", system-ui, sans-serif; }
+    #app { flex: 1 1 auto; position: relative; min-height: 0; }
+    #anuncio { flex: 0 0 auto; display: none; text-align: center; background: #F5F7FB; border-top: 1px solid #e3e7ef; }
+    #anuncio.ativo { display: block; }
+    #carregando { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; color: #1F4E9E; }
+    #carregando img { width: 88px; height: 88px; }
+    #carregando p { margin: 0; font-size: 15px; color: #3a4660; }
+    @media (prefers-color-scheme: dark) { html, body, #anuncio { background: #121318; } #carregando p { color: #c5cbe0; } }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <div id="carregando"><img src="icons/Icon-192.png" alt=""><p>Abrindo o Assinador...</p></div>
+  </div>
+  <div id="anuncio"></div>
+  <noscript>O Assinador precisa de JavaScript para funcionar.</noscript>
+  <script>
+    // banner do rodapé: só aparece com o ID do bloco preenchido em ASSINADOR_ADSENSE.bloco
+    (function () {
+      var cfg = window.ASSINADOR_ADSENSE || {};
+      if (!cfg.bloco) return;
+      var area = document.getElementById('anuncio');
+      var ins = document.createElement('ins');
+      ins.className = 'adsbygoogle';
+      ins.style.cssText = 'display:block;width:100%;height:90px';
+      ins.setAttribute('data-ad-client', cfg.cliente);
+      ins.setAttribute('data-ad-slot', cfg.bloco);
+      ins.setAttribute('data-ad-format', 'horizontal');
+      ins.setAttribute('data-full-width-responsive', 'true');
+      area.appendChild(ins);
+      area.classList.add('ativo');
+      (window.adsbygoogle = window.adsbygoogle || []).push({});
+    })();
+  </script>
+  <script src="flutter_bootstrap.js" async></script>
+</body>
+</html>
