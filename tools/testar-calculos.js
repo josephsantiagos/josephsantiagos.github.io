@@ -317,7 +317,7 @@ t('páginas por valor: tabela 7 prazos × 4 taxas, calculadora com o valor e FAQ
   const fs = require('fs'), path = require('path');
   const raiz = path.resolve(__dirname, '..');
   const valores = paginas.filter((p) => /^emprestimo-de-\d+-reais$/.test(p.slug));
-  assert.strictEqual(valores.length, 9);
+  assert.strictEqual(valores.length, 13);
   for (const p of valores) {
     const v = Number(p.slug.match(/\d+/)[0]);
     const html = fs.readFileSync(path.join(raiz, p.caminho.slice(1), 'index.html'), 'utf8');

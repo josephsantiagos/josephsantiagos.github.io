@@ -9,7 +9,7 @@ const { paginas, grupos, hub } = require('./conteudo.js');
 
 const RAIZ = path.resolve(__dirname, '..');
 const SITE = 'https://josephsantiagos.github.io';
-const LASTMOD = '2026-10-18';
+const LASTMOD = '2026-10-19';
 const PLAY = 'https://play.google.com/store/apps/details?id=com.josephsantiago.calculadoraemprestimos';
 const POLITICA = 'https://josephsantiagos.github.io/pilitica-de-privacidade-play-sotre-/';
 const EMAIL = 'josephsantiago250@gmail.com';
@@ -301,10 +301,13 @@ ${rodape('404')}`;
 
 /* ---------- sitemap e robots ---------- */
 
+// páginas do repositório que não saem deste gerador (com o lastmod delas)
+const EXTRAS_SITEMAP = [['/assinador/', '2026-10-18']];
+
 function sitemap() {
-  const urls = ['/'].concat(paginas.map((p) => p.caminho));
+  const urls = ['/'].concat(paginas.map((p) => p.caminho)).map((u) => [u, LASTMOD]).concat(EXTRAS_SITEMAP);
   return '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
-    urls.map((u) => `  <url><loc>${SITE}${u}</loc><lastmod>${LASTMOD}</lastmod></url>`).join('\n') + '\n</urlset>\n';
+    urls.map(([u, m]) => `  <url><loc>${SITE}${u}</loc><lastmod>${m}</lastmod></url>`).join('\n') + '\n</urlset>\n';
 }
 
 function robots() {

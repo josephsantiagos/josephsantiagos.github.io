@@ -78,14 +78,14 @@ const simuladorEmprestimo = {
 
 /* =================== 2. Quanto fica um empréstimo (tabelas) =================== */
 
-const VALORES = [1000, 2000, 3000, 5000, 10000, 15000, 20000, 30000, 50000];
+const VALORES = [500, 1000, 2000, 3000, 4000, 5000, 8000, 10000, 15000, 20000, 30000, 50000, 100000];
 const PRAZOS = [6, 12, 18, 24, 36, 48];
 const TAXAS = [0.015, 0.025, 0.035, 0.05];
 // prazo usado na frase de exemplo de cada valor (varia para cobrir buscas diferentes)
-const PRAZO_FRASE = { 1000: 12, 2000: 12, 3000: 18, 5000: 24, 10000: 24, 15000: 36, 20000: 36, 30000: 48, 50000: 48 };
+const PRAZO_FRASE = { 500: 6, 1000: 12, 2000: 12, 3000: 18, 4000: 12, 5000: 24, 8000: 24, 10000: 24, 15000: 36, 20000: 36, 30000: 48, 50000: 48, 100000: 48 };
 
 const nomeValor = (v) => 'R$ ' + C.fmt(v, 0);
-const curto = (v) => (v >= 1000 ? C.fmt(v / 1000, 0) + ' mil' : C.fmt(v, 0));
+const curto = (v) => (v >= 1000 ? C.fmt(v / 1000, 0) + ' mil' : 'R$ ' + C.fmt(v, 0));
 
 function tabelaValor(v) {
   const cab = TAXAS.map((t) => `<th scope="col">${f(t * 100, 1)}%</th>`).join('');
@@ -113,11 +113,11 @@ const quantoFica = {
   slug: 'quanto-fica-emprestimo',
   caminho: '/quanto-fica-emprestimo/',
   title: 'Quanto Fica um Empréstimo? Tabela de parcelas',
-  description: 'Tabelas prontas: quanto fica um empréstimo de R$ 1 mil a R$ 50 mil em 6 a 48 meses, com juros de 1,5% a 5% ao mês. Parcela e total pago.',
+  description: 'Tabelas prontas: quanto fica um empréstimo de R$ 500 a R$ 100 mil em 6 a 48 meses, com juros de 1,5% a 5% ao mês. Parcela e total pago.',
   h1: 'Quanto fica um empréstimo: tabela de parcelas',
   trilha: 'Quanto fica um empréstimo',
   appNome: 'Calculadora de quanto fica um empréstimo',
-  link: { titulo: 'Quanto fica um empréstimo', desc: 'Tabelas prontas de parcelas de R$ 1 mil a R$ 50 mil.' },
+  link: { titulo: 'Quanto fica um empréstimo', desc: 'Tabelas prontas de parcelas de R$ 500 a R$ 100 mil.' },
   lead: 'Consulte nas tabelas a parcela e o total pago para os valores mais procurados, ou faça a conta exata na calculadora logo abaixo.',
   calc: {
     tipo: 'rapido',

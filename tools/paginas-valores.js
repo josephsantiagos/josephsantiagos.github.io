@@ -7,7 +7,7 @@ const PRAZOS = [6, 12, 18, 24, 36, 48, 60];
 const TAXAS = [0.015, 0.025, 0.035, 0.05];
 
 const nomeValor = (v) => 'R$ ' + C.fmt(v, 0);
-const curto = (v) => 'R$ ' + C.fmt(v / 1000, 0) + ' mil';
+const curto = (v) => (v >= 1000 ? 'R$ ' + C.fmt(v / 1000, 0) + ' mil' : 'R$ ' + C.fmt(v, 0));
 
 // atalhos de conta para um valor: P = parcela, T = total, J = juros (taxa padrão 2,5% ao mês)
 function contas(v) {
@@ -432,6 +432,154 @@ const cinquentaMil = pagina({
   ]
 });
 
-const paginas = [mil, doisMil, tresMil, cincoMil, dezMil, quinzeMil, vinteMil, trintaMil, cinquentaMil];
+/* =================== R$ 500 =================== */
+
+const quinhentos = pagina({
+  v: 500, prazo: 6,
+  title: 'Empréstimo de 500 reais: quanto fica a parcela',
+  description: (k) => `Empréstimo de R$ 500: a 2,5% ao mês, 6x de ${b(k.P(6))} ou 12x de ${b(k.P(12))}. Tabela de 6 a 60 meses, juros de 1,5% a 5% e saídas sem juros.`,
+  h1: 'Empréstimo de R$ 500: parcelas e quanto você devolve',
+  lead: 'Quanto fica um empréstimo de 500 reais em 6 ou 12 vezes? Veja a tabela pronta, quanto disso é juros e as saídas mais baratas para um valor tão pequeno.',
+  tabelaTitulo: 'Tabela de parcelas para R$ 500',
+  intro: (k) => `Pegando R$ 500 a 2,5% ao mês em 6 meses, a parcela fica em <strong>${b(k.P(6))}</strong> e o total devolvido, em ${b(k.T(6))}. Na tabela, cada linha é um prazo e cada coluna uma taxa mensal; o número de cima é a parcela e o de baixo, o total pago. Os prazos acima de 12 meses aparecem só para comparação: para um valor desse tamanho, quase nunca valem a pena.`,
+  usosTitulo: 'Quando R$ 500 fazem falta',
+  usos: () => `<p>Quinhentos reais costumam faltar no fim do mês: a conta de luz ou de água que venceu, o botijão de gás, um remédio, o conserto da bicicleta ou da moto de quem trabalha com entregas. São gastos urgentes, mas pequenos, e é aí que mora o risco: as linhas mais fáceis de contratar para valores baixos estão entre as mais caras do mercado, e a pressa leva a aceitar a primeira oferta.</p>
+<p>Para R$ 500, vale esgotar as saídas sem juros antes de pegar crédito: negociar o parcelamento direto com a empresa da conta atrasada, pagar o conserto no cartão em duas ou três vezes sem juros, vender algo parado em casa ou pedir um adiantamento a quem paga o seu salário. Se nada disso resolver, o empréstimo pode ser a saída, desde que o prazo seja curto e você saiba exatamente quanto vai devolver.</p>`,
+  jurosTitulo: 'Quanto custam R$ 500 em juros',
+  juros: (k) => `<p>Em reais, os juros de R$ 500 parecem pouco: a 2,5% ao mês, ${b(k.J(6))} em 6 meses e ${b(k.J(12))} em 12 meses. Mas a proporção é a mesma de qualquer empréstimo. Numa linha cara, de 5% ao mês, os mesmos 12 meses custam ${b(k.J(12, 0.05))}, ou ${p(k.J(12, 0.05) / 500, 0)} do valor que você pegou.</p>
+<p>O problema maior dos valores pequenos são as tarifas. Uma tarifa fixa de R$ 50, por exemplo, é 10% de um empréstimo de R$ 500, mas só 1% de um de R$ 5.000. Por isso o custo real de empréstimos pequenos costuma ficar bem acima da taxa de juros anunciada. Pergunte quanto vai cair na conta e confira o custo na calculadora de <a href="/o-que-e-cet/">CET</a>.</p>`,
+  prazoTitulo: 'Qual prazo escolher para R$ 500',
+  prazoTexto: (k) => `<p>Com R$ 500, a regra é simples: o menor prazo cuja parcela caiba no orçamento. A 2,5% ao mês, a parcela de 6 meses é ${b(k.P(6))} e a de 12 meses, ${b(k.P(12))}. Esticar para 12 meses alivia ${b(k.P(6) - k.P(12))} por mês, mas soma ${b(k.J(12) - k.J(6))} de juros ao contrato.</p>
+<p>Acima de 12 meses, a parcela quase não cai: em 24 meses seria ${b(k.P(24))}, só ${b(k.P(12) - k.P(24))} a menos que em 12, enquanto os juros chegariam a ${b(k.J(24))}. Se sobrar dinheiro antes do fim, antecipe as últimas parcelas para ganhar o desconto dos juros; a calculadora de <a href="/quitar-emprestimo-antecipado/">quitação antecipada</a> mostra quanto.</p>`,
+  extraTitulo: 'Cheque especial, rotativo ou empréstimo?',
+  extra: () => `<p>Para cobrir R$ 500 por poucos dias, o cheque especial e o rotativo do cartão estão à mão, mas são das linhas mais caras que existem. Se o buraco durar meses, os juros compostos crescem rápido; veja a simulação em <a href="/juros-cartao-de-credito/">juros do cartão de crédito</a>. Um empréstimo com parcelas fixas tem data para acabar e custo conhecido desde o começo.</p>
+<p>Desconfie de ofertas de crédito fácil que chegam por mensagem ou rede social, principalmente as que pedem um depósito para “liberar” o dinheiro: isso é golpe. Instituições autorizadas descontam tarifas do valor liberado ou as incluem no contrato; nunca pedem pagamento antecipado.</p>`,
+  faq: (k) => [
+    ['Quanto fica um empréstimo de R$ 500 em 6 vezes?', `A 2,5% ao mês, 6 parcelas de ${b(k.P(6))}, somando ${b(k.T(6))}. A 1,5% ao mês, ${b(k.P(6, 0.015))}; a 5% ao mês, ${b(k.P(6, 0.05))}. Os valores não incluem IOF nem tarifas.`],
+    ['E em 12 vezes, quanto fica a parcela de 500 reais?', `A 2,5% ao mês, ${b(k.P(12))} por mês e ${b(k.J(12))} de juros no total. A 5% ao mês, a parcela sobe para ${b(k.P(12, 0.05))}.`],
+    ['Quanto pago de juros em um empréstimo de 500 reais?', `Depende da taxa e do prazo. Em 6 meses, de ${b(k.J(6, 0.015))} (a 1,5% ao mês) a ${b(k.J(6, 0.05))} (a 5% ao mês). Em 12 meses, de ${b(k.J(12, 0.015))} a ${b(k.J(12, 0.05))}.`],
+    ['Vale a pena pegar R$ 500 em 24 meses?', `Quase nunca. A 2,5% ao mês, a parcela cairia de ${b(k.P(12))} (12 meses) para ${b(k.P(24))}, só ${b(k.P(12) - k.P(24))} a menos por mês, e os juros subiriam de ${b(k.J(12))} para ${b(k.J(24))}.`],
+    ['Por que o custo real de um empréstimo pequeno é mais alto?', 'Porque tarifas e seguros cobrados em valor fixo pesam mais em porcentagem quando o valor emprestado é pequeno. Compare sempre pelo CET, que soma juros, IOF, tarifas e seguros.'],
+    ['Este site empresta R$ 500?', 'Não. O site é só uma calculadora gratuita. Não oferecemos nem intermediamos crédito e não temos vínculo com bancos, financeiras ou órgãos públicos.']
+  ]
+});
+
+/* =================== R$ 4.000 =================== */
+
+const quatroMil = pagina({
+  v: 4000, prazo: 12,
+  title: 'Empréstimo de 4 mil reais: parcelas e juros',
+  description: (k) => `Empréstimo de R$ 4.000: a 2,5% ao mês, 12x de ${b(k.P(12))} ou 24x de ${b(k.P(24))}. Tabela de 6 a 60 meses com 4 taxas e simulador grátis, sem cadastro.`,
+  h1: 'Empréstimo de R$ 4.000: quanto fica e quanto custa',
+  lead: 'Quanto fica a parcela de um empréstimo de 4 mil reais em cada prazo, quanto você devolve no total e como comparar propostas para esse valor.',
+  tabelaTitulo: 'Quanto fica um empréstimo de R$ 4.000',
+  intro: (k) => `R$ 4.000 em 12 meses a 2,5% ao mês dão parcelas de <strong>${b(k.P(12))}</strong> e um total de ${b(k.T(12))}. Na tabela, procure a linha do prazo e a coluna da taxa mensal: o número de cima é a parcela e o de baixo, o total pago até a última parcela.`,
+  usosTitulo: 'Para que serve um empréstimo de R$ 4.000',
+  usos: () => `<p>Quatro mil reais ficam entre a emergência e o projeto. Pagam o conserto mais caro do carro, a troca da geladeira e do fogão de uma vez, a caução e a mudança para uma casa nova, o enxoval de um bebê ou a quitação de uma fatura de cartão que saiu do controle. Também é um valor comum para quem quer começar um pequeno negócio em casa, como comprar uma máquina de costura profissional ou equipamentos de cozinha para vender comida.</p>
+<p>No caso do negócio, faça uma conta antes: quanto ele precisa render por mês para pagar a parcela? Se a resposta depender de vendas que ainda não existem, comece com um valor menor ou com um prazo que deixe folga nos primeiros meses.</p>`,
+  jurosTitulo: 'Quanto de juros em R$ 4.000',
+  juros: (k) => `<p>A 2,5% ao mês, os juros de R$ 4.000 são ${b(k.J(12))} em 12 meses, ${b(k.J(24))} em 24 e ${b(k.J(36))} em 36 meses: em três anos, você devolveria ${p(k.J(36) / 4000, 0)} a mais do que pegou. A taxa pesa tanto quanto o prazo. Em 12 meses, passar de 2,5% para 3,5% ao mês acrescenta ${b(k.J(12, 0.035) - k.J(12))} de juros; de 3,5% para 5%, mais ${b(k.J(12, 0.05) - k.J(12, 0.035))}.</p>
+<p>Para quem vai usar o dinheiro para quitar a fatura do cartão, a conta que importa é o custo de deixar a dívida onde está. No rotativo, taxas acima de 10% ao mês são comuns; trocar por um empréstimo a 2,5% ou 3,5% ao mês, com parcelas fixas, reduz bastante os juros, desde que o cartão não volte a acumular saldo.</p>`,
+  prazoTitulo: 'Qual prazo escolher para R$ 4.000',
+  prazoTexto: (k) => {
+    const n = prazoQueCabe(4000, 300);
+    return `<p>Para R$ 4.000, prazos entre 12 e 24 meses costumam equilibrar parcela e custo. A 2,5% ao mês, a parcela vai de ${b(k.P(12))} em 12 meses a ${b(k.P(24))} em 24, e os juros, de ${b(k.J(12))} a ${b(k.J(24))}. Acima disso, o alívio mensal diminui: passar de 36 para 48 meses reduz a parcela em só ${b(k.P(36) - k.P(48))}, mas acrescenta ${b(k.J(48) - k.J(36))} de juros.</p>
+<p>Se o orçamento só aguenta uma parcela de até R$ 300, a 2,5% ao mês o menor prazo que cabe é de ${n} meses (parcela de ${b(k.P(n))}). Nesse caso, considere pedir um valor menor ou juntar parte do dinheiro antes, em vez de alongar ainda mais o contrato.</p>`;
+  },
+  extraTitulo: 'Como comparar duas propostas de R$ 4.000',
+  extra: () => `<p>As propostas raramente vêm no mesmo formato: uma destaca a parcela, outra a taxa, outra o prazo. Para comparar, coloque as duas no mesmo valor e prazo e olhe a parcela, o total pago e o <a href="/o-que-e-cet/">CET</a>. Se uma oferta só informa a parcela, descubra a taxa embutida em <a href="/descobrir-taxa-de-juros/">descobrir a taxa de juros</a>.</p>
+<ul>
+<li>Pergunte quanto vai cair na conta. Se for menos de R$ 4.000, a diferença é IOF, tarifa ou seguro.</li>
+<li>Veja se o seguro prestamista é opcional.</li>
+<li>Some a nova parcela às que você já paga e confira se o total cabe com folga.</li>
+<li>Nunca pague nada antecipado para “liberar” o crédito: isso é golpe.</li>
+</ul>`,
+  faq: (k) => [
+    ['Quanto fica um empréstimo de R$ 4.000 em 12x?', `A 2,5% ao mês, ${b(k.P(12))} por mês e ${b(k.T(12))} no total. A 1,5% ao mês, ${b(k.P(12, 0.015))}; a 5% ao mês, ${b(k.P(12, 0.05))}.`],
+    ['Quanto é a parcela de 4 mil em 24 vezes?', `${b(k.P(24, 0.015))} a 1,5% ao mês, ${b(k.P(24))} a 2,5%, ${b(k.P(24, 0.035))} a 3,5% e ${b(k.P(24, 0.05))} a 5% ao mês, sem IOF e tarifas.`],
+    ['Quanto pago de juros em R$ 4.000 em 18 meses?', `A 2,5% ao mês, ${b(k.J(18))}. A 5% ao mês, ${b(k.J(18, 0.05))}.`],
+    ['É melhor pegar R$ 4.000 em 12 ou 24 meses?', `Em 12 meses você paga ${b(k.J(12))} de juros a 2,5% ao mês; em 24, ${b(k.J(24))}. Escolha o menor prazo com parcela que caiba com folga.`],
+    ['Qual renda é preciso ter para um empréstimo de 4 mil?', `Cada instituição tem os próprios critérios. Como referência, a parcela de ${b(k.P(12))} (12 meses a 2,5% ao mês) cabe em 30% de uma renda de cerca de ${b(k.P(12) / 0.3)}, sem outras dívidas.`],
+    ['Este site empresta R$ 4.000?', 'Não. O site é só uma calculadora gratuita. Não oferecemos nem intermediamos crédito e não temos vínculo com bancos, financeiras ou órgãos públicos.']
+  ]
+});
+
+/* =================== R$ 8.000 =================== */
+
+const oitoMil = pagina({
+  v: 8000, prazo: 36,
+  title: 'Empréstimo de 8 mil reais: tabela de parcelas',
+  description: (k) => `Empréstimo de R$ 8.000: a 2,5% ao mês, 36x de ${b(k.P(36))} ou 24x de ${b(k.P(24))}. Veja parcelas e juros de 6 a 60 meses e simule a sua proposta grátis.`,
+  h1: 'Empréstimo de R$ 8.000: parcelas, juros e prazos',
+  lead: 'Tabela pronta com a parcela e o total de um empréstimo de 8 mil reais em sete prazos e quatro taxas, mais uma calculadora para testar a sua proposta.',
+  tabelaTitulo: 'Parcelas de um empréstimo de R$ 8.000',
+  intro: (k) => `Em 36 meses a 2,5% ao mês, R$ 8.000 viram parcelas de <strong>${b(k.P(36))}</strong> e um total de ${b(k.T(36))}. A tabela mostra o mesmo valor em sete prazos e quatro taxas: em cima, a parcela; embaixo, o total que você terá pago no fim.`,
+  usosTitulo: 'O que costuma caber em R$ 8.000',
+  usos: () => `<p>Oito mil reais pagam uma reforma de banheiro ou de cozinha, a entrada de uma moto, móveis planejados simples, uma cirurgia ou um tratamento dentário maior, ou a reunião de várias dívidas espalhadas em cartões e crediários. Para obras, orce com folga: é comum o custo final passar do previsto, e pegar um segundo empréstimo no meio do caminho quase sempre sai mais caro.</p>
+<p>Se a ideia é juntar dívidas, liste cada uma com o saldo e a taxa mensal. A troca só compensa se o novo empréstimo tiver CET menor que o das dívidas atuais e se você não voltar a usar os limites que acabou de zerar.</p>`,
+  jurosTitulo: 'Quanto R$ 8.000 custam em juros',
+  juros: (k) => `<p>A 2,5% ao mês, os juros são ${b(k.J(12))} em 12 meses, ${b(k.J(24))} em 24 e ${b(k.J(36))} em 36 meses. Em 48 meses chegam a ${b(k.J(48))}, ${p(k.J(48) / 8000, 0)} do valor emprestado. A 5% ao mês, os mesmos 36 meses custariam ${b(k.J(36, 0.05))}: você devolveria ${b(k.T(36, 0.05))} por R$ 8.000.</p>
+<p>Em valores assim, cada ponto de taxa conta. Em 36 meses, conseguir 2,5% em vez de 3,5% ao mês economiza ${b(k.J(36, 0.035) - k.J(36))} de juros, ou ${b(k.P(36, 0.035) - k.P(36))} a menos em cada parcela.</p>`,
+  prazoTitulo: 'O prazo certo para R$ 8.000',
+  prazoTexto: (k) => `<p>Em 36 meses, a parcela a 2,5% ao mês fica em ${b(k.P(36))}. Se o orçamento permitir 24 meses, ela sobe para ${b(k.P(24))}, mas os juros caem ${b(k.J(36) - k.J(24))}. Acima de 48 meses, a parcela quase não cai: de 48 para 60 meses, são só ${b(k.P(48) - k.P(60))} a menos por mês, com ${b(k.J(60) - k.J(48))} a mais de juros.</p>
+<p>Uma estratégia comum é escolher um prazo confortável e antecipar parcelas sempre que entrar um dinheiro extra, como o 13º ou as férias. Cada antecipação dá desconto dos juros; a calculadora de <a href="/quitar-emprestimo-antecipado/">quitação antecipada</a> mostra quanto você economiza.</p>`,
+  extraTitulo: 'Empréstimo, financiamento ou crediário?',
+  extra: () => `<p>Se os R$ 8.000 são para comprar um bem específico, compare o empréstimo com o financiamento ou o crediário da própria loja. Para moto, o financiamento costuma ter taxa menor; veja o <a href="/simulador-financiamento-moto/">simulador de financiamento de moto</a>. Para móveis e eletrodomésticos, calcule a taxa embutida do carnê em <a href="/juros-crediario/">juros do crediário</a> e compare com a do empréstimo.</p>
+<p>Pergunte também o preço à vista. Um desconto de 10% numa compra de R$ 8.000 são R$ 800, e às vezes esse desconto paga boa parte dos juros de um empréstimo curto.</p>
+<p>Por fim, antes de assinar, peça o valor exato que vai cair na conta e confira se a parcela da proposta bate com a taxa anunciada no <a href="/simulador-emprestimo/">simulador de empréstimo</a>. Se a parcela vier maior, a diferença é IOF, tarifa ou seguro, e o custo real do contrato sobe.</p>`,
+  faq: (k) => [
+    ['Quanto fica um empréstimo de 8 mil em 36 meses?', `A 2,5% ao mês, ${b(k.P(36))} por mês e ${b(k.T(36))} no total. A 1,5% ao mês, ${b(k.P(36, 0.015))}; a 5% ao mês, ${b(k.P(36, 0.05))}.`],
+    ['Qual a parcela de R$ 8.000 em 24 vezes?', `${b(k.P(24, 0.015))} a 1,5% ao mês, ${b(k.P(24))} a 2,5%, ${b(k.P(24, 0.035))} a 3,5% e ${b(k.P(24, 0.05))} a 5% ao mês.`],
+    ['Quanto pago de juros em 8 mil em 48 meses?', `A 2,5% ao mês, ${b(k.J(48))}; a 1,5% ao mês, ${b(k.J(48, 0.015))}.`],
+    ['Quanto fica R$ 8.000 em 12 vezes?', `A 2,5% ao mês, ${b(k.P(12))} por mês, com ${b(k.J(12))} de juros no total. A 5% ao mês, ${b(k.P(12, 0.05))}.`],
+    ['Qual renda é preciso ter para um empréstimo de R$ 8.000?', `Cada instituição tem os próprios critérios. Como referência, a parcela de ${b(k.P(36))} (36 meses a 2,5% ao mês) cabe em 30% de uma renda líquida de cerca de ${b(k.P(36) / 0.3)}, sem outras dívidas.`],
+    ['Vale a pena juntar dívidas em um empréstimo de R$ 8.000?', 'Vale quando o CET do novo empréstimo é menor que o das dívidas atuais e você para de usar os limites caros. Se as taxas forem parecidas, a troca só alonga o prazo.']
+  ]
+});
+
+/* =================== R$ 100.000 =================== */
+
+const cemMil = pagina({
+  v: 100000, prazo: 60,
+  title: 'Empréstimo de 100 mil reais: parcelas e alternativas',
+  description: (k) => `Empréstimo de R$ 100 mil: a 2,5% ao mês, 60x de ${b(k.P(60))}. Parcelas e juros de 6 a 60 meses e quando a garantia ou o financiamento custam menos.`,
+  h1: 'Empréstimo de R$ 100.000: parcelas, juros e alternativas',
+  lead: 'Veja a parcela e o total de um empréstimo de 100 mil reais em 6 a 60 meses e compare com as modalidades que costumam ter juros menores para esse valor.',
+  tabelaTitulo: 'Tabela do empréstimo de R$ 100.000',
+  intro: (k) => `A 2,5% ao mês em 60 meses, R$ 100.000 viram parcelas de <strong>${b(k.P(60))}</strong> e um total de ${b(k.T(60))}. A tabela traz sete prazos e quatro taxas mensais; o número de cima é a parcela e o de baixo, o total pago. Nas linhas com garantia, as taxas costumam ser menores e os prazos, mais longos: teste essas condições na calculadora acima.`,
+  usosTitulo: 'Cem mil reais: para que e de onde',
+  usos: () => `<p>Cem mil reais é dinheiro de decisão grande: construir ou terminar uma casa, comprar um carro zero, quitar um financiamento caro, abrir ou expandir uma empresa, ou completar a entrada de um imóvel. Nesse tamanho, o empréstimo pessoal sem garantia raramente é a opção mais barata, e muitas instituições nem oferecem esse valor sem garantia.</p>
+<p>As modalidades mais comuns para R$ 100 mil são o crédito com garantia de imóvel, o crédito com garantia de veículo, o financiamento específico do bem e, para empresas, as linhas de capital de giro. Cada uma tem prazo e custo diferentes. Peça propostas em mais de uma e compare pelo <a href="/o-que-e-cet/">CET</a>, sempre no mesmo prazo.</p>`,
+  jurosTitulo: 'Quanto custam R$ 100.000 em juros',
+  juros: (k) => {
+    const g120 = C.price(100000, 0.012, 120), g60 = C.price(100000, 0.012, 60);
+    return `<p>Em 60 meses a 2,5% ao mês, os juros somam ${b(k.J(60))}: você devolveria ${b(k.T(60))}, ${f(k.T(60) / 100000, 1)} vezes o valor recebido. A 1,5% ao mês, no mesmo prazo, os juros cairiam para ${b(k.J(60, 0.015))}. Meio ponto de taxa vale muito dinheiro: de 2% para 1,5% ao mês, em 60 meses, a economia é de ${b(k.J(60, 0.02) - k.J(60, 0.015))}.</p>
+<p>Com garantia de imóvel, prazos de 120 meses ou mais são comuns. Eles reduzem a parcela, mas multiplicam os juros. Por exemplo, a 1,2% ao mês, R$ 100.000 em 120 meses dão parcelas de ${b(g120.parcela)} e ${b(g120.juros)} de juros; em 60 meses, na mesma taxa, a parcela seria ${b(g60.parcela)} e os juros, ${b(g60.juros)}.</p>`;
+  },
+  prazoTitulo: 'Price ou SAC em R$ 100.000',
+  prazoTexto: (k) => {
+    const s = C.sac(100000, 0.025, 60);
+    return `<p>Em contratos grandes, o sistema de amortização faz diferença. Na Price as parcelas são iguais; no SAC começam mais altas e diminuem todo mês. A 2,5% ao mês em 60 meses, a 1ª parcela do SAC seria ${b(s.primeira)}, contra ${b(k.P(60))} da Price, mas os juros totais cairiam de ${b(k.J(60))} para ${b(s.juros)}. Compare os dois sistemas no simulador acima ou em <a href="/price-ou-sac/">Price ou SAC</a>.</p>
+<p>Em qualquer sistema, amortizar quando entra dinheiro extra corta os juros dos meses seguintes. Em valores desse porte, uma única antecipação pode economizar milhares de reais; simule em <a href="/quitar-emprestimo-antecipado/">quitação antecipada</a>.</p>`;
+  },
+  extraTitulo: 'Antes de pegar R$ 100.000',
+  extra: () => `<ul>
+<li><strong>Garantia é risco:</strong> no crédito com garantia de imóvel ou veículo, o bem pode ser perdido se as parcelas não forem pagas. Só use a garantia se a parcela couber com folga, mesmo num mês ruim.</li>
+<li><strong>Financiamento do bem:</strong> para comprar imóvel, carro ou moto, o financiamento específico costuma ter taxa menor. Veja o <a href="/financiamento-imobiliario/">simulador de financiamento imobiliário</a> e o <a href="/simulador-financiamento-carro/">de carro</a>.</li>
+<li><strong>Consórcio:</strong> sem juros, com taxa de administração e sem data certa para receber o crédito.</li>
+<li><strong>Valor menor:</strong> pegar R$ 70.000 em vez de R$ 100.000, a 2,5% ao mês em 60 meses, economiza ${b(C.price(100000, 0.025, 60).juros - C.price(70000, 0.025, 60).juros)} de juros.</li>
+<li><strong>Custos extras:</strong> com garantia de imóvel há avaliação do bem, registro em cartório e seguros. Inclua tudo no CET antes de comparar.</li>
+</ul>`,
+  faq: (k) => [
+    ['Quanto fica um empréstimo de 100 mil em 60 meses?', `A 2,5% ao mês, ${b(k.P(60))} por mês e ${b(k.T(60))} no total. A 1,5% ao mês, ${b(k.P(60, 0.015))}; a 5% ao mês, ${b(k.P(60, 0.05))}.`],
+    ['Qual a parcela de R$ 100.000 em 48 vezes?', `${b(k.P(48, 0.015))} a 1,5% ao mês, ${b(k.P(48))} a 2,5%, ${b(k.P(48, 0.035))} a 3,5% e ${b(k.P(48, 0.05))} a 5% ao mês.`],
+    ['Quanto pago de juros em 100 mil em 36 meses?', `A 2,5% ao mês, ${b(k.J(36))}; a 1,5% ao mês, ${b(k.J(36, 0.015))}.`],
+    ['Qual renda é preciso ter para um empréstimo de 100 mil?', `Depende da análise de cada instituição. Como referência, a parcela de ${b(k.P(60))} (60 meses a 2,5% ao mês) caberia em 30% de uma renda líquida de cerca de ${b(k.P(60) / 0.3)}, sem outras dívidas.`],
+    ['Dá para pegar R$ 100.000 sem garantia?', 'Algumas instituições oferecem para quem tem renda alta e bom histórico, mas a taxa tende a ser maior. Com garantia de imóvel ou veículo a taxa costuma cair, em troca do risco de perder o bem.'],
+    ['Este site empresta R$ 100.000?', 'Não. O site é só uma calculadora gratuita. Não oferecemos nem intermediamos crédito e não temos vínculo com bancos, financeiras ou órgãos públicos.']
+  ]
+});
+
+const paginas = [quinhentos, mil, doisMil, tresMil, quatroMil, cincoMil, oitoMil, dezMil, quinzeMil, vinteMil, trintaMil, cinquentaMil, cemMil];
 
 module.exports = { paginas, VALORES: paginas.map((x) => Number(x.slug.match(/\d+/)[0])) };

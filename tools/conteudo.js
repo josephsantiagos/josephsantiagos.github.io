@@ -45,7 +45,7 @@ const hub = {
   artigo: `
 <h2>Por onde começar</h2>
 <ul>
-<li><strong>Vai pedir um empréstimo?</strong> Veja a parcela no <a href="/simulador-emprestimo/">simulador de empréstimo</a> ou consulte as tabelas de <a href="/quanto-fica-emprestimo/">quanto fica um empréstimo</a>, de R$ 1 mil a R$ 50 mil.</li>
+<li><strong>Vai pedir um empréstimo?</strong> Veja a parcela no <a href="/simulador-emprestimo/">simulador de empréstimo</a> ou consulte as tabelas de <a href="/quanto-fica-emprestimo/">quanto fica um empréstimo</a>, de R$ 500 a R$ 100 mil.</li>
 <li><strong>Já tem uma proposta na mão?</strong> Calcule o <a href="/o-que-e-cet/">CET</a> com o valor que vai cair na conta e as parcelas, ou coloque duas ofertas lado a lado em <a href="/emprestimo-pessoal-ou-consignado/">empréstimo pessoal ou consignado</a>.</li>
 <li><strong>Quer pagar a dívida antes?</strong> Descubra quanto custa <a href="/quitar-emprestimo-antecipado/">quitar o empréstimo antecipado</a> e quanto de juros você deixa de pagar.</li>
 <li><strong>A loja ofereceu carnê ou “sem juros”?</strong> Ache a taxa embutida em <a href="/juros-crediario/">juros do crediário</a> e <a href="/juros-parcelamento/">juros no parcelamento</a>.</li>

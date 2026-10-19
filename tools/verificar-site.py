@@ -18,7 +18,7 @@ AVISO = ("Simulação ilustrativa. Não oferecemos nem intermediamos crédito e 
          "financeiras ou órgãos públicos. Antes de contratar, confira o Custo Efetivo Total (CET) informado pela instituição.")
 PLAY = "https://play.google.com/store/apps/details?id=com.josephsantiago.calculadoraemprestimos"
 
-VALORES = [1000, 2000, 3000, 5000, 10000, 15000, 20000, 30000, 50000]
+VALORES = [500, 1000, 2000, 3000, 4000, 5000, 8000, 10000, 15000, 20000, 30000, 50000, 100000]
 PAGINAS_VALOR = [f"/emprestimo-de-{v}-reais/" for v in VALORES]
 PAGINAS = [
     "/simulador-emprestimo/", "/simulador-financiamento-carro/", "/simulador-financiamento-moto/",
@@ -29,7 +29,9 @@ PAGINAS = [
     "/o-que-e-cet/", "/como-calcular-juros-de-emprestimo/", "/financiamento-imobiliario/",
     "/juros-crediario/", "/emprestimo-pessoal-ou-consignado/",
 ] + PAGINAS_VALOR
-LASTMOD = "2026-10-18"
+LASTMOD = "2026-10-19"
+# páginas fora do gerador que também entram no sitemap
+EXTRAS_SITEMAP = {"/assinador/": "2026-10-18"}
 VERIFICACAO_GOOGLE = "google-site-verification: googlecc214a75d6d5c7dd.html"
 
 
@@ -251,8 +253,9 @@ def main():
     ns = {"s": "http://www.sitemaps.org/schemas/sitemap/0.9"}
     raiz = ET.fromstring(corpo)
     locs = [u.find("s:loc", ns).text for u in raiz.findall("s:url", ns)]
-    mods = {u.find("s:lastmod", ns).text for u in raiz.findall("s:url", ns)}
-    if sorted(locs) != sorted([SITE + "/"] + [SITE + p for p in PAGINAS]):
+    mods = {u.find("s:lastmod", ns).text for u in raiz.findall("s:url", ns)
+            if u.find("s:loc", ns).text[len(SITE):] not in EXTRAS_SITEMAP}
+    if sorted(locs) != sorted([SITE + "/"] + [SITE + p for p in PAGINAS] + [SITE + p for p in EXTRAS_SITEMAP]):
         falha("sitemap com URLs diferentes das páginas")
     if mods != {LASTMOD}:
         falha(f"lastmod {mods}")
