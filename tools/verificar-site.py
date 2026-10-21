@@ -28,8 +28,10 @@ PAGINAS = [
     "/quitar-emprestimo-antecipado/", "/converter-taxa-de-juros/", "/calculadora-juros-simples/",
     "/o-que-e-cet/", "/como-calcular-juros-de-emprestimo/", "/financiamento-imobiliario/",
     "/juros-crediario/", "/emprestimo-pessoal-ou-consignado/",
+    # página de 2026-10-21
+    "/calculadora-iof-emprestimo/",
 ] + PAGINAS_VALOR
-LASTMOD = "2026-10-19"
+LASTMOD = "2026-10-21"
 # páginas fora do gerador que também entram no sitemap
 EXTRAS_SITEMAP = {"/assinador/": "2026-10-18"}
 VERIFICACAO_GOOGLE = "google-site-verification: googlecc214a75d6d5c7dd.html"

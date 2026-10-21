@@ -205,13 +205,41 @@
   function montanteSimples(c, i, t) { return c * (1 + i * t); }
   function montanteComposto(c, i, t) { return c * Math.pow(1 + i, t); }
 
+  // IOF de crédito para pessoa física (Decreto 6.306/2007): 0,38% sobre o valor do contrato
+  // + 0,0082% ao dia sobre cada amortização, pelos dias até o vencimento dela, limitado a 365 dias.
+  // Mês comercial: a k-ésima parcela vence em 30·k dias.
+  var IOF_FIXO = 0.0038, IOF_DIA = 0.000082;
+
+  // Fração do valor do contrato que vira IOF (a conta é proporcional ao valor).
+  function aliquotaIof(i, n, sistema) {
+    var diario = 0, cresc = Math.pow(1 + i, n);
+    for (var k = 1; k <= n; k++) {
+      // Price: amortizações crescem (1+i)^(k−1); SAC (ou taxa zero): todas iguais
+      var a = sistema === 'sac' || i === 0 ? 1 / n : i * Math.pow(1 + i, k - 1) / (cresc - 1);
+      diario += a * Math.min(30 * k, 365) * IOF_DIA;
+    }
+    return { fixo: IOF_FIXO, diario: diario, total: IOF_FIXO + diario };
+  }
+
+  // financiado = true: o IOF entra no contrato e quem pede recebe o valor inteiro;
+  // false: o contrato é o valor pedido e o IOF sai do que cai na conta.
+  function iof(valor, i, n, sistema, financiado) {
+    var q = aliquotaIof(i, n, sistema);
+    var contrato = financiado ? r2(valor / (1 - q.total)) : valor;
+    var fixo = r2(contrato * q.fixo);
+    var total = financiado ? r2(contrato - valor) : r2(fixo + r2(contrato * q.diario));
+    return { contrato: contrato, fixo: fixo, diario: r2(total - fixo), total: total,
+      liquido: financiado ? valor : r2(valor - total), aliquota: q.total };
+  }
+
   var C = {
     lerNumero: lerNumero, r2: r2, fmt: fmt, brl: brl, pct: pct,
     mensalDeAnual: mensalDeAnual, anualDeMensal: anualDeMensal,
     pmt: pmt, valorPresente: valorPresente, price: price, sac: sac,
     taxaImplicita: taxaImplicita, compostos: compostos,
     anteciparUltimas: anteciparUltimas, equivalente: equivalente,
-    montanteSimples: montanteSimples, montanteComposto: montanteComposto
+    montanteSimples: montanteSimples, montanteComposto: montanteComposto,
+    aliquotaIof: aliquotaIof, iof: iof
   };
 
   /* =========================================================
@@ -741,6 +769,38 @@
         }
       }
       h += frase('Conta feita com parcelas mensais iguais e a primeira em 30 dias. O CET oficial usa as datas exatas e deve vir na proposta.', 'res-nota');
+      return h;
+    });
+  };
+
+  // IOF do empréstimo (pessoa física, Tabela Price), financiado ou descontado do valor
+  R.iof = function (v) {
+    return guard(function () {
+      var financiado = v.modo !== 'descontado';
+      var valor = dinheiro(v.valor, financiado ? 'o valor que você precisa receber' : 'o valor do empréstimo', { exemplo: '10.000' });
+      var t = taxa(v.taxa, v.tipo);
+      var n = inteiro(v.prazo, 'o prazo em meses', 1, 420);
+      checarCrescimento(t.i, n);
+      var x = iof(valor, t.i, n, 'price', financiado);
+      var com = price(x.contrato, t.i, n);
+      var h = destaque('IOF do empréstimo', brl(x.total), pct(x.total / x.contrato) + ' do valor do contrato');
+      h += grade([
+        ['IOF fixo (0,38%)', brl(x.fixo)],
+        ['IOF diário (0,0082% ao dia)', brl(x.diario)],
+        ['Valor do contrato', brl(x.contrato)],
+        ['Valor que cai na conta', brl(x.liquido)],
+        [financiado ? 'Parcela com o IOF' : 'Parcela mensal', brl(com.parcela) + ' (' + parcelasTexto(n) + ')'],
+        ['Total pago', brl(com.total)]
+      ]);
+      if (financiado) {
+        var sem = price(valor, t.i, n);
+        h += frase('O IOF entra no contrato e é pago junto com as parcelas: cada parcela fica <strong>' + brl(r2(com.parcela - sem.parcela)) +
+          '</strong> maior e, no fim, o imposto custa ' + brl(r2(com.total - sem.total)) + ', já com os juros sobre ele.');
+      } else {
+        h += frase('O IOF é descontado na liberação: você assina ' + brl(x.contrato) + ' e recebe <strong>' + brl(x.liquido) +
+          '</strong>. As parcelas são calculadas sobre o valor do contrato.');
+      }
+      h += frase('Conta para pessoa física: 0,38% sobre o valor + 0,0082% ao dia sobre cada parte da dívida, até 365 dias, com meses de 30 dias. O valor exato depende das datas do contrato e aparece no CET da proposta.', 'res-nota');
       return h;
     });
   };

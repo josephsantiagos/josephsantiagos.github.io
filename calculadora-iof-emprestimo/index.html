@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Calculadora de IOF do Empréstimo: quanto de imposto</title>
+<meta name="description" content="Calcule o IOF do empréstimo: 0,38% fixo + 0,0082% ao dia, até 365 dias. Veja o imposto, o valor do contrato e a parcela com IOF.">
+<link rel="canonical" href="https://josephsantiagos.github.io/calculadora-iof-emprestimo/">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#0A5F5B">
+<meta name="format-detection" content="telephone=no">
+<link rel="icon" href="/assets/logo.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="Calculadora Empréstimo e Juros">
+<meta property="og:title" content="Calculadora de IOF do Empréstimo: quanto de imposto">
+<meta property="og:description" content="Calcule o IOF do empréstimo: 0,38% fixo + 0,0082% ao dia, até 365 dias. Veja o imposto, o valor do contrato e a parcela com IOF.">
+<meta property="og:url" content="https://josephsantiagos.github.io/calculadora-iof-emprestimo/">
+<meta property="og:image" content="https://josephsantiagos.github.io/assets/og-calculadora.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Calculadora Empréstimo e Juros: simule parcelas e juros">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="/assets/site.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","@id":"https://josephsantiagos.github.io/calculadora-iof-emprestimo/#calculadora","name":"Calculadora de IOF de empréstimo","url":"https://josephsantiagos.github.io/calculadora-iof-emprestimo/","description":"Calcule o IOF do empréstimo: 0,38% fixo + 0,0082% ao dia, até 365 dias. Veja o imposto, o valor do contrato e a parcela com IOF.","applicationCategory":"FinanceApplication","operatingSystem":"Qualquer sistema com navegador","browserRequirements":"Requer JavaScript","inLanguage":"pt-BR","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"BRL"},"author":{"@type":"Person","name":"Joseph Santiago"}},{"@type":"FAQPage","@id":"https://josephsantiagos.github.io/calculadora-iof-emprestimo/#faq","mainEntity":[{"@type":"Question","name":"Quanto é o IOF de um empréstimo de R$ 10 mil?","acceptedAnswer":{"@type":"Answer","text":"Depende do prazo. Em 24 parcelas a 2,5% ao mês, com o IOF somado ao contrato, o imposto fica em R$ 289,05 (2,81% do contrato). Em 12 parcelas, R$ 209,42."}},{"@type":"Question","name":"Qual é a alíquota do IOF no empréstimo pessoal?","acceptedAnswer":{"@type":"Answer","text":"Para pessoa física: 0,38% fixo sobre o valor, mais 0,0082% ao dia sobre cada parte da dívida, por no máximo 365 dias. No total, chega a no máximo 3,37% do valor do contrato."}},{"@type":"Question","name":"O IOF é cobrado todo mês?","acceptedAnswer":{"@type":"Answer","text":"Não. Ele é calculado e cobrado uma vez, na contratação. Quando é financiado, o valor entra no contrato e você o paga aos poucos, dentro das parcelas."}},{"@type":"Question","name":"Por que o IOF tem limite de 365 dias?","acceptedAnswer":{"@type":"Answer","text":"A parte diária só conta até um ano para cada parcela. Em prazos longos, as parcelas que vencem depois de 12 meses pagam todas o máximo, 2,993%, e o imposto quase para de crescer."}},{"@type":"Question","name":"O IOF entra no CET?","acceptedAnswer":{"@type":"Answer","text":"Sim. O CET soma juros, IOF, tarifas e seguros. Duas propostas com a mesma taxa de juros podem ter CET diferente por causa da forma de cobrar o IOF e das tarifas."}},{"@type":"Question","name":"Como calcular o IOF de um empréstimo de 1 mês?","acceptedAnswer":{"@type":"Answer","text":"Com pagamento único em 30 dias: 0,38% + 30 × 0,0082% = 0,626% do valor. Em R$ 1.000, são R$ 6,26."}}]},{"@type":"BreadcrumbList","@id":"https://josephsantiagos.github.io/calculadora-iof-emprestimo/#trilha","itemListElement":[{"@type":"ListItem","position":1,"name":"Início","item":"https://josephsantiagos.github.io/"},{"@type":"ListItem","position":2,"name":"IOF do empréstimo","item":"https://josephsantiagos.github.io/calculadora-iof-emprestimo/"}]}]}</script>
+</head>
+<body>
+<a class="pular" href="#conteudo">Pular para o conteúdo</a>
+<header class="topo"><div class="topo-in"><a class="marca" href="/"><img src="/assets/logo.svg" alt="" width="32" height="32">Calculadora Empréstimo e Juros</a></div></header>
+<main id="conteudo">
+<nav class="trilha" aria-label="Você está em"><ol><li><a href="/">Início</a></li><li aria-current="page">IOF do empréstimo</li></ol></nav>
+<h1>Calculadora de IOF do empréstimo</h1>
+<p class="lead">O IOF é o imposto cobrado em todo empréstimo. Informe o valor, a taxa e o prazo para ver quanto vai de imposto, o valor do contrato e a parcela com o IOF incluído.</p>
+<section class="calc" id="calculadora" aria-labelledby="titulo-calc">
+<h2 id="titulo-calc" style="margin-top:0">Calcule o IOF</h2>
+<form data-calc="iof" data-saida="resultado-iof" data-anuncio="anuncio-iof" novalidate>
+<div class="campos">
+<div class="campo"><label for="iof-valor">Valor do empréstimo</label><div class="entrada"><span class="un" aria-hidden="true">R$</span><input id="iof-valor" name="valor" type="text" inputmode="decimal" autocomplete="off" value="10.000" aria-describedby="iof-valor-dica"></div><p class="dica" id="iof-valor-dica">Com o IOF somado ao contrato, é o valor que você quer receber na conta.</p></div>
+<div class="campo"><label for="iof-taxa">Taxa de juros</label><div class="dupla"><div class="entrada"><input id="iof-taxa" name="taxa" type="text" inputmode="decimal" autocomplete="off" value="2,5"><span class="un" aria-hidden="true">%</span></div><select name="tipo" aria-label="Período da taxa"><option value="mes" selected>ao mês</option><option value="ano">ao ano</option></select></div></div>
+<div class="campo"><label for="iof-prazo">Prazo</label><div class="entrada"><input id="iof-prazo" name="prazo" type="text" inputmode="numeric" pattern="[0-9]*" autocomplete="off" value="24"><span class="un" aria-hidden="true">meses</span></div></div>
+<div class="campo"><label for="iof-modo">Como o IOF é pago</label><select id="iof-modo" name="modo"><option value="financiado" selected>Somado ao contrato (financiado)</option><option value="descontado">Descontado do valor liberado</option></select></div>
+</div>
+<button class="botao" type="submit">Calcular</button>
+</form>
+<p class="sr" id="anuncio-iof" aria-live="polite"></p>
+<div class="resultado" id="resultado-iof"><div class="res-destaque"><span class="res-rotulo">IOF do empréstimo</span><strong class="res-valor">R$ 289,05</strong><span class="res-sub">2,81% do valor do contrato</span></div><dl class="res-grade"><div><dt>IOF fixo (0,38%)</dt><dd>R$ 39,10</dd></div><div><dt>IOF diário (0,0082% ao dia)</dt><dd>R$ 249,95</dd></div><div><dt>Valor do contrato</dt><dd>R$ 10.289,05</dd></div><div><dt>Valor que cai na conta</dt><dd>R$ 10.000,00</dd></div><div><dt>Parcela com o IOF</dt><dd>R$ 575,29 (24 parcelas)</dd></div><div><dt>Total pago</dt><dd>R$ 13.806,96</dd></div></dl><p class="res-frase">O IOF entra no contrato e é pago junto com as parcelas: cada parcela fica <strong>R$ 16,16</strong> maior e, no fim, o imposto custa R$ 387,84, já com os juros sobre ele.</p><p class="res-nota">Conta para pessoa física: 0,38% sobre o valor + 0,0082% ao dia sobre cada parte da dívida, até 365 dias, com meses de 30 dias. O valor exato depende das datas do contrato e aparece no CET da proposta.</p><p class="aviso">Simulação ilustrativa. Não oferecemos nem intermediamos crédito e não temos vínculo com bancos, financeiras ou órgãos públicos. Antes de contratar, confira o Custo Efetivo Total (CET) informado pela instituição.</p></div>
+</section>
+<aside class="cta-app" aria-label="App para Android">
+<p class="cta-titulo">Leve a calculadora no celular — grátis, sem cadastro</p>
+<p class="cta-texto">No app você simula a parcela em Price ou SAC, compara ofertas e descobre a taxa embutida de qualquer proposta.</p>
+<a class="botao-play" href="https://play.google.com/store/apps/details?id=com.josephsantiago.calculadoraemprestimos&amp;referrer=utm_source%3Dsite%26utm_medium%3Dcalculadora-iof-emprestimo%26utm_campaign%3Dorganico" rel="noopener"><svg width="26" height="28" viewBox="0 0 26 28" aria-hidden="true" focusable="false"><path d="M3 2.6v22.8a1.6 1.6 0 0 0 2.4 1.4l18.6-11.4a1.6 1.6 0 0 0 0-2.8L5.4 1.2A1.6 1.6 0 0 0 3 2.6z" fill="#FFD166"/><path d="M8 9.5v9l7.4-4.5z" fill="#111"/></svg><span><small>Disponível no</small><b>Google Play</b></span></a>
+</aside>
+<article class="texto">
+
+<h2>O que é o IOF do empréstimo</h2>
+<p>O IOF (Imposto sobre Operações Financeiras) é um imposto federal cobrado sobre crédito, câmbio, seguros e alguns investimentos. No empréstimo, ele é calculado uma única vez, na contratação, e a própria instituição recolhe o valor. Por isso quase nunca aparece como uma cobrança separada: ou vem somado ao contrato, ou é descontado do dinheiro que cai na conta.</p>
+<p>Ele vale para empréstimo pessoal, consignado, financiamento de carro e moto, crediário com financeira, cheque especial e parcelamento da fatura do cartão. E entra no <a href="/o-que-e-cet/">Custo Efetivo Total (CET)</a>, que é o número certo para comparar propostas.</p>
+
+<h2>Como o IOF é calculado</h2>
+<p>Para pessoa física, o IOF de crédito tem duas partes:</p>
+<ul>
+<li><strong>IOF fixo:</strong> 0,38% sobre o valor do contrato, cobrado uma vez.</li>
+<li><strong>IOF diário:</strong> 0,0082% ao dia sobre cada parte da dívida, contando os dias até o vencimento de cada parcela, com limite de 365 dias.</li>
+</ul>
+<p>A parte diária é calculada parcela por parcela, sobre a amortização, que é o pedaço da parcela que reduz a dívida. Uma amortização que vence em 30 dias paga 30 × 0,0082% = 0,246%; uma que vence em 365 dias ou mais paga o máximo, 365 × 0,0082% = 2,993%. Somando a parte fixa, o IOF de um empréstimo nunca passa de 3,37% do valor do contrato.</p>
+<p class="formula"><strong>IOF = valor × 0,38% + Σ (amortização × dias × 0,0082%)</strong>, com os dias limitados a 365</p>
+
+<h2>Exemplo resolvido: R$ 10.000 em 24 parcelas</h2>
+<p>Você precisa de R$ 10.000, a 2,5% ao mês, em 24 parcelas pela <a href="/tabela-price/">Tabela Price</a>, com o IOF somado ao contrato, que é o mais comum:</p>
+<ul>
+<li>O IOF fica em R$ 289,05: R$ 39,10 da parte fixa e R$ 249,95 da parte diária.</li>
+<li>O contrato passa a ser de R$ 10.289,05, para que caiam R$ 10.000 na conta.</li>
+<li>A parcela sobe de R$ 559,13 para R$ 575,29.</li>
+<li>Como o imposto também paga juros, ele custa R$ 387,84 ao fim das 24 parcelas.</li>
+</ul>
+<p>Se o IOF for descontado do valor liberado, o contrato fica em R$ 10.000, o imposto é R$ 280,93 e caem R$ 9.719,07 na sua conta.</p>
+
+<h2>Quanto o IOF pesa em cada prazo</h2>
+<p>Quanto maior o prazo, mais dias a dívida fica aberta e maior o IOF, até o limite de 365 dias por parcela. Depois de alguns anos, o imposto quase para de crescer:</p>
+<div class="rolagem"><table class="comparativo"><caption>R$ 10.000 a 2,5% ao mês, IOF somado ao contrato</caption>
+<thead><tr><th scope="col">Prazo</th><th scope="col">IOF</th><th scope="col">Sobre o contrato</th><th scope="col">Parcela com IOF</th></tr></thead>
+<tbody>
+<tr><td>6 meses</td><td>R$ 127,48</td><td>1,26%</td><td>R$ 1.838,64</td></tr>
+<tr><td>12 meses</td><td>R$ 209,42</td><td>2,05%</td><td>R$ 995,29</td></tr>
+<tr><td>24 meses</td><td>R$ 289,05</td><td>2,81%</td><td>R$ 575,29</td></tr>
+<tr><td>36 meses</td><td>R$ 315,10</td><td>3,05%</td><td>R$ 437,89</td></tr>
+<tr><td>60 meses</td><td>R$ 334,73</td><td>3,24%</td><td>R$ 334,36</td></tr>
+</tbody></table></div>
+<p>De 36 para 60 meses o IOF sobe pouco, porque as parcelas que vencem depois de um ano pagam todas a mesma parte diária máxima. Os juros, por outro lado, continuam crescendo com o prazo: compare no <a href="/simulador-emprestimo/">simulador de empréstimo</a>.</p>
+
+<h2>IOF financiado ou descontado</h2>
+<p>Há dois jeitos de pagar o imposto, e a proposta deve deixar claro qual foi usado:</p>
+<ul>
+<li><strong>Financiado:</strong> o IOF é somado ao valor do contrato. Você recebe o valor inteiro que pediu, mas paga juros sobre o imposto durante todo o prazo.</li>
+<li><strong>Descontado:</strong> o contrato é o valor pedido e o IOF sai do dinheiro liberado. Você recebe um pouco menos, mas não paga juros sobre o imposto.</li>
+</ul>
+<p>Nos dois casos o IOF aumenta o custo efetivo. Para ver o efeito na taxa, informe o valor que caiu na conta e as parcelas na <a href="/o-que-e-cet/">calculadora de CET</a>.</p>
+
+<h2>Cartão de crédito e cheque especial</h2>
+<p>O rotativo, o parcelamento da fatura e o cheque especial também pagam IOF de pessoa física, com as mesmas alíquotas: 0,38% sobre o valor usado mais 0,0082% ao dia. Como os juros desses créditos são muito mais altos, o imposto acaba sendo a menor parte da conta. Veja quanto custa deixar parte da fatura para depois em <a href="/juros-cartao-de-credito/">juros do cartão de crédito</a>.</p>
+
+<h2>Dicas</h2>
+<ul>
+<li>Peça sempre o CET: ele já inclui o IOF, as tarifas e os seguros.</li>
+<li>Se a proposta mostra só a taxa de juros, calcule o IOF aqui e some ao custo.</li>
+<li>Para empresas (pessoa jurídica) as alíquotas são outras; esta calculadora usa as de pessoa física.</li>
+<li>A conta usa meses de 30 dias. No contrato valem as datas reais de cada vencimento, então pode haver pequena diferença.</li>
+</ul>
+</article>
+<section class="faq" aria-labelledby="titulo-faq"><h2 id="titulo-faq">Perguntas frequentes</h2>
+<details><summary>Quanto é o IOF de um empréstimo de R$ 10 mil?</summary><p>Depende do prazo. Em 24 parcelas a 2,5% ao mês, com o IOF somado ao contrato, o imposto fica em R$ 289,05 (2,81% do contrato). Em 12 parcelas, R$ 209,42.</p></details>
+<details><summary>Qual é a alíquota do IOF no empréstimo pessoal?</summary><p>Para pessoa física: 0,38% fixo sobre o valor, mais 0,0082% ao dia sobre cada parte da dívida, por no máximo 365 dias. No total, chega a no máximo 3,37% do valor do contrato.</p></details>
+<details><summary>O IOF é cobrado todo mês?</summary><p>Não. Ele é calculado e cobrado uma vez, na contratação. Quando é financiado, o valor entra no contrato e você o paga aos poucos, dentro das parcelas.</p></details>
+<details><summary>Por que o IOF tem limite de 365 dias?</summary><p>A parte diária só conta até um ano para cada parcela. Em prazos longos, as parcelas que vencem depois de 12 meses pagam todas o máximo, 2,993%, e o imposto quase para de crescer.</p></details>
+<details><summary>O IOF entra no CET?</summary><p>Sim. O CET soma juros, IOF, tarifas e seguros. Duas propostas com a mesma taxa de juros podem ter CET diferente por causa da forma de cobrar o IOF e das tarifas.</p></details>
+<details><summary>Como calcular o IOF de um empréstimo de 1 mês?</summary><p>Com pagamento único em 30 dias: 0,38% + 30 × 0,0082% = 0,626% do valor. Em R$ 1.000, são R$ 6,26.</p></details>
+</section>
+<nav class="outras" aria-labelledby="titulo-outras"><h2 id="titulo-outras">Outras calculadoras</h2>
+<h3>Juros e taxas</h3>
+<ul class="links">
+<li><a href="/descobrir-taxa-de-juros/"><strong>Descobrir a taxa de juros</strong><span>A taxa real a partir do valor da parcela.</span></a></li>
+<li><a href="/o-que-e-cet/"><strong>O que é CET</strong><span>O custo real com IOF, tarifas e seguros.</span></a></li>
+<li><a href="/converter-taxa-de-juros/"><strong>Converter taxa de juros</strong><span>Mensal ↔ anual e diária ↔ mensal.</span></a></li>
+<li><a href="/juros-parcelamento/"><strong>Juros no parcelamento</strong><span>Descubra o juro escondido no “sem juros”.</span></a></li>
+<li><a href="/juros-crediario/"><strong>Juros do crediário</strong><span>A taxa escondida no carnê da loja.</span></a></li>
+<li><a href="/juros-cartao-de-credito/"><strong>Juros do cartão de crédito</strong><span>Rotativo ou parcelamento da fatura: quanto custa.</span></a></li>
+<li><a href="/juros-compostos/"><strong>Juros compostos</strong><span>Quanto o dinheiro cresce com aportes mensais.</span></a></li>
+<li><a href="/calculadora-juros-simples/"><strong>Juros simples</strong><span>Simples × compostos lado a lado.</span></a></li>
+</ul>
+<h3>Empréstimo</h3>
+<ul class="indice"><li><a href="/simulador-emprestimo/">Simulador de empréstimo</a></li><li><a href="/quanto-fica-emprestimo/">Quanto fica um empréstimo</a></li><li><a href="/como-calcular-juros-de-emprestimo/">Como calcular juros de empréstimo</a></li><li><a href="/quitar-emprestimo-antecipado/">Quitar empréstimo antecipado</a></li><li><a href="/emprestimo-consignado/">Empréstimo consignado</a></li><li><a href="/emprestimo-pessoal-ou-consignado/">Pessoal ou consignado</a></li></ul>
+<h3>Financiamento e amortização</h3>
+<ul class="indice"><li><a href="/simulador-financiamento-carro/">Financiamento de carro</a></li><li><a href="/simulador-financiamento-moto/">Financiamento de moto</a></li><li><a href="/financiamento-imobiliario/">Financiamento imobiliário</a></li><li><a href="/tabela-price/">Tabela Price</a></li><li><a href="/price-ou-sac/">Price ou SAC</a></li></ul>
+<h3>Empréstimo por valor</h3>
+<ul class="indice"><li><a href="/emprestimo-de-500-reais/">R$ 500</a></li><li><a href="/emprestimo-de-1000-reais/">R$ 1 mil</a></li><li><a href="/emprestimo-de-2000-reais/">R$ 2 mil</a></li><li><a href="/emprestimo-de-3000-reais/">R$ 3 mil</a></li><li><a href="/emprestimo-de-4000-reais/">R$ 4 mil</a></li><li><a href="/emprestimo-de-5000-reais/">R$ 5 mil</a></li><li><a href="/emprestimo-de-8000-reais/">R$ 8 mil</a></li><li><a href="/emprestimo-de-10000-reais/">R$ 10 mil</a></li><li><a href="/emprestimo-de-15000-reais/">R$ 15 mil</a></li><li><a href="/emprestimo-de-20000-reais/">R$ 20 mil</a></li><li><a href="/emprestimo-de-30000-reais/">R$ 30 mil</a></li><li><a href="/emprestimo-de-50000-reais/">R$ 50 mil</a></li><li><a href="/emprestimo-de-100000-reais/">R$ 100 mil</a></li></ul>
+</nav>
+</main>
+<footer class="rodape"><div class="rodape-in">
+<aside class="cta-app" aria-label="App para Android">
+<p class="cta-titulo">Leve a calculadora no celular — grátis, sem cadastro</p>
+<p class="cta-texto">Com o app Calculadora Empréstimo e Juros você simula parcelas em Price ou SAC, com taxa ao mês ou ao ano, e vê a tabela de amortização no seu Android.</p>
+<a class="botao-play" href="https://play.google.com/store/apps/details?id=com.josephsantiago.calculadoraemprestimos&amp;referrer=utm_source%3Dsite%26utm_medium%3Dcalculadora-iof-emprestimo%26utm_campaign%3Dorganico" rel="noopener"><svg width="26" height="28" viewBox="0 0 26 28" aria-hidden="true" focusable="false"><path d="M3 2.6v22.8a1.6 1.6 0 0 0 2.4 1.4l18.6-11.4a1.6 1.6 0 0 0 0-2.8L5.4 1.2A1.6 1.6 0 0 0 3 2.6z" fill="#FFD166"/><path d="M8 9.5v9l7.4-4.5z" fill="#111"/></svg><span><small>Disponível no</small><b>Google Play</b></span></a>
+</aside>
+<p class="aviso">Simulação ilustrativa. Não oferecemos nem intermediamos crédito e não temos vínculo com bancos, financeiras ou órgãos públicos. Antes de contratar, confira o Custo Efetivo Total (CET) informado pela instituição.</p>
+<nav aria-label="Todas as calculadoras"><p class="rodape-titulo"><a href="/">Início: todas as calculadoras</a></p>
+<p class="rodape-titulo">Empréstimo</p><ul class="rodape-links"><li><a href="/simulador-emprestimo/">Simulador de empréstimo</a></li><li><a href="/quanto-fica-emprestimo/">Quanto fica um empréstimo</a></li><li><a href="/como-calcular-juros-de-emprestimo/">Como calcular juros de empréstimo</a></li><li><a href="/quitar-emprestimo-antecipado/">Quitar empréstimo antecipado</a></li><li><a href="/emprestimo-consignado/">Empréstimo consignado</a></li><li><a href="/emprestimo-pessoal-ou-consignado/">Pessoal ou consignado</a></li></ul>
+<p class="rodape-titulo">Financiamento e amortização</p><ul class="rodape-links"><li><a href="/simulador-financiamento-carro/">Financiamento de carro</a></li><li><a href="/simulador-financiamento-moto/">Financiamento de moto</a></li><li><a href="/financiamento-imobiliario/">Financiamento imobiliário</a></li><li><a href="/tabela-price/">Tabela Price</a></li><li><a href="/price-ou-sac/">Price ou SAC</a></li></ul>
+<p class="rodape-titulo">Juros e taxas</p><ul class="rodape-links"><li><a href="/descobrir-taxa-de-juros/">Descobrir a taxa de juros</a></li><li><a href="/o-que-e-cet/">O que é CET</a></li><li><a href="/calculadora-iof-emprestimo/">IOF do empréstimo</a></li><li><a href="/converter-taxa-de-juros/">Converter taxa de juros</a></li><li><a href="/juros-parcelamento/">Juros no parcelamento</a></li><li><a href="/juros-crediario/">Juros do crediário</a></li><li><a href="/juros-cartao-de-credito/">Juros do cartão de crédito</a></li><li><a href="/juros-compostos/">Juros compostos</a></li><li><a href="/calculadora-juros-simples/">Juros simples</a></li></ul>
+<p class="rodape-titulo">Empréstimo por valor</p><ul class="rodape-links"><li><a href="/emprestimo-de-500-reais/">R$ 500</a></li><li><a href="/emprestimo-de-1000-reais/">R$ 1 mil</a></li><li><a href="/emprestimo-de-2000-reais/">R$ 2 mil</a></li><li><a href="/emprestimo-de-3000-reais/">R$ 3 mil</a></li><li><a href="/emprestimo-de-4000-reais/">R$ 4 mil</a></li><li><a href="/emprestimo-de-5000-reais/">R$ 5 mil</a></li><li><a href="/emprestimo-de-8000-reais/">R$ 8 mil</a></li><li><a href="/emprestimo-de-10000-reais/">R$ 10 mil</a></li><li><a href="/emprestimo-de-15000-reais/">R$ 15 mil</a></li><li><a href="/emprestimo-de-20000-reais/">R$ 20 mil</a></li><li><a href="/emprestimo-de-30000-reais/">R$ 30 mil</a></li><li><a href="/emprestimo-de-50000-reais/">R$ 50 mil</a></li><li><a href="/emprestimo-de-100000-reais/">R$ 100 mil</a></li></ul>
+</nav>
+<p>Feito por Joseph Santiago, desenvolvedor de apps Android. <a href="https://play.google.com/store/apps/details?id=com.josephsantiago.calculadoraemprestimos">Calculadora Empréstimo e Juros na Google Play</a> · <a href="https://josephsantiagos.github.io/pilitica-de-privacidade-play-sotre-/">Política de privacidade</a> · Contato: <a href="mailto:josephsantiago250@gmail.com">josephsantiago250@gmail.com</a></p>
+<p>Este site não exibe anúncios e não coleta os valores digitados: as contas são feitas no seu próprio aparelho.</p>
+</div></footer>
+<script src="/assets/calc.js" defer></script>
+</body>
+</html>

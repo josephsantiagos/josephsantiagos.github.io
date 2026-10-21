@@ -317,4 +317,102 @@ const crediario = {
   })()
 };
 
-module.exports = { converter, simples, cet, crediario };
+/* =================== IOF do empréstimo =================== */
+
+const IOF_TETO = 0.0038 + 365 * 0.000082;
+
+const iof = {
+  slug: 'calculadora-iof-emprestimo',
+  caminho: '/calculadora-iof-emprestimo/',
+  title: 'Calculadora de IOF do Empréstimo: quanto de imposto',
+  description: 'Calcule o IOF do empréstimo: 0,38% fixo + 0,0082% ao dia, até 365 dias. Veja o imposto, o valor do contrato e a parcela com IOF.',
+  h1: 'Calculadora de IOF do empréstimo',
+  trilha: 'IOF do empréstimo',
+  appNome: 'Calculadora de IOF de empréstimo',
+  link: { titulo: 'IOF do empréstimo', desc: 'O imposto do crédito: fixo + diário.' },
+  lead: 'O IOF é o imposto cobrado em todo empréstimo. Informe o valor, a taxa e o prazo para ver quanto vai de imposto, o valor do contrato e a parcela com o IOF incluído.',
+  cta: 'No app você simula a parcela em Price ou SAC, compara ofertas e descobre a taxa embutida de qualquer proposta.',
+  calc: {
+    tipo: 'iof',
+    titulo: 'Calcule o IOF',
+    campos: [
+      dinheiro('valor', 'Valor do empréstimo', '10.000', { dica: 'Com o IOF somado ao contrato, é o valor que você quer receber na conta.' }),
+      taxa('2,5'),
+      prazo('24'),
+      { tipo: 'select', nome: 'modo', rotulo: 'Como o IOF é pago', valor: 'financiado', opcoes: [['financiado', 'Somado ao contrato (financiado)'], ['descontado', 'Descontado do valor liberado']] }
+    ]
+  },
+  artigo() {
+    const x = C.iof(10000, 0.025, 24, 'price', true), d = C.iof(10000, 0.025, 24, 'price', false);
+    const sem = C.price(10000, 0.025, 24), com = C.price(x.contrato, 0.025, 24);
+    const linhas = [6, 12, 24, 36, 60].map((n) => {
+      const y = C.iof(10000, 0.025, n, 'price', true);
+      return `<tr><td>${n} meses</td><td>${b(y.total)}</td><td>${p(y.total / y.contrato)}</td><td>${b(C.price(y.contrato, 0.025, n).parcela)}</td></tr>`;
+    }).join('\n');
+    return `
+<h2>O que é o IOF do empréstimo</h2>
+<p>O IOF (Imposto sobre Operações Financeiras) é um imposto federal cobrado sobre crédito, câmbio, seguros e alguns investimentos. No empréstimo, ele é calculado uma única vez, na contratação, e a própria instituição recolhe o valor. Por isso quase nunca aparece como uma cobrança separada: ou vem somado ao contrato, ou é descontado do dinheiro que cai na conta.</p>
+<p>Ele vale para empréstimo pessoal, consignado, financiamento de carro e moto, crediário com financeira, cheque especial e parcelamento da fatura do cartão. E entra no <a href="/o-que-e-cet/">Custo Efetivo Total (CET)</a>, que é o número certo para comparar propostas.</p>
+
+<h2>Como o IOF é calculado</h2>
+<p>Para pessoa física, o IOF de crédito tem duas partes:</p>
+<ul>
+<li><strong>IOF fixo:</strong> 0,38% sobre o valor do contrato, cobrado uma vez.</li>
+<li><strong>IOF diário:</strong> 0,0082% ao dia sobre cada parte da dívida, contando os dias até o vencimento de cada parcela, com limite de 365 dias.</li>
+</ul>
+<p>A parte diária é calculada parcela por parcela, sobre a amortização, que é o pedaço da parcela que reduz a dívida. Uma amortização que vence em 30 dias paga 30 × 0,0082% = 0,246%; uma que vence em 365 dias ou mais paga o máximo, 365 × 0,0082% = 2,993%. Somando a parte fixa, o IOF de um empréstimo nunca passa de ${p(IOF_TETO)} do valor do contrato.</p>
+<p class="formula"><strong>IOF = valor × 0,38% + Σ (amortização × dias × 0,0082%)</strong>, com os dias limitados a 365</p>
+
+<h2>Exemplo resolvido: R$ 10.000 em 24 parcelas</h2>
+<p>Você precisa de R$ 10.000, a 2,5% ao mês, em 24 parcelas pela <a href="/tabela-price/">Tabela Price</a>, com o IOF somado ao contrato, que é o mais comum:</p>
+<ul>
+<li>O IOF fica em ${b(x.total)}: ${b(x.fixo)} da parte fixa e ${b(x.diario)} da parte diária.</li>
+<li>O contrato passa a ser de ${b(x.contrato)}, para que caiam R$ 10.000 na conta.</li>
+<li>A parcela sobe de ${b(sem.parcela)} para ${b(com.parcela)}.</li>
+<li>Como o imposto também paga juros, ele custa ${b(com.total - sem.total)} ao fim das 24 parcelas.</li>
+</ul>
+<p>Se o IOF for descontado do valor liberado, o contrato fica em R$ 10.000, o imposto é ${b(d.total)} e caem ${b(d.liquido)} na sua conta.</p>
+
+<h2>Quanto o IOF pesa em cada prazo</h2>
+<p>Quanto maior o prazo, mais dias a dívida fica aberta e maior o IOF, até o limite de 365 dias por parcela. Depois de alguns anos, o imposto quase para de crescer:</p>
+<div class="rolagem"><table class="comparativo"><caption>R$ 10.000 a 2,5% ao mês, IOF somado ao contrato</caption>
+<thead><tr><th scope="col">Prazo</th><th scope="col">IOF</th><th scope="col">Sobre o contrato</th><th scope="col">Parcela com IOF</th></tr></thead>
+<tbody>
+${linhas}
+</tbody></table></div>
+<p>De 36 para 60 meses o IOF sobe pouco, porque as parcelas que vencem depois de um ano pagam todas a mesma parte diária máxima. Os juros, por outro lado, continuam crescendo com o prazo: compare no <a href="/simulador-emprestimo/">simulador de empréstimo</a>.</p>
+
+<h2>IOF financiado ou descontado</h2>
+<p>Há dois jeitos de pagar o imposto, e a proposta deve deixar claro qual foi usado:</p>
+<ul>
+<li><strong>Financiado:</strong> o IOF é somado ao valor do contrato. Você recebe o valor inteiro que pediu, mas paga juros sobre o imposto durante todo o prazo.</li>
+<li><strong>Descontado:</strong> o contrato é o valor pedido e o IOF sai do dinheiro liberado. Você recebe um pouco menos, mas não paga juros sobre o imposto.</li>
+</ul>
+<p>Nos dois casos o IOF aumenta o custo efetivo. Para ver o efeito na taxa, informe o valor que caiu na conta e as parcelas na <a href="/o-que-e-cet/">calculadora de CET</a>.</p>
+
+<h2>Cartão de crédito e cheque especial</h2>
+<p>O rotativo, o parcelamento da fatura e o cheque especial também pagam IOF de pessoa física, com as mesmas alíquotas: 0,38% sobre o valor usado mais 0,0082% ao dia. Como os juros desses créditos são muito mais altos, o imposto acaba sendo a menor parte da conta. Veja quanto custa deixar parte da fatura para depois em <a href="/juros-cartao-de-credito/">juros do cartão de crédito</a>.</p>
+
+<h2>Dicas</h2>
+<ul>
+<li>Peça sempre o CET: ele já inclui o IOF, as tarifas e os seguros.</li>
+<li>Se a proposta mostra só a taxa de juros, calcule o IOF aqui e some ao custo.</li>
+<li>Para empresas (pessoa jurídica) as alíquotas são outras; esta calculadora usa as de pessoa física.</li>
+<li>A conta usa meses de 30 dias. No contrato valem as datas reais de cada vencimento, então pode haver pequena diferença.</li>
+</ul>`;
+  },
+  faq: (() => {
+    const x24 = C.iof(10000, 0.025, 24, 'price', true), x12 = C.iof(10000, 0.025, 12, 'price', true);
+    const um = C.iof(1000, 0.05, 1, 'price', false);
+    return [
+      ['Quanto é o IOF de um empréstimo de R$ 10 mil?', `Depende do prazo. Em 24 parcelas a 2,5% ao mês, com o IOF somado ao contrato, o imposto fica em ${b(x24.total)} (${p(x24.total / x24.contrato)} do contrato). Em 12 parcelas, ${b(x12.total)}.`],
+      ['Qual é a alíquota do IOF no empréstimo pessoal?', `Para pessoa física: 0,38% fixo sobre o valor, mais 0,0082% ao dia sobre cada parte da dívida, por no máximo 365 dias. No total, chega a no máximo ${p(IOF_TETO)} do valor do contrato.`],
+      ['O IOF é cobrado todo mês?', 'Não. Ele é calculado e cobrado uma vez, na contratação. Quando é financiado, o valor entra no contrato e você o paga aos poucos, dentro das parcelas.'],
+      ['Por que o IOF tem limite de 365 dias?', 'A parte diária só conta até um ano para cada parcela. Em prazos longos, as parcelas que vencem depois de 12 meses pagam todas o máximo, 2,993%, e o imposto quase para de crescer.'],
+      ['O IOF entra no CET?', 'Sim. O CET soma juros, IOF, tarifas e seguros. Duas propostas com a mesma taxa de juros podem ter CET diferente por causa da forma de cobrar o IOF e das tarifas.'],
+      ['Como calcular o IOF de um empréstimo de 1 mês?', `Com pagamento único em 30 dias: 0,38% + 30 × 0,0082% = 0,626% do valor. Em R$ 1.000, são ${b(um.total)}.`]
+    ];
+  })()
+};
+
+module.exports = { converter, simples, cet, crediario, iof };

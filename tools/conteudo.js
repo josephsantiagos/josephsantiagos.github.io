@@ -19,7 +19,7 @@ const grupos = [
   },
   {
     id: 'juros', nome: 'Juros e taxas',
-    paginas: [jur.descobrirTaxa, tax.cet, tax.converter, jur.parcelamento, tax.crediario, jur.cartao, jur.compostos, tax.simples]
+    paginas: [jur.descobrirTaxa, tax.cet, tax.iof, tax.converter, jur.parcelamento, tax.crediario, jur.cartao, jur.compostos, tax.simples]
   },
   { id: 'valores', nome: 'Empréstimo por valor', compacto: true, paginas: val.paginas }
 ];

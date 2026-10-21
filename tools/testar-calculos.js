@@ -157,6 +157,7 @@ t('todas as calculadoras: exemplo padrão ok, com aviso', () => {
     converter: { taxa: '2', de: 'mes' },
     simples: { capital: '10.000', taxa: '2', tipo: 'mes', prazo: '24', unidade: 'meses' },
     cet: { liberado: '10.000', parcela: '595,00', n: '24', anunciada: '2,5' },
+    iof: { valor: '10.000', taxa: '2,5', tipo: 'mes', prazo: '24', modo: 'financiado' },
     passos: { valor: '8.000', taxa: '3', tipo: 'mes', prazo: '12' },
     imovel: { valor: '400.000', entrada: '100.000', taxa: '11', tipo: 'ano', prazo: '360', sistema: 'sac' },
     crediario: { avista: '2.400', entrada: '300', parcela: '259,90', n: '10' },
@@ -258,6 +259,31 @@ t('juros simples: J = C·i·t e comparação com compostos', () => {
   assert.ok(R.simples({ capital: '1000', taxa: '12', tipo: 'ano', prazo: '2', unidade: 'anos' }).html.replace(/\u00a0/g, ' ').includes('R$ 1.240,00'));
 });
 
+/* ---------- IOF ---------- */
+t('IOF: 0,38% + 0,0082% ao dia até 365 dias, financiado e descontado', () => {
+  perto(C.aliquotaIof(0.03, 1, 'price').total, 0.0038 + 30 * 0.000082, 1e-12, '1 parcela');
+  perto(C.aliquotaIof(0, 2, 'price').total, 0.0038 + (30 + 60) / 2 * 0.000082, 1e-12, 'taxa zero');
+  perto(C.aliquotaIof(0.02, 2, 'sac').total, 0.0038 + (30 + 60) / 2 * 0.000082, 1e-12, 'SAC');
+  for (const n of [1, 6, 12, 13, 24, 60, 120, 420]) {
+    const a = C.aliquotaIof(0.025, n, 'price').total;
+    assert.ok(a > 0.0038 && a <= 0.0038 + 365 * 0.000082 + 1e-12, 'teto ' + n);
+    if (n > 1) assert.ok(a > C.aliquotaIof(0.025, n - 1, 'price').total - 1e-12, 'cresce com o prazo ' + n);
+  }
+  for (const [v, i, n] of [[10000, 0.025, 24], [1000, 0.08, 10], [250000, 0.012, 420], [500, 0, 3]]) {
+    const f = C.iof(v, i, n, 'price', true), d = C.iof(v, i, n, 'price', false);
+    perto(f.contrato - f.total, v, 0.005, 'financiado: recebe o valor pedido');
+    perto(f.fixo + f.diario, f.total, 0.005, 'financiado: partes somam');
+    perto(d.liquido + d.total, v, 0.005, 'descontado: líquido + IOF');
+    perto(f.total, f.contrato * f.aliquota, 0.02, 'financiado: IOF do contrato');
+  }
+  const x = C.iof(10000, 0.025, 24, 'price', true);
+  assert.ok(tem(C.brl(x.total), 'R$ 289,05') && tem(C.brl(x.contrato), 'R$ 10.289,05'), 'exemplo do texto');
+  assert.ok(tem(C.brl(C.iof(1000, 0.05, 1, 'price', false).total), 'R$ 6,26'), '1 mês');
+  const h = R.iof({ valor: '10.000', taxa: '2,5', tipo: 'mes', prazo: '24', modo: 'descontado' }).html;
+  assert.ok(tem(h, 'R$ 280,93') && tem(h, 'R$ 9.719,07'), 'descontado no HTML');
+  assert.ok(!R.iof({ valor: '0', taxa: '2', tipo: 'mes', prazo: '12' }).ok, 'valor zero');
+});
+
 /* ---------- CET ---------- */
 t('CET: taxa efetiva pelo valor liberado e efeito dos encargos', () => {
   const r = C.taxaImplicita(10000, 595, 24, false);
@@ -351,6 +377,7 @@ t('números citados nas FAQs batem com a calculadora', () => {
     'converter-taxa-de-juros': ['26,82%', '0,9489%', '3,04%', '12,68%', '42,58%'],
     'calculadora-juros-simples': ['R$ 4.800,00', 'R$ 14.800,00', 'R$ 16.084,37', '4,88%'],
     'o-que-e-cet': ['3,07%', '43,76%'],
+    'calculadora-iof-emprestimo': ['R$ 289,05', 'R$ 209,42', '3,37%', 'R$ 6,26'],
     'como-calcular-juros-de-emprestimo': ['R$ 803,70', 'R$ 1.644,40', '2,60%'],
     'financiamento-imobiliario': ['R$ 3.453,71', 'R$ 2.740,07', 'R$ 213.445,05'],
     'juros-crediario': ['4,08%'],

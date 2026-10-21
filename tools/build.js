@@ -9,7 +9,7 @@ const { paginas, grupos, hub } = require('./conteudo.js');
 
 const RAIZ = path.resolve(__dirname, '..');
 const SITE = 'https://josephsantiagos.github.io';
-const LASTMOD = '2026-10-19';
+const LASTMOD = '2026-10-21';
 const PLAY = 'https://play.google.com/store/apps/details?id=com.josephsantiago.calculadoraemprestimos';
 const POLITICA = 'https://josephsantiagos.github.io/pilitica-de-privacidade-play-sotre-/';
 const EMAIL = 'josephsantiago250@gmail.com';
